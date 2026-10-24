@@ -222,6 +222,35 @@
     .feature { padding: 26px; border: 1px solid rgba(88, 217, 232, .35); background: rgba(8, 28, 37, .75); }
     .feature p { margin-bottom: 0; }
 
+    .project-value {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 34px;
+    }
+    .value-card {
+      min-height: 220px;
+      padding: 26px;
+      background: rgba(255, 255, 255, .58);
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--green);
+    }
+    .value-card .label {
+      display: block;
+      margin-bottom: 20px;
+      color: var(--green-2);
+      font: 800 12px/1 "Manrope", sans-serif;
+      letter-spacing: .16em;
+    }
+    .value-card h3 { margin-bottom: 12px; }
+    .value-card p { margin-bottom: 0; font-size: 15px; line-height: 1.72; }
+    .dark .value-card {
+      background: rgba(8, 28, 37, .75);
+      border-color: rgba(88, 217, 232, .3);
+      border-top-color: var(--cyan);
+    }
+    .dark .value-card .label { color: var(--cyan); }
+
     .troubles { margin-top: 32px; border-top: 2px solid var(--green); }
     .trouble { display: grid; grid-template-columns: .8fr 1fr 1.4fr; gap: 20px; padding: 18px 8px; border-bottom: 1px solid var(--line); }
     .trouble b { font-size: 15px; }
@@ -257,7 +286,7 @@
       .hero-meta { grid-template-columns: 1fr; gap: 18px; margin-top: 50px; }
       .hero-meta p:last-child { text-align: left !important; }
       .stats, .grid-3, .architecture, .steps { grid-template-columns: repeat(2, 1fr); }
-      .grid-2, .project-layout { grid-template-columns: 1fr; }
+      .grid-2, .project-layout, .project-value { grid-template-columns: 1fr; }
       .project-head { align-items: start; flex-direction: column; }
       .role { grid-template-columns: 1fr; gap: 8px; }
     }
@@ -275,7 +304,8 @@
       .job { grid-template-columns: 1fr; gap: 8px; }
       .architecture, .steps, .grid-3 { grid-template-columns: 1fr; }
       .metrics { grid-template-columns: 1fr 1fr; }
-      .device, .run-card, .panel, .feature { padding: 22px; }
+      .device, .run-card, .panel, .feature, .value-card { padding: 22px; }
+      .value-card { min-height: 0; }
       .trouble { grid-template-columns: 1fr; gap: 5px; }
       .trouble + .trouble { padding-top: 24px; }
       .contact-links { flex-direction: column; }
@@ -381,6 +411,23 @@
           <div class="node"><span class="n">03 SERVICE</span><h3>GitHub Pages</h3><p class="small">실시간 카드와 그래프<br>모바일 원격 접속<br>펌프 ON/OFF 발행</p></div>
           <div class="node"><span class="n">04 ALERT</span><h3>Telegram</h3><p class="small">시간 단위 상태 요약<br>기준 이탈 경고<br>휴대폰 알림 수신</p></div>
         </div>
+        <div class="project-value" aria-label="스마트팜 대시보드의 유용성과 실무 적용">
+          <article class="value-card">
+            <span class="label">USEFULNESS</span>
+            <h3>상태 확인 시간을 줄입니다</h3>
+            <p>여러 센서값과 장치 상태를 한 화면에 모아 순찰이나 개별 확인 부담을 줄이고, 마지막 수신 시각과 기준값으로 데이터 이상을 빠르게 발견합니다.</p>
+          </article>
+          <article class="value-card">
+            <span class="label">SERVICE ROLE</span>
+            <h3>현장과 운영자를 연결합니다</h3>
+            <p>장치 데이터 수집, 메시지 전달, 웹 시각화, 원격 명령과 알림을 하나의 운영 흐름으로 연결하는 모니터링·제어 인터페이스 역할을 합니다.</p>
+          </article>
+          <article class="value-card">
+            <span class="label">WORK APPLICATION</span>
+            <h3>설비·재고·환경 관리로 확장합니다</h3>
+            <p>온실뿐 아니라 창고 온습도, 냉장 설비, 생산 장비, 재고 상태처럼 기준 이탈을 빠르게 알아야 하는 업무에 적용해 점검과 대응 이력을 체계화할 수 있습니다.</p>
+          </article>
+        </div>
       </section>
 
       <section class="section reveal" aria-labelledby="trouble-title">
@@ -423,6 +470,23 @@
             <div class="feature"><h3>기록 분석</h3><p>거리·시간·페이스·심박·케이던스·고도와 러닝 다이나믹스를 시각화합니다.</p></div>
             <div class="feature"><h3>레이스 전략</h3><p>목표 기록으로 페이스를 계산하고 이븐·네거티브·포지티브 전략별 스플릿과 CSV를 제공합니다.</p></div>
             <div class="feature"><h3>훈련 운영</h3><p>PB, 대회 D-day, 일정, 통계와 VDOT 기반 참고 페이스를 한 화면에서 관리합니다.</p></div>
+          </div>
+          <div class="project-value" aria-label="STRION 대시보드의 유용성과 실무 적용">
+            <article class="value-card">
+              <span class="label">USEFULNESS</span>
+              <h3>원본 데이터를 행동으로 바꿉니다</h3>
+              <p>복잡한 FIT 기록을 시각화하고 목표 페이스와 훈련 참고값으로 연결해, 사용자가 기록을 읽는 데서 끝나지 않고 다음 행동을 결정하도록 돕습니다.</p>
+            </article>
+            <article class="value-card">
+              <span class="label">SERVICE ROLE</span>
+              <h3>개인화된 의사결정을 지원합니다</h3>
+              <p>파일 업로드부터 분석, 일정·PB 관리, 레이스 전략까지 흩어진 기능을 한 흐름으로 묶는 셀프서비스 분석 도구이자 개인 러닝 운영 화면입니다.</p>
+            </article>
+            <article class="value-card">
+              <span class="label">WORK APPLICATION</span>
+              <h3>데이터 기반 고객 서비스로 확장합니다</h3>
+              <p>헬스케어·피트니스·교육 서비스에서 사용자 데이터를 요약하고 맞춤 목표, 리포트, 리텐션 기능을 제공하는 구조로 활용할 수 있습니다.</p>
+            </article>
           </div>
         </section>
       </div>
