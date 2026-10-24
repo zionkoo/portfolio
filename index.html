@@ -1,0 +1,487 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="업무와 사용자를 이해하고 작동하는 서비스로 연결하는 구정민의 포트폴리오">
+  <meta name="theme-color" content="#154c3b">
+  <title>구정민 | Operations & Digital Service Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Gowun+Dodum&family=Manrope:wght@500;700;800&display=swap');
+
+    :root {
+      --ink: #10271f;
+      --muted: #63736b;
+      --paper: #f4f1e8;
+      --cream: #fbfaf5;
+      --green: #185841;
+      --green-2: #26765a;
+      --lime: #cee858;
+      --cyan: #58d9e8;
+      --night: #07141d;
+      --line: rgba(16, 39, 31, .16);
+      --shadow: 0 20px 70px rgba(15, 48, 37, .12);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 2%, rgba(206, 232, 88, .16), transparent 24rem),
+        linear-gradient(180deg, #ede9df 0, var(--paper) 28rem);
+      font-family: "Gowun Dodum", sans-serif;
+    }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 13px clamp(18px, 4vw, 64px);
+      color: #fff;
+      background: rgba(7, 25, 20, .9);
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      backdrop-filter: blur(18px);
+    }
+    .brand {
+      font: 800 14px/1 "Manrope", sans-serif;
+      letter-spacing: .15em;
+      text-decoration: none;
+    }
+    .top-actions { display: flex; align-items: center; gap: 9px; }
+    .nav-link { color: #d8e6df; font-size: 13px; text-decoration: none; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 43px;
+      padding: 0 17px;
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      color: var(--green);
+      background: transparent;
+      font: 700 13px/1 "Manrope", "Gowun Dodum", sans-serif;
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease, color .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { color: var(--ink); background: var(--lime); border-color: var(--lime); }
+    .button.light { color: #fff; border-color: rgba(255, 255, 255, .45); }
+
+    main { overflow: hidden; }
+    .section { width: min(1180px, calc(100% - 36px)); margin: 0 auto; padding: 92px 0; }
+    .eyebrow {
+      margin: 0 0 15px;
+      color: var(--green-2);
+      font: 800 13px/1 "Manrope", sans-serif;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 900px;
+      margin-bottom: 25px;
+      font: 800 clamp(45px, 7vw, 82px)/1.08 "Manrope", "Gowun Dodum", sans-serif;
+      letter-spacing: -.055em;
+    }
+    h2 {
+      margin-bottom: 20px;
+      font: 800 clamp(32px, 4.4vw, 54px)/1.15 "Manrope", "Gowun Dodum", sans-serif;
+      letter-spacing: -.045em;
+    }
+    h3 { font: 800 21px/1.3 "Manrope", "Gowun Dodum", sans-serif; }
+    p { color: #354a41; font-size: 17px; line-height: 1.75; }
+    .lead { max-width: 900px; font-size: clamp(20px, 2.5vw, 28px); line-height: 1.62; }
+    .small { color: var(--muted); font-size: 14px; line-height: 1.65; }
+    .mono { font-family: "DM Mono", monospace; }
+
+    .hero-wrap { color: #fff; background: var(--green); }
+    .hero {
+      position: relative;
+      min-height: 710px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      isolation: isolate;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: min(650px, 70vw);
+      aspect-ratio: 1;
+      right: -140px;
+      top: -150px;
+      border: 1px solid rgba(255, 255, 255, .25);
+      border-radius: 50%;
+      box-shadow: 0 0 0 95px rgba(206, 232, 88, .09), 0 0 0 190px rgba(255, 255, 255, .04);
+    }
+    .hero .eyebrow { color: var(--lime); }
+    .hero p { color: #e6f0eb; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+    .hero-meta {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: end;
+      margin-top: 70px;
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, .35);
+    }
+    .hero-meta p { margin: 0; font-size: 14px; }
+    .hero-wrap::after { content: ""; display: block; height: 12px; background: var(--lime); }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 54px; }
+    .stat { border-top: 4px solid var(--green); padding-top: 17px; }
+    .stat b { display: block; margin-bottom: 11px; color: var(--green); font: 500 43px/1 "DM Mono", monospace; }
+    .stat span { color: var(--muted); font-size: 15px; line-height: 1.55; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .panel {
+      padding: 28px;
+      background: rgba(255, 255, 255, .62);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 35px rgba(15, 45, 34, .035);
+    }
+    .tag {
+      display: inline-block;
+      margin: 0 7px 8px 0;
+      padding: 8px 13px;
+      color: var(--green);
+      border: 1px solid var(--green);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .timeline { margin-top: 35px; }
+    .job {
+      display: grid;
+      grid-template-columns: 165px 1fr;
+      gap: 25px;
+      padding: 21px 0;
+      border-top: 1px solid var(--line);
+    }
+    .job time { color: var(--green); font: 500 14px/1.5 "DM Mono", monospace; }
+    .job b { display: block; font-size: 19px; }
+    .job span { display: block; margin-top: 6px; color: var(--muted); font-size: 15px; }
+
+    .project { padding: 86px 0; }
+    .project-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 34px; }
+    .project-head h2 { max-width: 760px; margin-bottom: 0; }
+    .project-layout { display: grid; grid-template-columns: 1fr .92fr; gap: 34px; align-items: stretch; }
+    .stack > div { padding: 7px 0 19px; border-bottom: 1px solid var(--line); }
+    .stack > div + div { padding-top: 25px; }
+    .stack > div:last-child { border-bottom: 0; }
+
+    .device {
+      padding: 31px;
+      color: var(--ink);
+      background: linear-gradient(145deg, #eaf5e9, #cce9a6);
+      border: 1px solid #8cbe69;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+    .device .top { color: var(--green); font: 500 12px/1 "DM Mono", monospace; letter-spacing: .12em; }
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 25px; }
+    .metric { padding: 17px; border: 1px solid rgba(24, 88, 65, .25); }
+    .metric span { color: var(--muted); font-size: 13px; }
+    .metric b { display: block; margin-top: 9px; font: 500 clamp(25px, 3vw, 36px)/1 "DM Mono", monospace; }
+
+    .architecture { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 35px; }
+    .node { min-height: 180px; padding: 22px; background: var(--cream); border: 2px solid var(--green); }
+    .node .n { color: var(--green); font: 500 12px/1 "DM Mono", monospace; letter-spacing: .1em; }
+    .node h3 { margin-top: 21px; }
+
+    .dark { color: #fff; background: var(--night); }
+    .dark .eyebrow { color: var(--cyan); }
+    .dark h2, .dark h3 { color: #fff; }
+    .dark p { color: #b5c9cf; }
+    .dark .project { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
+    .run-card { padding: 30px; background: linear-gradient(145deg, #081820, #0c282d); border: 1px solid rgba(88, 217, 232, .45); }
+    .run-card .top { color: var(--cyan); font: 500 12px/1 "DM Mono", monospace; letter-spacing: .13em; }
+    .run-card .metric { border-color: rgba(88, 217, 232, .32); }
+    .run-card .metric b { color: #fff; }
+    .electric-line { position: relative; height: 110px; margin-top: 23px; border-left: 1px solid #31545d; border-bottom: 1px solid #31545d; overflow: hidden; }
+    .electric-line::after {
+      content: "";
+      position: absolute;
+      left: -3%; right: -3%; top: 49%; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--cyan), #6278ff, #f62ae6, var(--cyan), transparent);
+      transform: rotate(-5deg);
+      box-shadow: 0 0 13px var(--cyan);
+    }
+    .feature { padding: 26px; border: 1px solid rgba(88, 217, 232, .35); background: rgba(8, 28, 37, .75); }
+    .feature p { margin-bottom: 0; }
+
+    .troubles { margin-top: 32px; border-top: 2px solid var(--green); }
+    .trouble { display: grid; grid-template-columns: .8fr 1fr 1.4fr; gap: 20px; padding: 18px 8px; border-bottom: 1px solid var(--line); }
+    .trouble b { font-size: 15px; }
+    .trouble span { color: var(--muted); font-size: 14px; line-height: 1.55; }
+
+    .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-top: 38px; }
+    .step { padding-top: 17px; border-top: 3px solid var(--green); }
+    .step b { color: var(--green); font: 500 17px/1 "DM Mono", monospace; }
+    .step h3 { margin: 15px 0 8px; font-size: 18px; }
+    .step p { font-size: 14px; }
+
+    .role { display: grid; grid-template-columns: 280px 1fr; gap: 25px; padding: 23px 0; border-top: 1px solid var(--line); }
+    .role b { font-size: 19px; }
+    .role p { margin: 0; font-size: 16px; }
+
+    .contact { color: #fff; background: var(--green); }
+    .contact .section { min-height: 520px; display: flex; flex-direction: column; justify-content: center; }
+    .contact .eyebrow { color: var(--lime); }
+    .contact h2 { max-width: 900px; }
+    .contact p { color: #e5efe9; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    footer { padding: 24px 18px; color: #71827a; background: #07140f; text-align: center; font: 500 12px/1.5 "Manrope", sans-serif; letter-spacing: .08em; }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (max-width: 840px) {
+      .section { padding: 70px 0; }
+      .nav-link { display: none; }
+      .topbar { padding-inline: 15px; }
+      .top-actions .button { padding-inline: 13px; min-height: 39px; font-size: 12px; }
+      .hero { min-height: 680px; }
+      .hero-meta { grid-template-columns: 1fr; gap: 18px; margin-top: 50px; }
+      .hero-meta p:last-child { text-align: left !important; }
+      .stats, .grid-3, .architecture, .steps { grid-template-columns: repeat(2, 1fr); }
+      .grid-2, .project-layout { grid-template-columns: 1fr; }
+      .project-head { align-items: start; flex-direction: column; }
+      .role { grid-template-columns: 1fr; gap: 8px; }
+    }
+
+    @media (max-width: 560px) {
+      .section, .dark .project { width: min(100% - 28px, 1180px); }
+      .section { padding: 58px 0; }
+      h1 { font-size: 44px; }
+      h2 { font-size: 33px; }
+      .hero { min-height: 650px; padding-top: 48px; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .hero-actions .button { width: 100%; }
+      .stats { grid-template-columns: 1fr 1fr; gap: 30px 15px; }
+      .stat b { font-size: 34px; }
+      .job { grid-template-columns: 1fr; gap: 8px; }
+      .architecture, .steps, .grid-3 { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .device, .run-card, .panel, .feature { padding: 22px; }
+      .trouble { grid-template-columns: 1fr; gap: 5px; }
+      .trouble + .trouble { padding-top: 24px; }
+      .contact-links { flex-direction: column; }
+      .contact-links .button { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top">KOO JEONGMIN</a>
+    <nav class="top-actions" aria-label="주요 메뉴">
+      <a class="nav-link" href="#career">경력</a>
+      <a class="nav-link" href="#projects">프로젝트</a>
+      <a class="button light" href="assets/Jeongmin-Koo-Portfolio.pdf" download>PDF 다운로드</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <div class="hero-wrap">
+      <section class="section hero">
+        <p class="eyebrow">Operations & Digital Service Portfolio</p>
+        <h1>업무와 사용자를 이해하고,<br>작동하는 서비스로 연결합니다</h1>
+        <p class="lead">온라인 MD·상품기획·영업·구매·유통·물류·운영에서 쌓은 경험에 IoT와 웹서비스 구축 경험을 더한 구정민의 포트폴리오입니다.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#projects">프로젝트 보기</a>
+          <a class="button light" href="assets/Jeongmin-Koo-Portfolio.pdf" target="_blank" rel="noopener">PDF 열기</a>
+        </div>
+        <div class="hero-meta">
+          <p><b>구정민</b><br>IT 서비스 운영 · 서비스 기획/QA · 솔루션 구축/운영</p>
+          <p style="text-align:right">2026.10<br><a href="mailto:zionkoo@kakao.com">zionkoo@kakao.com</a></p>
+        </div>
+      </section>
+    </div>
+
+    <section class="section reveal" aria-labelledby="profile-title">
+      <p class="eyebrow">Profile</p>
+      <h2 id="profile-title">업무와 사용자를 이해하는 운영·기획 실무자</h2>
+      <p class="lead">관심을 생각에만 두지 않고 스마트팜 전문가 양성과정 6개월 국비교육을 수료했으며, 조별 프로젝트 ICT 담당으로 AI를 활용한 생육데이터 대시보드를 구현했습니다.</p>
+      <div class="stats">
+        <div class="stat"><b>8년</b><span>온라인 MD·기획·영업·구매·<br>유통·물류·운영을 아우른 경력</span></div>
+        <div class="stat"><b>6개월</b><span>대신IT평생교육원<br>스마트팜 전문가 양성과정 수료</span></div>
+        <div class="stat"><b>2개</b><span>외부 공개 웹서비스<br>스마트팜 · STRION</span></div>
+        <div class="stat"><b>7종</b><span>MQTT 센서·제어 토픽을<br>대시보드에 연결</span></div>
+      </div>
+      <div class="grid-2" style="margin-top:55px">
+        <div>
+          <h3>강점</h3>
+          <span class="tag">운영 흐름 이해</span><span class="tag">이해관계자 조율</span><span class="tag">문제 원인 추적</span><span class="tag">사용자 관점 개선</span>
+        </div>
+        <div>
+          <h3>지원 방향</h3>
+          <p>IT 서비스·플랫폼 운영, 서비스 기획·운영 QA, 솔루션 구축·기술지원, 디지털 전환·업무 개선</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="career" aria-labelledby="career-title">
+      <p class="eyebrow">Career</p>
+      <h2 id="career-title">온라인 MD에서 운영·영업까지 확장한 경력</h2>
+      <div class="timeline">
+        <div class="job"><time>2025.02–2026.02</time><div><b>농업회사법인 이에프시 · 과장</b><span>구매, 입출고, 재고관리와 행사 물량 대응</span></div></div>
+        <div class="job"><time>2024.02–2024.04</time><div><b>호야홈텍 · 주임/계장</b><span>생산 원재료 구매와 발주</span></div></div>
+        <div class="job"><time>2021.04–2023.12</time><div><b>든솔 · 과장</b><span>물류센터 법인영업, 거래처 제안서와 도급계약 협의</span></div></div>
+        <div class="job"><time>2018.05–2021.02</time><div><b>컴퓨존 · 사원</b><span>입출고와 재고관리</span></div></div>
+        <div class="job"><time>2017.10–2018.03</time><div><b>롯데웰푸드</b><span>국내영업</span></div></div>
+        <div class="job"><time>2017.03–2017.09</time><div><b>디엠에이씨인터내셔널</b><span>온라인 MD, 상품기획, 상세페이지 초안 구성</span></div></div>
+      </div>
+      <div class="panel" style="margin-top:28px"><p style="margin:0"><b>경력을 관통하는 공통점</b><br>상품과 고객 요구를 파악하고, 정보·일정·관계자의 흐름을 조정하며 결과를 확인해 온 경험입니다.</p></div>
+    </section>
+
+    <div id="projects">
+      <section class="section project reveal" aria-labelledby="farm-title">
+        <div class="project-head">
+          <div><p class="eyebrow">Project 01 · Smart Farm</p><h2 id="farm-title">실시간 생육환경 모니터링 웹서비스</h2></div>
+          <a class="button" href="https://zionkoo.github.io/smartfarm-dashboard/" target="_blank" rel="noopener">Live Demo ↗</a>
+        </div>
+        <div class="project-layout">
+          <div class="stack">
+            <div><h3>문제</h3><p>센서값이 장치와 PC 안에만 머물면 현장 밖에서 상태를 확인하기 어렵습니다. 모바일 접근과 원격 명령 경로가 필요했습니다.</p></div>
+            <div><h3>내가 한 일</h3><p>조별 프로젝트 ICT 담당으로 AI를 활용해 생육데이터 대시보드를 제작했습니다. Arduino와 HiveMQ, GitHub Pages를 연결하고 화면을 구성했습니다.</p></div>
+            <div><h3>검증 결과</h3><p>DHT11 실측값과 펌프 명령 수신을 확인했습니다. Telegram으로 시간 단위 상태 요약과 기준 이탈 경고 알림도 수신했습니다.</p></div>
+          </div>
+          <div class="device">
+            <div class="top">SMART FARM LIVE</div>
+            <h3 style="font-size:30px;margin-top:18px">생육환경 현황</h3>
+            <div class="metrics">
+              <div class="metric"><span>온도</span><b>26.0°C</b></div>
+              <div class="metric"><span>습도</span><b>54%RH</b></div>
+              <div class="metric"><span>EC</span><b>1.8</b></div>
+              <div class="metric"><span>pH</span><b>5.8</b></div>
+            </div>
+            <p class="small" style="margin:25px 0 0">기준값에 따라 상태색이 바뀌고, 마지막 수신 시각으로 데이터 신선도를 확인합니다.</p>
+          </div>
+        </div>
+        <div class="architecture">
+          <div class="node"><span class="n">01 DEVICE</span><h3>Arduino UNO R4 WiFi</h3><p class="small">DHT11 온·습도 수집<br>MQTT TLS 발행<br>펌프 명령 구독</p></div>
+          <div class="node"><span class="n">02 BROKER</span><h3>HiveMQ Cloud</h3><p class="small">MQTT/TLS·WSS<br>센서·제어 메시지 전달<br>인증 기반 연결</p></div>
+          <div class="node"><span class="n">03 SERVICE</span><h3>GitHub Pages</h3><p class="small">실시간 카드와 그래프<br>모바일 원격 접속<br>펌프 ON/OFF 발행</p></div>
+          <div class="node"><span class="n">04 ALERT</span><h3>Telegram</h3><p class="small">시간 단위 상태 요약<br>기준 이탈 경고<br>휴대폰 알림 수신</p></div>
+        </div>
+      </section>
+
+      <section class="section reveal" aria-labelledby="trouble-title">
+        <p class="eyebrow">Project 01 · Troubleshooting</p>
+        <h2 id="trouble-title">오류 메시지를 단서로 연결 문제를 좁혔습니다</h2>
+        <div class="troubles">
+          <div class="trouble"><b>WiFi 연결 대기</b><span>UNO R4 WiFi와 5GHz 환경</span><span>2.4GHz SSID로 변경 후 네트워크 연결 확인</span></div>
+          <div class="trouble"><b>MQTT rc=-2 반복</b><span>일반 WiFiClient와 TLS 포트 불일치</span><span>WiFiSSLClient와 8883 적용 후 브로커 연결</span></div>
+          <div class="trouble"><b>업로드 장치 미발견</b><span>펌웨어 갱신 뒤 USB 포트 변경</span><span>0.6.0 업데이트 후 새 포트를 다시 선택해 업로드</span></div>
+          <div class="trouble"><b>공개 페이지 연결</b><span>HTTPS 페이지에서 ws 연결 불가</span><span>HiveMQ WSS 8884와 /mqtt 경로 사용</span></div>
+          <div class="trouble"><b>상태 확인 부담</b><span>화면을 열어야만 상태와 이상 확인</span><span>Telegram 정시 요약과 기준 이탈 경고 추가</span></div>
+        </div>
+      </section>
+
+      <div class="dark">
+        <section class="project reveal" aria-labelledby="strion-title">
+          <div class="project-head">
+            <div><p class="eyebrow">Project 02 · Strion</p><h2 id="strion-title">러너가 이해하기 쉬운 FIT 분석 대시보드</h2></div>
+            <a class="button light" href="https://zionkoo.github.io/strion-running-dashboard/" target="_blank" rel="noopener">Live Demo ↗</a>
+          </div>
+          <div class="project-layout">
+            <div>
+              <p class="lead">Garmin 원본 FIT 파일을 업로드하면 브라우저 안에서 기록을 분석하고 다음 훈련과 레이스 계획까지 연결합니다.</p>
+              <p><b style="color:#fff">브랜드 의미</b><br>STRION은 STRIDE + ON의 합성어입니다. 한 걸음의 데이터를 이해하고 다음 걸음을 이어간다는 의미를 담았습니다.</p>
+              <p><b style="color:#fff">내 역할</b><br>FIT 분석 요구사항, 정보 구조, 레이스·훈련 기능과 모바일 사용 흐름을 정의하고 실제 파일로 반복 검증했습니다.</p>
+            </div>
+            <div class="run-card">
+              <div class="top">STRION // RUN ANALYSIS</div>
+              <h3 style="font-size:29px;margin-top:18px">NEXT STRIDE</h3>
+              <div class="metrics">
+                <div class="metric"><span>DISTANCE</span><b>5.39 km</b></div>
+                <div class="metric"><span>AVG PACE</span><b>6:41/km</b></div>
+                <div class="metric"><span>HEART RATE</span><b>128 bpm</b></div>
+                <div class="metric"><span>CADENCE</span><b>172 spm</b></div>
+              </div>
+              <div class="electric-line" aria-hidden="true"></div>
+            </div>
+          </div>
+          <div class="grid-3" style="margin-top:30px">
+            <div class="feature"><h3>기록 분석</h3><p>거리·시간·페이스·심박·케이던스·고도와 러닝 다이나믹스를 시각화합니다.</p></div>
+            <div class="feature"><h3>레이스 전략</h3><p>목표 기록으로 페이스를 계산하고 이븐·네거티브·포지티브 전략별 스플릿과 CSV를 제공합니다.</p></div>
+            <div class="feature"><h3>훈련 운영</h3><p>PB, 대회 D-day, 일정, 통계와 VDOT 기반 참고 페이스를 한 화면에서 관리합니다.</p></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="section reveal" aria-labelledby="ai-title">
+      <p class="eyebrow">Working With AI</p>
+      <h2 id="ai-title">관심을 요구사항으로 바꾸고 AI와 함께 구현했습니다</h2>
+      <p class="lead">스마트팜 전문가 양성과정 조별 프로젝트에서 ICT 담당을 맡아 AI를 활용한 생육데이터 대시보드를 제작했습니다. 이후 기능을 직접 적용·검증·개선했습니다.</p>
+      <div class="steps">
+        <div class="step"><b>01</b><h3>문제 정의</h3><p>사용 상황과 필요한 결과를 문장으로 정리</p></div>
+        <div class="step"><b>02</b><h3>구조 결정</h3><p>브로커·장치·웹 역할과 데이터 흐름 선택</p></div>
+        <div class="step"><b>03</b><h3>AI 지원</h3><p>코드 초안, 오류 원인 후보와 개선안 확보</p></div>
+        <div class="step"><b>04</b><h3>직접 검증</h3><p>배선·인증·포트·로그·UI를 단계별 확인</p></div>
+        <div class="step"><b>05</b><h3>반복 개선</h3><p>모바일 사용성과 예외 상황을 반영</p></div>
+      </div>
+      <div class="grid-2" style="margin-top:45px">
+        <div class="panel"><h3>내가 주도한 일</h3><p class="small">조별 ICT 역할 수행, 문제·기능 정의, HiveMQ·GitHub Pages 설정, Arduino 연결·펌웨어 갱신, 센서·릴레이 배선, 로그·모바일 사용성 확인</p></div>
+        <div class="panel"><h3>AI를 활용한 부분</h3><p class="small">HTML·JavaScript·Arduino 코드 초안, 에러 메시지 해석, 원인 후보 비교, UI 수정안 탐색과 문서 구조화</p></div>
+      </div>
+    </section>
+
+    <section class="section reveal" aria-labelledby="role-title">
+      <p class="eyebrow">Role Fit</p>
+      <h2 id="role-title">지원 직무에서 활용할 수 있는 경험</h2>
+      <div class="role"><b>IT 서비스·플랫폼 운영</b><p>연결 상태, 데이터 수신, 배포 결과를 구분해 확인하고 사용자 불편을 반복 개선한 경험</p></div>
+      <div class="role"><b>서비스 기획·운영 QA</b><p>온라인 MD의 상품·상세페이지 기획과 사용자 피드백을 기능·화면·예외처리로 전환한 경험</p></div>
+      <div class="role"><b>솔루션 구축·기술지원</b><p>네트워크·인증·포트 설정과 장애 원인 분리, 장치와 웹의 통합 검증 경험</p></div>
+      <div class="role"><b>디지털 전환·업무 개선</b><p>다양한 실무 경험과 직접 만든 서비스를 바탕으로 업무 문제를 디지털 기능과 운영 절차로 구체화한 경험</p></div>
+    </section>
+
+    <section class="contact">
+      <div class="section reveal">
+        <p class="eyebrow">Contact</p>
+        <h2>업무와 사용자를 이해하는 사람이<br>서비스 운영의 빈틈을 줄입니다</h2>
+        <p class="lead">관심을 교육과 학습으로 실천하고 AI와 함께 구현하며, 업무와 사용자의 문제를 작동하는 결과로 연결하겠습니다.</p>
+        <div class="contact-links">
+          <a class="button primary" href="mailto:zionkoo@kakao.com">zionkoo@kakao.com</a>
+          <a class="button light" href="assets/Jeongmin-Koo-Portfolio.pdf" download>포트폴리오 PDF 다운로드</a>
+          <a class="button light" href="https://zionkoo.github.io/smartfarm-dashboard/" target="_blank" rel="noopener">Smart Farm ↗</a>
+          <a class="button light" href="https://zionkoo.github.io/strion-running-dashboard/" target="_blank" rel="noopener">STRION ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>MADE BY ZIONKOO · 2026</footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
