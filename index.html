@@ -219,6 +219,30 @@
       transform: rotate(-5deg);
       box-shadow: 0 0 13px var(--cyan);
     }
+    .garmin-sync {
+      margin-top: 28px;
+      padding: 22px;
+      background: rgba(4, 17, 25, .72);
+      border: 1px solid rgba(88, 217, 232, .34);
+      box-shadow: inset 3px 0 0 var(--cyan);
+    }
+    .sync-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .sync-head span:first-child { color: #fff; font: 500 12px/1 "DM Mono", monospace; letter-spacing: .12em; }
+    .sync-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--cyan);
+      font: 500 11px/1 "DM Mono", monospace;
+    }
+    .sync-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    .sync-route { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 9px; align-items: center; margin-top: 22px; }
+    .sync-route b { min-width: 0; padding: 11px 8px; color: #dffaff; border: 1px solid rgba(88, 217, 232, .25); font: 500 11px/1.35 "DM Mono", monospace; text-align: center; }
+    .sync-route i { color: var(--cyan); font: 500 15px/1 "DM Mono", monospace; font-style: normal; }
+    .sync-activity { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(88, 217, 232, .2); }
+    .sync-activity small { display: block; margin-bottom: 7px; color: #6f8d94; font: 500 10px/1 "DM Mono", monospace; letter-spacing: .1em; }
+    .sync-activity strong { color: #fff; font-size: 15px; }
+    .sync-activity em { color: #9fb9c0; font: 400 11px/1.4 "DM Mono", monospace; font-style: normal; text-align: right; }
     .feature { padding: 26px; border: 1px solid rgba(88, 217, 232, .35); background: rgba(8, 28, 37, .75); }
     .feature p { margin-bottom: 0; }
 
@@ -351,6 +375,9 @@
       .architecture, .steps, .grid-3, .strion-flow, .proof-grid, .before-after, .scope-grid { grid-template-columns: 1fr; }
       .metrics { grid-template-columns: 1fr 1fr; }
       .device, .run-card, .panel, .feature, .value-card { padding: 22px; }
+      .garmin-sync { padding: 18px; }
+      .sync-route { grid-template-columns: 1fr; }
+      .sync-route i { transform: rotate(90deg); text-align: center; }
       .value-card { min-height: 0; }
       .trouble { grid-template-columns: 1fr; gap: 5px; }
       .trouble + .trouble { padding-top: 24px; }
@@ -535,6 +562,19 @@
                 <div class="metric"><span>CADENCE</span><b>172 spm</b></div>
               </div>
               <div class="electric-line" aria-hidden="true"></div>
+              <div class="garmin-sync" aria-label="Garmin 동기화 화면">
+                <div class="sync-head">
+                  <span>GARMIN SYNC</span>
+                  <span class="sync-status">CONNECTED</span>
+                </div>
+                <div class="sync-route" aria-label="Garmin 데이터 연결 흐름">
+                  <b>GARMIN<br>CONNECT</b><i>→</i><b>CLOUDFLARE<br>WORKER</b><i>→</i><b>STRION<br>ANALYSIS</b>
+                </div>
+                <div class="sync-activity">
+                  <div><small>LATEST ACTIVITY</small><strong>Morning Run · 5.39 km</strong></div>
+                  <em>SYNCED<br>09:42</em>
+                </div>
+              </div>
             </div>
           </div>
           <div class="grid-2" style="margin-top:30px">
