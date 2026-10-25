@@ -47,6 +47,11 @@
     .flow h3 { margin-top:28px; }
     .security { display:grid; grid-template-columns:.9fr 1.1fr; gap:16px; margin-top:22px; }
     .security strong { color:var(--text); }
+    .requirements { display:grid; gap:0; }
+    .requirement-row { display:grid; grid-template-columns:58px .75fr 1.35fr; gap:12px; align-items:start; padding:10px 0; border-top:1px solid rgba(85,229,242,.16); }
+    .requirement-row b { color:var(--cyan); font:500 10px/1.55 "DM Mono",monospace; letter-spacing:.06em; }
+    .requirement-row strong { color:var(--text); font-size:13px; line-height:1.45; }
+    .requirement-row span { color:var(--muted); font-size:12px; line-height:1.5; }
     .checks { display:grid; gap:0; margin:0; padding:0; list-style:none; }
     .checks li { display:grid; grid-template-columns:24px 1fr auto; gap:10px; padding:12px 0; color:#c9dce1; border-top:1px solid rgba(85,229,242,.16); font-size:14px; line-height:1.5; }
     .checks li::before { content:"✓"; color:var(--cyan); font-weight:800; }
@@ -59,7 +64,7 @@
     .scope li::before { content:""; position:absolute; left:0; top:.6em; width:7px; height:7px; border:1px solid var(--cyan); }
     .footnote { position:absolute; left:clamp(30px,5vw,64px); bottom:20px; color:#6e8991; font:500 10px/1 "DM Mono",monospace; letter-spacing:.09em; }
     @media (max-width:780px) { .page{min-height:0;padding-bottom:65px}.section-head,.grid-2,.grid-3,.security{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.flow .card:nth-child(2)::after{display:none} }
-    @media (max-width:520px) { .actions .print{display:none}.deck{width:min(100% - 20px,1120px);margin-top:16px}.page{padding:27px 21px 62px}.flow{grid-template-columns:1fr}.flow .card:not(:last-child)::after{content:"↓";top:auto;right:50%;bottom:-22px;transform:translateX(50%)}.flow .card:nth-child(2)::after{display:block}.checks li{grid-template-columns:22px 1fr}.checks b{grid-column:2}.footnote{left:21px} }
+    @media (max-width:520px) { .actions .print{display:none}.deck{width:min(100% - 20px,1120px);margin-top:16px}.page{padding:27px 21px 62px}.flow{grid-template-columns:1fr}.flow .card:not(:last-child)::after{content:"↓";top:auto;right:50%;bottom:-22px;transform:translateX(50%)}.flow .card:nth-child(2)::after{display:block}.checks li{grid-template-columns:22px 1fr}.checks b{grid-column:2}.requirement-row{grid-template-columns:50px 1fr}.requirement-row span{grid-column:2}.footnote{left:21px} }
     @media print { @page{size:A4 landscape;margin:0} body{background:var(--night);print-color-adjust:exact;-webkit-print-color-adjust:exact}.topbar{display:none}.deck{width:100%;margin:0}.page{width:297mm;height:210mm;min-height:0;margin:0;padding:17mm;page-break-after:always;box-shadow:none}.page:last-child{page-break-after:auto} }
   </style>
 </head>
@@ -88,7 +93,7 @@
     </section>
 
     <section class="page" data-page="02 / 03">
-      <div class="section-head"><div><p class="kicker">SOLUTION &amp; SECURITY</p><h2>정적 웹의 간편함과<br>비밀 정보 보호를 함께</h2></div><p>대시보드는 GitHub Pages에 그대로 유지하고, 인증이 필요한 요청만 Cloudflare Worker가 대신 처리합니다.</p></div>
+      <div class="section-head"><div><p class="kicker">SOLUTION &amp; REQUIREMENTS</p><h2>안전한 연결을<br>실제 기능으로</h2></div><p>데이터 흐름과 핵심 기능의 동작 기준을 한 화면에 정리했습니다. 인증이 필요한 요청만 Cloudflare Worker가 대신 처리합니다.</p></div>
       <div class="flow" aria-label="Garmin 자동 동기화 구조">
         <article class="card"><span class="label">01 · SOURCE</span><h3>Garmin Connect</h3><p>Personal API로 최근 러닝 활동 목록과 FIT 원본을 제공합니다.</p></article>
         <article class="card"><span class="label">02 · SECURE LAYER</span><h3>Cloudflare Worker</h3><p>API 키를 비밀 환경 변수에 보관하고 허용된 요청만 전달합니다.</p></article>
@@ -97,7 +102,7 @@
       </div>
       <div class="security">
         <article class="card"><span class="label">SECURITY PRINCIPLE</span><h3>키는 화면에 두지 않습니다</h3><p><strong>개인 API 키를 HTML·GitHub 저장소·브라우저 저장소에서 분리</strong>했습니다. 공개 화면은 Worker 주소만 호출하며, Worker가 Garmin 요청을 중계합니다.</p></article>
-        <article class="card"><span class="label">EXCEPTION FLOW</span><ul class="checks"><li><span>연결 정보 또는 키가 올바르지 않을 때 명확한 오류 안내</span><b>DESIGNED</b></li><li><span>최근 러닝이 없을 때 빈 상태 안내</span><b>DESIGNED</b></li><li><span>같은 활동을 다시 가져올 때 중복 저장 방지</span><b>CHECKED</b></li><li><span>네트워크 실패 시 기존 저장 기록은 계속 열람</span><b>CHECKED</b></li></ul></article>
+        <article class="card"><span class="label">CORE FUNCTIONAL REQUIREMENTS</span><div class="requirements" role="table" aria-label="STRION Garmin 자동 동기화 핵심 기능 요구사항"><div class="requirement-row" role="row"><b role="cell">FR-01</b><strong role="cell">연결 상태 확인</strong><span role="cell">Worker 응답과 인증 상태를 확인해 연결 성공·실패를 구분해 표시</span></div><div class="requirement-row" role="row"><b role="cell">FR-02</b><strong role="cell">최근 활동 동기화</strong><span role="cell">최근 러닝 목록을 불러오고 선택한 활동의 FIT 원본을 분석</span></div><div class="requirement-row" role="row"><b role="cell">FR-03</b><strong role="cell">중복 저장 방지</strong><span role="cell">같은 활동은 기존 기록을 유지하거나 갱신해 중복 카드 생성을 차단</span></div><div class="requirement-row" role="row"><b role="cell">FR-04</b><strong role="cell">날짜별 재열람</strong><span role="cell">저장 기록을 날짜로 선택해 파일 재업로드 없이 분석 화면 복원</span></div><div class="requirement-row" role="row"><b role="cell">FR-05</b><strong role="cell">오류·빈 상태 안내</strong><span role="cell">인증 실패, 기록 없음, 네트워크 실패의 원인과 다음 행동을 구분해 안내</span></div></div></article>
       </div>
       <span class="footnote">GARMIN CONNECT → CLOUDFLARE WORKER → STRION → LOCAL STORAGE</span>
     </section>
