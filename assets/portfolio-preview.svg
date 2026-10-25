@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b2d23"/><stop offset="1" stop-color="#185841"/></linearGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#cee858"/><stop offset="1" stop-color="#58d9e8"/></linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1110" cy="-20" r="260" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="2"/>
+  <circle cx="1110" cy="-20" r="185" fill="#cee858" fill-opacity=".08"/>
+  <rect x="64" y="62" width="1072" height="506" fill="none" stroke="#ffffff" stroke-opacity=".18"/>
+  <rect x="64" y="62" width="10" height="506" fill="url(#line)"/>
+  <text x="108" y="132" fill="#cee858" font-family="Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="5">OPERATIONS &amp; DIGITAL SERVICE</text>
+  <text x="108" y="246" fill="#ffffff" font-family="Arial, sans-serif" font-size="68" font-weight="700">KOO JEONGMIN</text>
+  <text x="108" y="322" fill="#e6f0eb" font-family="Arial, sans-serif" font-size="34">업무와 사용자를 이해하고,</text>
+  <text x="108" y="371" fill="#e6f0eb" font-family="Arial, sans-serif" font-size="34">작동하는 서비스로 연결합니다</text>
+  <line x1="108" y1="438" x2="1092" y2="438" stroke="#ffffff" stroke-opacity=".25"/>
+  <text x="108" y="495" fill="#ffffff" font-family="Arial, sans-serif" font-size="24">SMART FARM</text>
+  <text x="350" y="495" fill="#58d9e8" font-family="Arial, sans-serif" font-size="24">+</text>
+  <text x="394" y="495" fill="#ffffff" font-family="Arial, sans-serif" font-size="24">STRION</text>
+  <text x="1088" y="495" text-anchor="end" fill="#bcd0c6" font-family="Arial, sans-serif" font-size="20">zionkoo.github.io/portfolio</text>
+</svg>
