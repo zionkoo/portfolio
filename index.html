@@ -330,9 +330,20 @@
     .step h3 { margin: 15px 0 8px; font-size: 18px; }
     .step p { font-size: 14px; }
 
-    .role { display: grid; grid-template-columns: 280px 1fr; gap: 25px; padding: 23px 0; border-top: 1px solid var(--line); }
+    .verification-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 34px; }
+    .verification-card { padding: 28px; background: var(--cream); border: 1px solid var(--line); border-top: 4px solid var(--green); }
+    .verification-card .project-name { display: block; margin-bottom: 13px; color: var(--green-2); font: 800 11px/1 "Manrope", sans-serif; letter-spacing: .16em; }
+    .verification-card h3 { margin-bottom: 22px; }
+    .check-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+    .check-list li { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; padding: 13px 0; border-top: 1px solid var(--line); color: #354a41; font-size: 14px; line-height: 1.5; }
+    .check-list li::before { content: "✓"; color: var(--green-2); font: 800 14px/1 "Manrope", sans-serif; }
+    .check-list b { color: var(--green); font: 500 11px/1 "DM Mono", monospace; letter-spacing: .08em; }
+
+    .role { display: grid; grid-template-columns: 280px 1fr auto; gap: 25px; align-items: center; padding: 23px 0; border-top: 1px solid var(--line); }
     .role b { font-size: 19px; }
     .role p { margin: 0; font-size: 16px; }
+    .role-evidence { color: var(--green-2); font: 700 12px/1.4 "Manrope", "Gowun Dodum", sans-serif; text-decoration: none; white-space: nowrap; }
+    .role-evidence:hover { text-decoration: underline; }
 
     .contact { color: #fff; background: var(--green); }
     .contact .section { min-height: 520px; display: flex; flex-direction: column; justify-content: center; }
@@ -356,7 +367,9 @@
       .stats, .grid-3, .architecture, .steps, .strion-flow, .proof-grid { grid-template-columns: repeat(2, 1fr); }
       .grid-2, .project-layout, .project-value { grid-template-columns: 1fr; }
       .project-head { align-items: start; flex-direction: column; }
+      .verification-grid { grid-template-columns: 1fr; }
       .role { grid-template-columns: 1fr; gap: 8px; }
+      .role-evidence { margin-top: 4px; white-space: normal; }
       .flow-node:nth-child(2)::after { display: none; }
       .case-heading { align-items: start; flex-direction: column; gap: 10px; }
     }
@@ -385,6 +398,9 @@
       .flow-node:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -23px; transform: translateX(50%); }
       .flow-node:nth-child(2)::after { display: block; }
       .ownership-row { grid-template-columns: 1fr; gap: 7px; padding-block: 22px; }
+      .verification-card { padding: 22px; }
+      .check-list li { grid-template-columns: 22px 1fr; }
+      .check-list b { grid-column: 2; }
       .contact-links { flex-direction: column; }
       .contact-links .button { width: 100%; }
     }
@@ -680,13 +696,43 @@
       </div>
     </div>
 
+    <section class="section reveal" aria-labelledby="verification-title">
+      <p class="eyebrow">Project Verification</p>
+      <h2 id="verification-title">작동 여부를 직접 확인한 항목</h2>
+      <p class="lead">화면을 만드는 데서 끝내지 않고 실제 장치, 원본 데이터, 모바일 환경과 비교하며 핵심 사용 흐름을 검증했습니다.</p>
+      <div class="verification-grid">
+        <article class="verification-card">
+          <span class="project-name">PROJECT 01 · SMART FARM</span>
+          <h3>장치부터 알림까지 연결 검증</h3>
+          <ul class="check-list">
+            <li><span>DHT11 실측 온도·습도 수신과 화면 갱신</span><b>PASS</b></li>
+            <li><span>Arduino에서 HiveMQ로 MQTT/TLS 발행</span><b>PASS</b></li>
+            <li><span>웹 펌프 명령 수신과 릴레이 제어 흐름</span><b>PASS</b></li>
+            <li><span>Telegram 정시 요약·기준 이탈 경고</span><b>PASS</b></li>
+            <li><span>GitHub Pages 모바일 접속과 WSS 연결</span><b>PASS</b></li>
+          </ul>
+        </article>
+        <article class="verification-card">
+          <span class="project-name">PROJECT 02 · STRION</span>
+          <h3>실사용 데이터와 반복 흐름 검증</h3>
+          <ul class="check-list">
+            <li><span>Garmin FIT 거리·페이스·심박·러닝 지표 파싱</span><b>PASS</b></li>
+            <li><span>Cloudflare Worker를 통한 Garmin 동기화</span><b>PASS</b></li>
+            <li><span>Garmin 개인 심박 Zone 1–5 경계 대조</span><b>PASS</b></li>
+            <li><span>날짜 선택으로 저장 기록 재열람</span><b>PASS</b></li>
+            <li><span>레이스 스플릿 CSV·캘린더·모바일 사용성</span><b>PASS</b></li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
     <section class="section reveal" aria-labelledby="role-title">
       <p class="eyebrow">Role Fit</p>
       <h2 id="role-title">지원 직무에서 활용할 수 있는 경험</h2>
-      <div class="role"><b>IT 서비스·플랫폼 운영</b><p>연결 상태, 데이터 수신, 배포 결과를 구분해 확인하고 사용자 불편을 반복 개선한 경험</p></div>
-      <div class="role"><b>서비스 기획·운영 QA</b><p>온라인 MD의 상품·상세페이지 기획과 사용자 피드백을 기능·화면·예외처리로 전환한 경험</p></div>
-      <div class="role"><b>솔루션 구축·기술지원</b><p>네트워크·인증·포트 설정과 장애 원인 분리, 장치와 웹의 통합 검증 경험</p></div>
-      <div class="role"><b>디지털 전환·업무 개선</b><p>다양한 실무 경험과 직접 만든 서비스를 바탕으로 업무 문제를 디지털 기능과 운영 절차로 구체화한 경험</p></div>
+      <div class="role"><b>IT 서비스·플랫폼 운영</b><p>연결 상태, 데이터 수신, 배포 결과를 구분해 확인하고 사용자 불편을 반복 개선한 경험</p><a class="role-evidence" href="#strion-title">STRION 근거 보기 →</a></div>
+      <div class="role"><b>서비스 기획·운영 QA</b><p>온라인 MD의 상품·상세페이지 기획과 사용자 피드백을 기능·화면·예외처리로 전환한 경험</p><a class="role-evidence" href="#verification-title">검증 항목 보기 →</a></div>
+      <div class="role"><b>솔루션 구축·기술지원</b><p>네트워크·인증·포트 설정과 장애 원인 분리, 장치와 웹의 통합 검증 경험</p><a class="role-evidence" href="#farm-title">Smart Farm 근거 보기 →</a></div>
+      <div class="role"><b>디지털 전환·업무 개선</b><p>다양한 실무 경험과 직접 만든 서비스를 바탕으로 업무 문제를 디지털 기능과 운영 절차로 구체화한 경험</p><a class="role-evidence" href="#projects">프로젝트 보기 →</a></div>
     </section>
 
     <section class="contact">
