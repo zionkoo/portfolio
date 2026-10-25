@@ -470,11 +470,11 @@
           </div>
           <div class="project-layout">
             <div>
-              <p class="lead">Garmin 원본 FIT 파일을 업로드하면 브라우저 안에서 기록을 분석하고 다음 훈련과 레이스 계획까지 연결합니다.</p>
+              <p class="lead">Garmin 원본 FIT 파일을 업로드하거나 Garmin Connect 기록을 동기화하면 브라우저 안에서 기록을 분석하고 다음 훈련과 레이스 계획까지 연결합니다.</p>
               <div class="stack">
                 <div><h3>문제</h3><p>원본 러닝 데이터는 항목이 많고 서로 흩어져 있어 일반 러너가 운동의 의미와 다음 계획을 한눈에 판단하기 어렵습니다.</p></div>
-                <div><h3>내가 한 일</h3><p>러너 관점에서 정보 우선순위를 정하고 FIT 분석, 훈련 해석, PB·대회 일정, 목표 페이스와 레이스 전략을 하나의 사용 흐름으로 설계했습니다.</p></div>
-                <div><h3>검증 결과</h3><p>Garmin 실사용 FIT 파일로 파싱 결과와 단위를 확인하고, 모바일에서 업로드·저장·카드 탐색이 자연스럽도록 반복 수정했습니다.</p></div>
+                <div><h3>내가 한 일</h3><p>러너 관점에서 정보 우선순위를 정하고 FIT 분석, Garmin 동기화, 훈련 해석, PB·대회 일정, 목표 페이스와 레이스 전략을 하나의 사용 흐름으로 설계했습니다.</p></div>
+                <div><h3>검증 결과</h3><p>Garmin 실사용 FIT 파일과 원본 화면을 대조해 파싱 결과·단위·심박 존 경계를 확인하고, 모바일에서 동기화·저장·재열람·카드 탐색이 자연스럽도록 반복 수정했습니다.</p></div>
               </div>
               <p style="margin-top:25px"><b style="color:#fff">브랜드 의미</b><br>STRION은 STRIDE + ON의 합성어입니다. 한 걸음의 데이터를 이해하고 다음 걸음을 이어간다는 의미를 담았습니다.</p>
             </div>
@@ -491,13 +491,14 @@
             </div>
           </div>
           <div class="grid-2" style="margin-top:30px">
-            <div class="feature"><h3>브라우저 기반 FIT 분석</h3><p>별도 프로그램 없이 파일을 불러와 거리·페이스·심박·고도와 러닝 다이나믹스를 시각화하고, 분석 위치를 유지해 흐름이 끊기지 않게 했습니다.</p></div>
-            <div class="feature"><h3>러닝 코치 관점의 해석</h3><p>최대 심박 입력값으로 Zone 1–5 범위를 제시하고, Jack Daniels 관점의 VDOT·훈련 참고 페이스와 운동 요약을 제공합니다.</p></div>
+            <div class="feature"><h3>FIT 분석과 Garmin 동기화</h3><p>파일 업로드뿐 아니라 Garmin Connect 기록을 가져와 거리·페이스·심박·고도와 러닝 다이나믹스를 시각화하고, 이전 기록은 날짜만 선택해 다시 열 수 있게 했습니다.</p></div>
+            <div class="feature"><h3>러닝 코치 관점의 해석</h3><p>FIT에 저장된 Garmin 개인 심박 Zone 1–5를 우선 적용하고, 데이터가 없을 때만 입력한 최대 심박을 사용합니다. Jack Daniels 관점의 VDOT·훈련 참고 페이스와 운동 요약도 제공합니다.</p></div>
             <div class="feature"><h3>레이스 운영 도구</h3><p>목표 기록으로 이븐·네거티브·포지티브 전략별 구간 페이스와 누적 시간을 계산하고 CSV로 내려받을 수 있습니다.</p></div>
             <div class="feature"><h3>개인 일정과 기록 관리</h3><p>PB, 대회 D-day와 대회명을 관리하며 일정은 iPhone·Android에서 사용할 수 있는 캘린더 파일로 내보냅니다.</p></div>
           </div>
           <div class="troubles" aria-label="STRION 반복 개선 내용">
-            <div class="trouble"><b>데이터 해석 기준</b><span>심박과 러닝 다이나믹스의 의미가 불명확</span><span>최대 심박 기반 Zone 1–5, 수직 진폭 cm·보폭 m·케이던스 spm 단위 명시</span></div>
+            <div class="trouble"><b>Garmin 심박 존 정확도</b><span>최대 심박 비율 계산값과 Garmin 개인 존의 범위가 다르고 경계가 1bpm씩 어긋남</span><span>FIT 개인 존을 우선 적용하고 Garmin 화면과 대조해 다음 존 시작값 기준으로 경계 보정</span></div>
+            <div class="trouble"><b>기록 재열람</b><span>지난 운동을 볼 때마다 FIT 파일을 다시 선택해야 함</span><span>원본 FIT와 분석 요약을 기기 내에 저장하고 날짜 선택만으로 이전 분석을 복원</span></div>
             <div class="trouble"><b>레이스 목표 실행</b><span>평균 목표 페이스만으로 구간 운영이 어려움</span><span>세 가지 페이스 전략과 km별 스플릿·누적 시간·CSV 제공</span></div>
             <div class="trouble"><b>모바일 저장 흐름</b><span>저장 후 닫기와 가로 밀림으로 조작 불편</span><span>저장 즉시 모달 종료, 카드 접기·펼치기와 반응형 레이아웃 적용</span></div>
             <div class="trouble"><b>일정 활용성</b><span>대시보드 안의 대회 일정이 휴대폰과 분리</span><span>상단 D-day·대회명 고정 표시와 표준 캘린더 파일 내보내기 추가</span></div>
