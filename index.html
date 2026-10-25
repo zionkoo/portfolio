@@ -308,7 +308,8 @@
 
     .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .proof { min-height: 165px; padding: 23px; border: 1px solid rgba(88, 217, 232, .3); background: rgba(8, 28, 37, .72); }
-    .proof b { display: block; margin-bottom: 13px; color: var(--cyan); font: 500 clamp(31px, 4vw, 46px)/1 "DM Mono", monospace; }
+    .proof .proof-label { display: block; margin-bottom: 16px; color: #78969d; font: 800 10px/1 "Manrope", sans-serif; letter-spacing: .16em; }
+    .proof b { display: block; min-height: 2.5em; margin-bottom: 13px; color: var(--cyan); font: 500 clamp(20px, 2.4vw, 29px)/1.25 "Manrope", "Gowun Dodum", sans-serif; }
     .proof span { color: #c3d3d7; font-size: 14px; line-height: 1.55; }
 
     .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -644,10 +645,10 @@
               <p>실사용 FIT 데이터와 Garmin 화면을 기준으로 기능·단위·경계값을 직접 대조했습니다.</p>
             </div>
             <div class="proof-grid">
-              <article class="proof"><b>2</b><span>수동 FIT 업로드와 Garmin 동기화, 두 가지 데이터 입력 경로</span></article>
-              <article class="proof"><b>5</b><span>Garmin 개인 심박 Zone 1–5의 범위와 시간 분포 검증</span></article>
-              <article class="proof"><b>1 bpm</b><span>Garmin 원본과 비교해 발견하고 수정한 존 경계 오차</span></article>
-              <article class="proof"><b>3</b><span>이븐·포지티브·네거티브 레이스 전략과 km별 CSV 제공</span></article>
+              <article class="proof"><span class="proof-label">DATA INPUT</span><b>두 가지 입력 경로</b><span>수동 FIT 업로드와 Garmin 자동 동기화 경로를 모두 구현하고 확인했습니다.</span></article>
+              <article class="proof"><span class="proof-label">HEART RATE</span><b>개인 심박 존 검증</b><span>Garmin 개인 심박 Zone 1–5의 범위와 시간 분포를 원본 화면과 대조했습니다.</span></article>
+              <article class="proof"><span class="proof-label">ACCURACY</span><b>1 bpm 오차 수정</b><span>Garmin 원본과 비교해 존 경계 오차를 발견하고 다음 존 시작값 기준으로 보정했습니다.</span></article>
+              <article class="proof"><span class="proof-label">RACE PLAN</span><b>세 가지 레이스 전략</b><span>이븐·포지티브·네거티브 전략별 km 페이스와 누적 시간, CSV를 제공합니다.</span></article>
             </div>
           </section>
 
