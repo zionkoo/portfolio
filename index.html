@@ -259,6 +259,47 @@
     .dark .trouble { border-bottom-color: rgba(88, 217, 232, .2); }
     .dark .trouble span { color: #9fb9c0; }
 
+    .case-block { margin-top: 54px; }
+    .case-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+    .case-heading h3 { margin-bottom: 0; font-size: clamp(25px, 3vw, 34px); }
+    .case-heading p { max-width: 570px; margin: 0; font-size: 15px; }
+    .case-label { display: block; margin-bottom: 10px; color: var(--cyan); font: 800 11px/1 "Manrope", sans-serif; letter-spacing: .17em; }
+
+    .strion-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
+    .flow-node { position: relative; min-height: 190px; padding: 23px; background: rgba(8, 28, 37, .78); border: 1px solid rgba(88, 217, 232, .35); }
+    .flow-node:not(:last-child)::after { content: "→"; position: absolute; z-index: 2; top: 50%; right: -21px; width: 28px; color: var(--cyan); font: 500 21px/1 "DM Mono", monospace; text-align: center; transform: translateY(-50%); }
+    .flow-node .index { color: var(--cyan); font: 500 12px/1 "DM Mono", monospace; letter-spacing: .12em; }
+    .flow-node h4 { margin: 22px 0 10px; color: #fff; font: 800 18px/1.35 "Manrope", "Gowun Dodum", sans-serif; }
+    .flow-node p { margin: 0; font-size: 14px; line-height: 1.65; }
+    .flow-node strong { color: #fff; }
+
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .journey-card { padding: 27px; border: 1px solid rgba(88, 217, 232, .3); background: rgba(8, 28, 37, .72); }
+    .journey-card.after { border-color: rgba(88, 217, 232, .7); box-shadow: inset 0 3px 0 var(--cyan); }
+    .journey-card .state { display: inline-block; margin-bottom: 20px; color: #91aab1; font: 800 11px/1 "Manrope", sans-serif; letter-spacing: .16em; }
+    .journey-card.after .state { color: var(--cyan); }
+    .journey-card ol { display: grid; gap: 11px; margin: 0; padding: 0; list-style: none; counter-reset: journey; }
+    .journey-card li { counter-increment: journey; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; color: #c3d3d7; font-size: 15px; line-height: 1.5; }
+    .journey-card li::before { content: counter(journey, decimal-leading-zero); color: var(--cyan); font: 500 12px/1.8 "DM Mono", monospace; }
+
+    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .proof { min-height: 165px; padding: 23px; border: 1px solid rgba(88, 217, 232, .3); background: rgba(8, 28, 37, .72); }
+    .proof b { display: block; margin-bottom: 13px; color: var(--cyan); font: 500 clamp(31px, 4vw, 46px)/1 "DM Mono", monospace; }
+    .proof span { color: #c3d3d7; font-size: 14px; line-height: 1.55; }
+
+    .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .scope-card { padding: 27px; border: 1px solid rgba(88, 217, 232, .3); background: rgba(8, 28, 37, .72); }
+    .scope-card h4 { margin: 0 0 17px; color: #fff; font: 800 19px/1.35 "Manrope", "Gowun Dodum", sans-serif; }
+    .scope-card ul { display: grid; gap: 11px; margin: 0; padding: 0; list-style: none; }
+    .scope-card li { position: relative; padding-left: 19px; color: #b5c9cf; font-size: 14px; line-height: 1.6; }
+    .scope-card li::before { content: ""; position: absolute; left: 0; top: .65em; width: 7px; height: 7px; border: 1px solid var(--cyan); }
+
+    .ownership { border-top: 1px solid rgba(88, 217, 232, .45); }
+    .ownership-row { display: grid; grid-template-columns: .65fr 1.5fr 1.5fr; gap: 20px; padding: 19px 8px; border-bottom: 1px solid rgba(88, 217, 232, .2); }
+    .ownership-row b { color: var(--cyan); font: 800 12px/1.5 "Manrope", sans-serif; letter-spacing: .08em; }
+    .ownership-row strong { color: #fff; font-size: 15px; }
+    .ownership-row span { color: #9fb9c0; font-size: 14px; line-height: 1.55; }
+
     .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-top: 38px; }
     .step { padding-top: 17px; border-top: 3px solid var(--green); }
     .step b { color: var(--green); font: 500 17px/1 "DM Mono", monospace; }
@@ -288,10 +329,12 @@
       .hero { min-height: 680px; }
       .hero-meta { grid-template-columns: 1fr; gap: 18px; margin-top: 50px; }
       .hero-meta p:last-child { text-align: left !important; }
-      .stats, .grid-3, .architecture, .steps { grid-template-columns: repeat(2, 1fr); }
+      .stats, .grid-3, .architecture, .steps, .strion-flow, .proof-grid { grid-template-columns: repeat(2, 1fr); }
       .grid-2, .project-layout, .project-value { grid-template-columns: 1fr; }
       .project-head { align-items: start; flex-direction: column; }
       .role { grid-template-columns: 1fr; gap: 8px; }
+      .flow-node:nth-child(2)::after { display: none; }
+      .case-heading { align-items: start; flex-direction: column; gap: 10px; }
     }
 
     @media (max-width: 560px) {
@@ -305,12 +348,16 @@
       .stats { grid-template-columns: 1fr 1fr; gap: 30px 15px; }
       .stat b { font-size: 34px; }
       .job { grid-template-columns: 1fr; gap: 8px; }
-      .architecture, .steps, .grid-3 { grid-template-columns: 1fr; }
+      .architecture, .steps, .grid-3, .strion-flow, .proof-grid, .before-after, .scope-grid { grid-template-columns: 1fr; }
       .metrics { grid-template-columns: 1fr 1fr; }
       .device, .run-card, .panel, .feature, .value-card { padding: 22px; }
       .value-card { min-height: 0; }
       .trouble { grid-template-columns: 1fr; gap: 5px; }
       .trouble + .trouble { padding-top: 24px; }
+      .flow-node { min-height: 0; }
+      .flow-node:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -23px; transform: translateX(50%); }
+      .flow-node:nth-child(2)::after { display: block; }
+      .ownership-row { grid-template-columns: 1fr; gap: 7px; padding-block: 22px; }
       .contact-links { flex-direction: column; }
       .contact-links .button { width: 100%; }
     }
@@ -504,6 +551,74 @@
             <div class="trouble"><b>모바일 저장 흐름</b><span>저장 후 닫기와 가로 밀림으로 조작 불편</span><span>저장 즉시 모달 종료, 카드 접기·펼치기와 반응형 레이아웃 적용</span></div>
             <div class="trouble"><b>일정 활용성</b><span>대시보드 안의 대회 일정이 휴대폰과 분리</span><span>상단 D-day·대회명 고정 표시와 표준 캘린더 파일 내보내기 추가</span></div>
           </div>
+
+          <section class="case-block" aria-labelledby="strion-architecture-title">
+            <div class="case-heading">
+              <div><span class="case-label">01 · SERVICE ARCHITECTURE</span><h3 id="strion-architecture-title">개인 키를 노출하지 않는 데이터 흐름</h3></div>
+              <p>정적 웹서비스의 장점은 유지하면서 인증 정보는 브라우저와 GitHub 코드에서 분리했습니다.</p>
+            </div>
+            <div class="strion-flow" aria-label="Garmin 데이터 동기화 구조">
+              <article class="flow-node"><span class="index">01 SOURCE</span><h4>Garmin Connect</h4><p>Personal API로 최근 활동 목록과 원본 FIT 데이터를 제공합니다.</p></article>
+              <article class="flow-node"><span class="index">02 SECURE LAYER</span><h4>Cloudflare Worker</h4><p><strong>API 키를 비밀 환경 변수로 보관</strong>하고 허용된 STRION 요청만 Garmin에 전달합니다.</p></article>
+              <article class="flow-node"><span class="index">03 WEB SERVICE</span><h4>STRION</h4><p>GitHub Pages에서 동기화 요청, FIT 파싱, 차트와 훈련 해석을 수행합니다.</p></article>
+              <article class="flow-node"><span class="index">04 LOCAL DATA</span><h4>Browser Storage</h4><p>원본 FIT와 분석 요약을 사용자의 기기에 저장해 날짜로 다시 열 수 있습니다.</p></article>
+            </div>
+          </section>
+
+          <section class="case-block" aria-labelledby="strion-before-after-title">
+            <div class="case-heading">
+              <div><span class="case-label">02 · BEFORE / AFTER</span><h3 id="strion-before-after-title">반복 작업을 짧은 사용 흐름으로</h3></div>
+              <p>기능 추가의 출발점은 기술 자체가 아니라 러닝 기록을 확인할 때 반복되던 불편이었습니다.</p>
+            </div>
+            <div class="before-after">
+              <article class="journey-card">
+                <span class="state">BEFORE · MANUAL FLOW</span>
+                <ol><li>Garmin Connect에서 활동 찾기</li><li>FIT 원본 파일 내려받기</li><li>STRION에서 파일 다시 선택하기</li><li>지난 기록을 볼 때 같은 과정 반복하기</li></ol>
+              </article>
+              <article class="journey-card after">
+                <span class="state">AFTER · CONNECTED FLOW</span>
+                <ol><li>Garmin 연결 상태 확인하기</li><li>최근 러닝 기록 동기화하기</li><li>원하는 날짜의 기록 선택하기</li><li>재업로드 없이 분석 화면 다시 열기</li></ol>
+              </article>
+            </div>
+          </section>
+
+          <section class="case-block" aria-labelledby="strion-proof-title">
+            <div class="case-heading">
+              <div><span class="case-label">03 · VERIFIED OUTCOMES</span><h3 id="strion-proof-title">구현보다 검증 결과로 설명합니다</h3></div>
+              <p>실사용 FIT 데이터와 Garmin 화면을 기준으로 기능·단위·경계값을 직접 대조했습니다.</p>
+            </div>
+            <div class="proof-grid">
+              <article class="proof"><b>2</b><span>수동 FIT 업로드와 Garmin 동기화, 두 가지 데이터 입력 경로</span></article>
+              <article class="proof"><b>5</b><span>Garmin 개인 심박 Zone 1–5의 범위와 시간 분포 검증</span></article>
+              <article class="proof"><b>1 bpm</b><span>Garmin 원본과 비교해 발견하고 수정한 존 경계 오차</span></article>
+              <article class="proof"><b>3</b><span>이븐·포지티브·네거티브 레이스 전략과 km별 CSV 제공</span></article>
+            </div>
+          </section>
+
+          <section class="case-block" aria-labelledby="strion-scope-title">
+            <div class="case-heading">
+              <div><span class="case-label">04 · SCOPE &amp; NEXT</span><h3 id="strion-scope-title">현재 범위와 다음 확장을 구분했습니다</h3></div>
+              <p>개인 프로젝트에서 검증한 범위와 다중 사용자 서비스에 필요한 조건을 명확히 나눴습니다.</p>
+            </div>
+            <div class="scope-grid">
+              <article class="scope-card"><h4>현재 범위와 한계</h4><ul><li>Garmin Personal API를 이용한 개인용 동기화 구조입니다.</li><li>러닝 기록은 계정 서버가 아닌 사용 중인 브라우저에 저장됩니다.</li><li>VDOT와 심박 해석은 훈련 참고용이며 의료 진단을 대신하지 않습니다.</li></ul></article>
+              <article class="scope-card"><h4>서비스 확장 시 필요한 것</h4><ul><li>공식 사용자 인증과 사용자별 권한·토큰 관리</li><li>암호화된 서버 저장소와 기기 간 기록 동기화</li><li>데이터 누락·이상값 안내와 장기 훈련 추세 리포트</li></ul></article>
+            </div>
+          </section>
+
+          <section class="case-block" aria-labelledby="strion-role-title">
+            <div class="case-heading">
+              <div><span class="case-label">05 · OWNERSHIP</span><h3 id="strion-role-title">본인이 판단하고 AI와 함께 구현했습니다</h3></div>
+              <p>AI를 사용한 사실을 숨기지 않고, 의사결정·검증·책임의 주체가 누구였는지 구분했습니다.</p>
+            </div>
+            <div class="ownership" role="table" aria-label="STRION 역할 구분">
+              <div class="ownership-row" role="row"><b role="cell">USER / DOMAIN</b><strong role="cell">직접 주도</strong><span role="cell">사용 불편 발견, 기능 우선순위, 러닝 기준 정의, 실제 Garmin 데이터 비교, 모바일 사용성 검증</span></div>
+              <div class="ownership-row" role="row"><b role="cell">AI SUPPORT</b><strong role="cell">구현 지원</strong><span role="cell">코드 초안, FIT 필드 탐색, 오류 원인 후보, UI 대안과 문서 구조 제안</span></div>
+              <div class="ownership-row" role="row"><b role="cell">PLATFORM</b><strong role="cell">활용·연결</strong><span role="cell">Garmin FIT SDK·Personal API, Cloudflare Worker, GitHub Pages를 목적에 맞게 연결</span></div>
+              <div class="ownership-row" role="row"><b role="cell">FINAL CHECK</b><strong role="cell">직접 검증</strong><span role="cell">실제 FIT 업로드, 동기화 성공 여부, 심박 존 경계, 저장·재열람과 공개 배포 결과 확인</span></div>
+            </div>
+          </section>
+
           <div class="project-value" aria-label="STRION 대시보드의 유용성과 실무 적용">
             <article class="value-card">
               <span class="label">USEFULNESS</span>
