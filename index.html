@@ -303,6 +303,26 @@
     .dark .project-evidence figcaption { color: #9fb9c0; }
     .dark .project-evidence figcaption b { color: var(--cyan); }
 
+    .share-story {
+      display: grid;
+      grid-template-columns: minmax(260px, .62fr) 1fr;
+      gap: 34px;
+      align-items: center;
+      margin-top: 34px;
+      padding: 28px;
+      border: 1px solid rgba(88, 217, 232, .3);
+      background: linear-gradient(135deg, rgba(8, 28, 37, .84), rgba(11, 22, 38, .72));
+    }
+    .share-story figure { margin: 0; }
+    .share-story img { display: block; width: 100%; max-height: 640px; object-fit: contain; border: 1px solid rgba(88, 217, 232, .3); background: #07141d; }
+    .share-story .case-label { color: var(--cyan); }
+    .share-story h3 { margin: 12px 0 15px; color: #fff; font-size: clamp(25px, 3vw, 36px); }
+    .share-story p { color: #b9ced4; font-size: 15px; }
+    .share-story dl { display: grid; gap: 14px; margin: 24px 0 0; }
+    .share-story dl div { display: grid; grid-template-columns: 86px 1fr; gap: 13px; padding-top: 13px; border-top: 1px solid rgba(88, 217, 232, .18); }
+    .share-story dt { color: var(--cyan); font: 800 11px/1.6 "Manrope", sans-serif; letter-spacing: .12em; }
+    .share-story dd { margin: 0; color: #d7e7eb; font-size: 14px; line-height: 1.65; }
+
     .troubles { margin-top: 32px; border-top: 2px solid var(--green); }
     .trouble { display: grid; grid-template-columns: .8fr 1fr 1.4fr; gap: 20px; padding: 18px 8px; border-bottom: 1px solid var(--line); }
     .trouble b { font-size: 15px; }
@@ -412,6 +432,7 @@
       .stats, .grid-3, .architecture, .steps, .strion-flow, .proof-grid, .brief-grid { grid-template-columns: repeat(2, 1fr); }
       .grid-2, .project-layout, .project-value { grid-template-columns: 1fr; }
       .project-head { align-items: start; flex-direction: column; }
+      .share-story { grid-template-columns: 1fr; }
       .verification-grid { grid-template-columns: 1fr; }
       .role { grid-template-columns: 1fr; gap: 8px; }
       .role-evidence { margin-top: 4px; white-space: normal; }
@@ -435,6 +456,9 @@
       .brief-card { min-height: 0; }
       .project-evidence { padding: 10px; }
       .project-evidence figcaption { grid-template-columns: 1fr; gap: 5px; }
+      .share-story { padding: 18px; }
+      .share-story img { max-height: none; }
+      .share-story dl div { grid-template-columns: 1fr; gap: 4px; }
       .metrics { grid-template-columns: 1fr 1fr; }
       .device, .run-card, .panel, .feature, .value-card { padding: 22px; }
       .garmin-sync { padding: 18px; }
@@ -665,6 +689,22 @@
             <div class="feature"><h3>레이스 운영 도구</h3><p>목표 기록으로 이븐·네거티브·포지티브 전략별 구간 페이스와 누적 시간을 계산하고 CSV로 내려받을 수 있습니다.</p></div>
             <div class="feature"><h3>개인 일정과 기록 관리</h3><p>PB, 대회 D-day와 대회명을 관리하며 일정은 iPhone·Android에서 사용할 수 있는 캘린더 파일로 내보냅니다.</p></div>
           </div>
+          <section class="share-story" aria-labelledby="run-share-title">
+            <figure>
+              <img src="assets/strion-run-share-card.png" alt="사용자가 선택한 러닝 사진 위에 거리, 시간, 페이스, 심박, 케이던스와 칼로리를 합성한 STRION 기록 카드" loading="lazy">
+            </figure>
+            <div>
+              <span class="case-label">RUN &amp; SHARE · FEATURE CASE</span>
+              <h3 id="run-share-title">분석 결과를 러너의 기록 인증으로 연결했습니다</h3>
+              <p>러너들이 운동 후 사진과 기록을 SNS에 공유하는 행동에 주목했습니다. 분석 화면에서 끝나던 FIT 데이터를 사용자가 고른 사진 위에 자동으로 정리해, 별도의 편집 앱 없이 바로 보관하고 공유할 수 있도록 확장했습니다.</p>
+              <dl>
+                <div><dt>INPUT</dt><dd>사용자 사진, FIT 활동 데이터, 직접 수정할 수 있는 카드 문구</dd></div>
+                <div><dt>PROCESS</dt><dd>거리·시간·평균 페이스·심박·케이던스·칼로리를 사진 위에 자동 배치</dd></div>
+                <div><dt>OUTPUT</dt><dd>1080×1350 기록 이미지를 PNG로 저장하거나 iPhone·Android 공유 메뉴로 전달</dd></div>
+                <div><dt>PRIVACY</dt><dd>사진과 FIT 기록을 서버로 보내지 않고 사용자의 브라우저 안에서만 합성</dd></div>
+              </dl>
+            </div>
+          </section>
           <div class="troubles" aria-label="STRION 반복 개선 내용">
             <div class="trouble"><b>Garmin 연동과 API 키 보호</b><span>자동 동기화에는 개인 API 키가 필요하지만 정적 웹페이지에 넣으면 방문자에게 노출될 수 있음</span><span>Cloudflare Worker의 비밀 환경 변수에 키를 보관하고, 대시보드는 Worker를 통해 필요한 활동 데이터만 요청하도록 분리</span></div>
             <div class="trouble"><b>Garmin 심박 존 정확도</b><span>최대 심박 비율 계산값과 Garmin 개인 존의 범위가 다르고 경계가 1bpm씩 어긋남</span><span>FIT 개인 존을 우선 적용하고 Garmin 화면과 대조해 다음 존 시작값 기준으로 경계 보정</span></div>
