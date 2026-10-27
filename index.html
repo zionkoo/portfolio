@@ -314,7 +314,8 @@
       background: linear-gradient(135deg, rgba(8, 28, 37, .84), rgba(11, 22, 38, .72));
     }
     .share-story figure { position: relative; margin: 0; }
-    .share-story video { display: block; width: 100%; max-height: 640px; object-fit: contain; border: 1px solid rgba(88, 217, 232, .3); background: #07141d; }
+    .share-story video { display: block; width: 100%; max-height: 640px; object-fit: contain; border: 1px solid rgba(88, 217, 232, .3); background: #07141d; cursor: pointer; }
+    .share-story video::-webkit-media-controls { display: none !important; }
     .share-story .video-badge {
       position: absolute;
       top: 14px;
@@ -710,7 +711,7 @@
           </div>
           <section class="share-story" aria-labelledby="run-share-title">
             <figure>
-              <video controls muted autoplay loop playsinline preload="metadata" poster="assets/strion-video-record-poster.png?v=20261027" aria-label="STRION에서 러닝 영상을 선택하고 기록 카드를 미리 보는 실제 구동 영상">
+              <video id="strionDemoVideo" muted autoplay loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" poster="assets/strion-video-record-poster.png?v=20261027" aria-label="STRION에서 러닝 영상을 선택하고 기록 카드를 미리 보는 실제 구동 영상. 자동재생이 멈추면 영상을 눌러 재생할 수 있습니다.">
                 <source src="assets/strion-video-record-burned-v2.mp4?v=20261027-burned-v2" type="video/mp4">
                 이 브라우저에서는 영상 재생을 지원하지 않습니다.
               </video>
@@ -839,6 +840,30 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+
+    const strionDemoVideo = document.querySelector('#strionDemoVideo');
+    const playStrionDemo = () => {
+      if (!strionDemoVideo || !strionDemoVideo.paused) return;
+      strionDemoVideo.muted = true;
+      strionDemoVideo.play().catch(() => {});
+    };
+
+    if (strionDemoVideo) {
+      strionDemoVideo.controls = false;
+      strionDemoVideo.addEventListener('loadeddata', playStrionDemo);
+      strionDemoVideo.addEventListener('canplay', playStrionDemo);
+      strionDemoVideo.addEventListener('click', playStrionDemo);
+      window.addEventListener('pageshow', playStrionDemo);
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) playStrionDemo();
+      });
+
+      const videoObserver = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) playStrionDemo();
+      }, { threshold: 0.2 });
+      videoObserver.observe(strionDemoVideo);
+      playStrionDemo();
+    }
 
     const visitCounter = document.querySelector('#portfolioVisitCounter');
     const visitEndpoint = 'https://strion-garmin-sync.zionkoo.workers.dev/api/portfolio/views';
