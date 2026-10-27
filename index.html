@@ -416,7 +416,12 @@
     .contact h2 { max-width: 900px; }
     .contact p { color: #e5efe9; }
     .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    footer { padding: 24px 18px; color: #71827a; background: #07140f; text-align: center; font: 500 12px/1.5 "Manrope", sans-serif; letter-spacing: .08em; }
+    footer { display: flex; justify-content: center; align-items: center; gap: 12px; padding: 24px 18px; color: #71827a; background: #07140f; text-align: center; font: 500 12px/1.5 "Manrope", sans-serif; letter-spacing: .08em; }
+    .visit-counter { display: inline-flex; align-items: center; gap: 7px; min-height: 28px; padding: 5px 10px; color: #9bb8ad; border: 1px solid rgba(180, 255, 42, .18); }
+    .visit-counter::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 8px rgba(180, 255, 42, .65); }
+    .visit-counter[data-state="loading"] { opacity: .55; }
+    .visit-counter[data-owner="true"]::after { content: "내 방문 제외 중"; margin-left: 2px; color: #71827a; font-size: 10px; }
+    .visit-counter img { display: block; height: 20px; width: auto; }
 
     .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.visible { opacity: 1; transform: none; }
@@ -477,6 +482,7 @@
       .contact-links { flex-direction: column; }
       .contact-links .button { width: 100%; }
       .proposal-card .button { width: 100%; }
+      footer { flex-direction: column; gap: 8px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -798,7 +804,10 @@
     </section>
   </main>
 
-  <footer>MADE BY ZIONKOO · 2026</footer>
+  <footer>
+    <span>MADE BY ZIONKOO · 2026</span>
+    <span id="portfolioVisitCounter" class="visit-counter" data-state="loading" aria-live="polite">외부 열람 집계 중</span>
+  </footer>
 
   <script>
     const observer = new IntersectionObserver((entries) => {
@@ -811,6 +820,44 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
+
+    const visitCounter = document.querySelector('#portfolioVisitCounter');
+    const visitEndpoint = 'https://strion-garmin-sync.zionkoo.workers.dev/api/portfolio/views';
+    const ownerKey = 'zionkoo_portfolio_owner';
+    const countedKey = 'zionkoo_portfolio_view_counted_v1';
+    const pageUrl = new URL(window.location.href);
+
+    if (pageUrl.searchParams.get('owner') === '1') {
+      localStorage.setItem(ownerKey, 'true');
+      pageUrl.searchParams.delete('owner');
+      history.replaceState(null, '', `${pageUrl.pathname}${pageUrl.search}${pageUrl.hash}`);
+    }
+
+    const isOwner = localStorage.getItem(ownerKey) === 'true';
+    const alreadyCounted = localStorage.getItem(countedKey) === 'true';
+    visitCounter.dataset.owner = String(isOwner);
+
+    fetch(visitEndpoint, { method: isOwner || alreadyCounted ? 'GET' : 'POST' })
+      .then((response) => {
+        if (!response.ok) throw new Error('visit counter unavailable');
+        return response.json();
+      })
+      .then(({ count }) => {
+        visitCounter.textContent = `외부 열람 ${Number(count).toLocaleString('ko-KR')}회`;
+        visitCounter.dataset.state = 'ready';
+        if (!isOwner && !alreadyCounted) localStorage.setItem(countedKey, 'true');
+      })
+      .catch(() => {
+        const badge = new Image();
+        badge.src = `https://api.visitorbadge.io/api/visitors?path=zionkoo-portfolio-public&label=TOTAL%20VIEWS&countColor=%231b5d47&style=flat&v=${Date.now()}`;
+        badge.alt = '포트폴리오 누적 열람 수';
+        badge.addEventListener('load', () => { visitCounter.dataset.state = 'ready'; }, { once: true });
+        badge.addEventListener('error', () => {
+          visitCounter.textContent = '열람 통계 확인 중';
+          visitCounter.dataset.state = 'error';
+        }, { once: true });
+        visitCounter.replaceChildren(badge);
+      });
   </script>
 </body>
 </html>
