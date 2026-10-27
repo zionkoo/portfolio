@@ -733,7 +733,7 @@
           </div>
           <section class="share-story" aria-labelledby="run-share-title">
             <figure>
-              <video id="strionDemoVideo" muted autoplay loop playsinline webkit-playsinline preload="auto" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" poster="assets/strion-video-record-poster.png?v=20261027" aria-label="STRION에서 러닝 영상을 선택하고 기록 카드를 미리 보는 실제 구동 영상. 자동재생이 멈추면 영상을 눌러 재생할 수 있습니다.">
+              <video id="strionDemoVideo" muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" poster="assets/strion-video-record-poster.png?v=20261027" aria-label="STRION에서 러닝 영상을 선택하고 기록 카드를 미리 보는 실제 구동 영상. 중앙 재생 버튼을 누르면 재생됩니다.">
                 <source src="assets/strion-video-record-burned-v2.mp4?v=20261027-burned-v2" type="video/mp4">
                 이 브라우저에서는 영상 재생을 지원하지 않습니다.
               </video>
@@ -877,26 +877,20 @@
     if (strionDemoVideo) {
       strionDemoVideo.controls = false;
       strionDemoVideo.removeAttribute('controls');
-      strionDemoVideo.addEventListener('loadeddata', playStrionDemo);
-      strionDemoVideo.addEventListener('canplay', playStrionDemo);
-      strionDemoVideo.addEventListener('click', playStrionDemo);
-      strionPlayButton?.addEventListener('click', playStrionDemo);
+      strionPlayButton?.addEventListener('click', (event) => {
+        event.stopPropagation();
+        playStrionDemo();
+      });
+      strionDemoVideo.addEventListener('click', () => {
+        if (strionDemoVideo.paused) playStrionDemo();
+        else strionDemoVideo.pause();
+      });
       strionDemoVideo.addEventListener('playing', () => strionDemoFigure?.classList.add('is-playing'));
       strionDemoVideo.addEventListener('pause', () => strionDemoFigure?.classList.remove('is-playing'));
       strionDemoVideo.addEventListener('ended', () => {
         strionDemoVideo.currentTime = 0;
-        playStrionDemo();
+        strionDemoFigure?.classList.remove('is-playing');
       });
-      window.addEventListener('pageshow', playStrionDemo);
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) playStrionDemo();
-      });
-
-      const videoObserver = new IntersectionObserver((entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) playStrionDemo();
-      }, { threshold: 0.2 });
-      videoObserver.observe(strionDemoVideo);
-      playStrionDemo();
     }
 
     const visitCounter = document.querySelector('#portfolioVisitCounter');
