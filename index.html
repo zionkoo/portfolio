@@ -316,6 +316,29 @@
     .share-story figure { position: relative; margin: 0; }
     .share-story video { display: block; width: 100%; max-height: 640px; object-fit: contain; border: 1px solid rgba(88, 217, 232, .3); background: #07141d; cursor: pointer; }
     .share-story video::-webkit-media-controls { display: none !important; }
+    .video-record-overlay {
+      position: absolute;
+      inset: 5%;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      padding: 4%;
+      border: 1px solid rgba(88, 217, 232, .85);
+      color: #f4fcff;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .95);
+      pointer-events: none;
+    }
+    .video-record-brand { color: var(--cyan); font: 800 clamp(9px, 1.15vw, 15px)/1 "Manrope", sans-serif; letter-spacing: .08em; }
+    .video-record-title { margin-top: 4%; font: 800 clamp(13px, 2vw, 27px)/1.15 "Manrope", sans-serif; }
+    .video-record-bottom { margin-top: auto; }
+    .video-record-date { margin-bottom: 2%; color: #e1f1f5; font-size: clamp(8px, .9vw, 12px); }
+    .video-record-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
+    .video-record-grid div { min-width: 0; padding: 5px 7px; border: 1px solid rgba(88, 217, 232, .8); background: rgba(3, 16, 24, .58); }
+    .video-record-grid span { display: block; color: #b8d3da; font: 700 clamp(6px, .65vw, 9px)/1.1 "Manrope", sans-serif; }
+    .video-record-grid b { display: block; margin-top: 3px; overflow: hidden; color: #fff; font: 800 clamp(8px, 1vw, 14px)/1.1 "Manrope", sans-serif; white-space: nowrap; }
+    .video-record-footer { display: flex; align-items: baseline; gap: 8px; margin-top: 3%; padding-top: 2%; border-top: 3px solid var(--cyan); }
+    .video-record-footer b { font: 800 clamp(8px, 1vw, 14px)/1 "Manrope", sans-serif; }
+    .video-record-footer span { color: #c7d9de; font-size: clamp(6px, .62vw, 9px); }
     .video-play-button {
       position: absolute;
       left: 50%;
@@ -341,7 +364,8 @@
     .share-story .video-badge {
       position: absolute;
       top: 14px;
-      left: 14px;
+      right: 14px;
+      z-index: 3;
       padding: 8px 11px;
       border: 1px solid rgba(88, 217, 232, .62);
       background: rgba(4, 17, 24, .82);
@@ -499,6 +523,10 @@
       .project-evidence figcaption { grid-template-columns: 1fr; gap: 5px; }
       .share-story { padding: 18px; }
       .share-story video { max-height: 72vh; }
+      .video-record-overlay { inset: 4%; padding: 4%; }
+      .video-record-grid { gap: 3px; }
+      .video-record-grid div { padding: 4px 5px; }
+      .video-record-footer { gap: 5px; }
       .share-story dl div { grid-template-columns: 1fr; gap: 4px; }
       .metrics { grid-template-columns: 1fr 1fr; }
       .device, .run-card, .panel, .feature, .value-card { padding: 22px; }
@@ -734,9 +762,25 @@
           <section class="share-story" aria-labelledby="run-share-title">
             <figure>
               <video id="strionDemoVideo" muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" poster="assets/strion-video-record-poster.png?v=20261027" aria-label="STRION에서 러닝 영상을 선택하고 기록 카드를 미리 보는 실제 구동 영상. 중앙 재생 버튼을 누르면 재생됩니다.">
-                <source src="assets/strion-video-record-burned-v2.mp4?v=20261027-burned-v2" type="video/mp4">
+                <source src="assets/strion-video-source-h264.mp4?v=20261028-h264" type="video/mp4">
                 이 브라우저에서는 영상 재생을 지원하지 않습니다.
               </video>
+              <div class="video-record-overlay" aria-hidden="true">
+                <div class="video-record-brand">STRION // RUN LOG</div>
+                <div class="video-record-title">오늘도 한 걸음, STRIDE ON.</div>
+                <div class="video-record-bottom">
+                  <div class="video-record-date">2026. 10. 25. 오전 06:48</div>
+                  <div class="video-record-grid">
+                    <div><span>DISTANCE</span><b>30.01 km</b></div>
+                    <div><span>TIME</span><b>2:58:28</b></div>
+                    <div><span>AVG PACE</span><b>5:57 /km</b></div>
+                    <div><span>HEART RATE</span><b>142 bpm</b></div>
+                    <div><span>CADENCE</span><b>182 spm</b></div>
+                    <div><span>CALORIES</span><b>2417 kcal</b></div>
+                  </div>
+                  <div class="video-record-footer"><b>STRIDE ON</b><span>Made by ZIONKOO · Data from your FIT activity</span></div>
+                </div>
+              </div>
               <button class="video-play-button" type="button" aria-label="STRION 시연 영상 재생">▶</button>
               <span class="video-badge">LIVE VIDEO DEMO</span>
               <figcaption>실제 모바일 사용 화면 · 영상을 선택하면 기록 오버레이와 재생 미리보기가 즉시 연결됩니다.</figcaption>
