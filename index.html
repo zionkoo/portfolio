@@ -958,7 +958,7 @@
       ? fetch(visitEndpoint.replace('/views', '/owner'), { method: 'POST' }).then((response) => {
           if (!response.ok) throw new Error('owner registration unavailable');
           return response.json();
-        })
+        }).catch(() => null)
       : Promise.resolve();
 
     registerOwner
