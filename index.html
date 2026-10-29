@@ -943,7 +943,8 @@
     const countedKey = 'zionkoo_portfolio_view_counted_v1';
     const pageUrl = new URL(window.location.href);
 
-    if (pageUrl.searchParams.get('owner') === '1') {
+    const shouldRegisterOwner = pageUrl.searchParams.get('owner') === '1';
+    if (shouldRegisterOwner) {
       localStorage.setItem(ownerKey, 'true');
       pageUrl.searchParams.delete('owner');
       history.replaceState(null, '', `${pageUrl.pathname}${pageUrl.search}${pageUrl.hash}`);
@@ -953,26 +954,28 @@
     const alreadyCounted = localStorage.getItem(countedKey) === 'true';
     visitCounter.dataset.owner = String(isOwner);
 
-    fetch(visitEndpoint, { method: isOwner || alreadyCounted ? 'GET' : 'POST' })
+    const registerOwner = shouldRegisterOwner
+      ? fetch(visitEndpoint.replace('/views', '/owner'), { method: 'POST' }).then((response) => {
+          if (!response.ok) throw new Error('owner registration unavailable');
+          return response.json();
+        })
+      : Promise.resolve();
+
+    registerOwner
+      .then(() => fetch(visitEndpoint, { method: isOwner || alreadyCounted ? 'GET' : 'POST' }))
       .then((response) => {
         if (!response.ok) throw new Error('visit counter unavailable');
         return response.json();
       })
-      .then(({ count }) => {
+      .then(({ count, isOwner: ownerByIp }) => {
         visitCounter.textContent = `외부 열람 ${Number(count).toLocaleString('ko-KR')}회`;
         visitCounter.dataset.state = 'ready';
+        if (ownerByIp) visitCounter.dataset.owner = 'true';
         if (!isOwner && !alreadyCounted) localStorage.setItem(countedKey, 'true');
       })
       .catch(() => {
-        const badge = new Image();
-        badge.src = `https://api.visitorbadge.io/api/visitors?path=zionkoo-portfolio-public&label=TOTAL%20VIEWS&countColor=%231b5d47&style=flat&v=${Date.now()}`;
-        badge.alt = '포트폴리오 누적 열람 수';
-        badge.addEventListener('load', () => { visitCounter.dataset.state = 'ready'; }, { once: true });
-        badge.addEventListener('error', () => {
-          visitCounter.textContent = '열람 통계 확인 중';
-          visitCounter.dataset.state = 'error';
-        }, { once: true });
-        visitCounter.replaceChildren(badge);
+        visitCounter.textContent = '외부 열람 집계 일시 중지';
+        visitCounter.dataset.state = 'error';
       });
   </script>
 </body>
