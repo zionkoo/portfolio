@@ -3,983 +3,131 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="업무와 사용자를 이해하고 작동하는 서비스로 연결하는 구정민의 포트폴리오">
-  <meta name="theme-color" content="#154c3b">
-  <meta property="og:type" content="website">
-  <meta property="og:locale" content="ko_KR">
-  <meta property="og:title" content="구정민 | Operations & Digital Service Portfolio">
-  <meta property="og:description" content="8년의 운영 실무 경험과 직접 검증한 Smart Farm·STRION 웹서비스 프로젝트">
-  <meta property="og:url" content="https://zionkoo.github.io/portfolio/">
-  <meta property="og:image" content="https://zionkoo.github.io/portfolio/assets/portfolio-preview.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="구정민 | Operations & Digital Service Portfolio">
-  <meta name="twitter:description" content="업무의 문제를 디지털 서비스로 연결하고 직접 검증한 과정">
-  <meta name="twitter:image" content="https://zionkoo.github.io/portfolio/assets/portfolio-preview.png">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <title>구정민 | Operations & Digital Service Portfolio</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Gowun+Dodum&family=Manrope:wght@500;700;800&display=swap');
-
-    :root {
-      --ink: #10271f;
-      --muted: #63736b;
-      --paper: #f4f1e8;
-      --cream: #fbfaf5;
-      --green: #185841;
-      --green-2: #26765a;
-      --lime: #cee858;
-      --cyan: #58d9e8;
-      --night: #07141d;
-      --line: rgba(16, 39, 31, .16);
-      --shadow: 0 20px 70px rgba(15, 48, 37, .12);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background:
-        radial-gradient(circle at 8% 2%, rgba(206, 232, 88, .16), transparent 24rem),
-        linear-gradient(180deg, #ede9df 0, var(--paper) 28rem);
-      font-family: "Gowun Dodum", sans-serif;
-    }
-    a { color: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 13px clamp(18px, 4vw, 64px);
-      color: #fff;
-      background: rgba(7, 25, 20, .9);
-      border-bottom: 1px solid rgba(255, 255, 255, .12);
-      backdrop-filter: blur(18px);
-    }
-    .brand {
-      font: 800 14px/1 "Manrope", sans-serif;
-      letter-spacing: .15em;
-      text-decoration: none;
-    }
-    .top-actions { display: flex; align-items: center; gap: 9px; }
-    .nav-link { color: #d8e6df; font-size: 13px; text-decoration: none; }
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 43px;
-      padding: 0 17px;
-      border: 1px solid var(--green);
-      border-radius: 999px;
-      color: var(--green);
-      background: transparent;
-      font: 700 13px/1 "Manrope", "Gowun Dodum", sans-serif;
-      text-decoration: none;
-      transition: transform .2s ease, background .2s ease, color .2s ease;
-    }
-    .button:hover { transform: translateY(-2px); }
-    .button.primary { color: var(--ink); background: var(--lime); border-color: var(--lime); }
-    .button.light { color: #fff; border-color: rgba(255, 255, 255, .45); }
-
-    main { overflow: hidden; }
-    .section { width: min(1180px, calc(100% - 36px)); margin: 0 auto; padding: 92px 0; }
-    .eyebrow {
-      margin: 0 0 15px;
-      color: var(--green-2);
-      font: 800 13px/1 "Manrope", sans-serif;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-    h1, h2, h3, p { margin-top: 0; }
-    h1 {
-      max-width: 900px;
-      margin-bottom: 25px;
-      font: 800 clamp(45px, 7vw, 82px)/1.08 "Manrope", "Gowun Dodum", sans-serif;
-      letter-spacing: -.055em;
-    }
-    h2 {
-      margin-bottom: 20px;
-      font: 800 clamp(32px, 4.4vw, 54px)/1.15 "Manrope", "Gowun Dodum", sans-serif;
-      letter-spacing: -.045em;
-    }
-    h3 { font: 800 21px/1.3 "Manrope", "Gowun Dodum", sans-serif; }
-    p { color: #354a41; font-size: 17px; line-height: 1.75; }
-    .lead { max-width: 900px; font-size: clamp(20px, 2.5vw, 28px); line-height: 1.62; }
-    .small { color: var(--muted); font-size: 14px; line-height: 1.65; }
-    .mono { font-family: "DM Mono", monospace; }
-
-    .hero-wrap { color: #fff; background: var(--green); }
-    .hero {
-      position: relative;
-      min-height: 710px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      isolation: isolate;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      width: min(650px, 70vw);
-      aspect-ratio: 1;
-      right: -140px;
-      top: -150px;
-      border: 1px solid rgba(255, 255, 255, .25);
-      border-radius: 50%;
-      box-shadow: 0 0 0 95px rgba(206, 232, 88, .09), 0 0 0 190px rgba(255, 255, 255, .04);
-    }
-    .hero .eyebrow { color: var(--lime); }
-    .hero p { color: #e6f0eb; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-    .hero-meta {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 28px;
-      align-items: end;
-      margin-top: 70px;
-      padding-top: 25px;
-      border-top: 1px solid rgba(255, 255, 255, .35);
-    }
-    .hero-meta p { margin: 0; font-size: 14px; }
-    .hero-wrap::after { content: ""; display: block; height: 12px; background: var(--lime); }
-
-    .brief-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 38px; }
-    .brief-card { min-height: 220px; padding: 27px; background: var(--cream); border: 1px solid var(--line); border-top: 4px solid var(--green); }
-    .brief-card .index { display: block; margin-bottom: 26px; color: var(--green-2); font: 800 11px/1 "Manrope", sans-serif; letter-spacing: .16em; }
-    .brief-card h3 { margin-bottom: 13px; }
-    .brief-card p { margin: 0; color: var(--muted); font-size: 15px; line-height: 1.7; }
-
-    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-top: 54px; }
-    .stat { border-top: 4px solid var(--green); padding-top: 17px; }
-    .stat b { display: block; margin-bottom: 11px; color: var(--green); font: 500 43px/1 "DM Mono", monospace; }
-    .stat span { color: var(--muted); font-size: 15px; line-height: 1.55; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .panel {
-      padding: 28px;
-      background: rgba(255, 255, 255, .62);
-      border: 1px solid var(--line);
-      box-shadow: 0 10px 35px rgba(15, 45, 34, .035);
-    }
-    .tag {
-      display: inline-block;
-      margin: 0 7px 8px 0;
-      padding: 8px 13px;
-      color: var(--green);
-      border: 1px solid var(--green);
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .timeline { margin-top: 35px; }
-    .job {
-      display: grid;
-      grid-template-columns: 165px 1fr;
-      gap: 25px;
-      padding: 21px 0;
-      border-top: 1px solid var(--line);
-    }
-    .job time { color: var(--green); font: 500 14px/1.5 "DM Mono", monospace; }
-    .job b { display: block; font-size: 19px; }
-    .job span { display: block; margin-top: 6px; color: var(--muted); font-size: 15px; }
-
-    .project { padding: 86px 0; }
-    .project-head { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 34px; }
-    .project-head h2 { max-width: 760px; margin-bottom: 0; }
-    .project-layout { display: grid; grid-template-columns: 1fr .92fr; gap: 34px; align-items: stretch; }
-    .stack > div { padding: 7px 0 19px; border-bottom: 1px solid var(--line); }
-    .stack > div + div { padding-top: 25px; }
-    .stack > div:last-child { border-bottom: 0; }
-
-    .device {
-      padding: 31px;
-      color: var(--ink);
-      background: linear-gradient(145deg, #eaf5e9, #cce9a6);
-      border: 1px solid #8cbe69;
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-    }
-    .device .top { color: var(--green); font: 500 12px/1 "DM Mono", monospace; letter-spacing: .12em; }
-    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 25px; }
-    .metric { padding: 17px; border: 1px solid rgba(24, 88, 65, .25); }
-    .metric span { color: var(--muted); font-size: 13px; }
-    .metric b { display: block; margin-top: 9px; font: 500 clamp(25px, 3vw, 36px)/1 "DM Mono", monospace; }
-
-    .architecture { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; margin-top: 35px; }
-    .node { min-height: 180px; padding: 22px; background: var(--cream); border: 2px solid var(--green); }
-    .node .n { color: var(--green); font: 500 12px/1 "DM Mono", monospace; letter-spacing: .1em; }
-    .node h3 { margin-top: 21px; }
-
-    .dark { color: #fff; background: var(--night); }
-    .dark .eyebrow { color: var(--cyan); }
-    .dark h2, .dark h3 { color: #fff; }
-    .dark p { color: #b5c9cf; }
-    .dark .project { width: min(1180px, calc(100% - 36px)); margin: 0 auto; }
-    .run-card { padding: 30px; background: linear-gradient(145deg, #081820, #0c282d); border: 1px solid rgba(88, 217, 232, .45); }
-    .run-card .top { color: var(--cyan); font: 500 12px/1 "DM Mono", monospace; letter-spacing: .13em; }
-    .run-card .metric { border-color: rgba(88, 217, 232, .32); }
-    .run-card .metric b { color: #fff; }
-    .electric-line { position: relative; height: 110px; margin-top: 23px; border-left: 1px solid #31545d; border-bottom: 1px solid #31545d; overflow: hidden; }
-    .electric-line::after {
-      content: "";
-      position: absolute;
-      left: -3%; right: -3%; top: 49%; height: 3px;
-      background: linear-gradient(90deg, transparent, var(--cyan), #6278ff, #f62ae6, var(--cyan), transparent);
-      transform: rotate(-5deg);
-      box-shadow: 0 0 13px var(--cyan);
-    }
-    .garmin-sync {
-      margin-top: 28px;
-      padding: 22px;
-      background: rgba(4, 17, 25, .72);
-      border: 1px solid rgba(88, 217, 232, .34);
-      box-shadow: inset 3px 0 0 var(--cyan);
-    }
-    .sync-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .sync-head span:first-child { color: #fff; font: 500 12px/1 "DM Mono", monospace; letter-spacing: .12em; }
-    .sync-status {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--cyan);
-      font: 500 11px/1 "DM Mono", monospace;
-    }
-    .sync-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
-    .sync-route { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; gap: 9px; align-items: center; margin-top: 22px; }
-    .sync-route b { min-width: 0; padding: 11px 8px; color: #dffaff; border: 1px solid rgba(88, 217, 232, .25); font: 500 11px/1.35 "DM Mono", monospace; text-align: center; }
-    .sync-route i { color: var(--cyan); font: 500 15px/1 "DM Mono", monospace; font-style: normal; }
-    .sync-activity { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: end; margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(88, 217, 232, .2); }
-    .sync-activity small { display: block; margin-bottom: 7px; color: #6f8d94; font: 500 10px/1 "DM Mono", monospace; letter-spacing: .1em; }
-    .sync-activity strong { color: #fff; font-size: 15px; }
-    .sync-activity em { color: #9fb9c0; font: 400 11px/1.4 "DM Mono", monospace; font-style: normal; text-align: right; }
-    .feature { padding: 26px; border: 1px solid rgba(88, 217, 232, .35); background: rgba(8, 28, 37, .75); }
-    .feature p { margin-bottom: 0; }
-
-    .project-value {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 34px;
-    }
-    .value-card {
-      min-height: 220px;
-      padding: 26px;
-      background: rgba(255, 255, 255, .58);
-      border: 1px solid var(--line);
-      border-top: 4px solid var(--green);
-    }
-    .value-card .label {
-      display: block;
-      margin-bottom: 20px;
-      color: var(--green-2);
-      font: 800 12px/1 "Manrope", sans-serif;
-      letter-spacing: .16em;
-    }
-    .value-card h3 { margin-bottom: 12px; }
-    .value-card p { margin-bottom: 0; font-size: 15px; line-height: 1.72; }
-    .dark .value-card {
-      background: rgba(8, 28, 37, .75);
-      border-color: rgba(88, 217, 232, .3);
-      border-top-color: var(--cyan);
-    }
-    .dark .value-card .label { color: var(--cyan); }
-
-    .project-evidence { margin: 36px 0 0; padding: 18px; background: rgba(255, 255, 255, .55); border: 1px solid var(--line); }
-    .project-evidence img { display: block; width: 100%; aspect-ratio: 16 / 8.6; object-fit: cover; object-position: top; border: 1px solid var(--line); }
-    .project-evidence figcaption { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; padding: 17px 4px 2px; color: var(--muted); font-size: 14px; line-height: 1.6; }
-    .project-evidence figcaption b { color: var(--green); font: 800 11px/1.6 "Manrope", sans-serif; letter-spacing: .14em; white-space: nowrap; }
-    .dark .project-evidence { background: rgba(8, 28, 37, .72); border-color: rgba(88, 217, 232, .3); }
-    .dark .project-evidence img { border-color: rgba(88, 217, 232, .28); }
-    .dark .project-evidence figcaption { color: #9fb9c0; }
-    .dark .project-evidence figcaption b { color: var(--cyan); }
-
-    .share-story {
-      display: grid;
-      grid-template-columns: minmax(260px, .62fr) 1fr;
-      gap: 34px;
-      align-items: center;
-      margin-top: 34px;
-      padding: 28px;
-      border: 1px solid rgba(88, 217, 232, .3);
-      background: linear-gradient(135deg, rgba(8, 28, 37, .84), rgba(11, 22, 38, .72));
-    }
-    .share-story figure { position: relative; margin: 0; }
-    .share-story video { display: block; width: 100%; max-height: 640px; object-fit: contain; border: 1px solid rgba(88, 217, 232, .3); background: #07141d; cursor: pointer; }
-    .share-story video::-webkit-media-controls { display: none !important; }
-    .video-record-overlay {
-      position: absolute;
-      inset: 5%;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      padding: 4%;
-      border: 1px solid rgba(88, 217, 232, .85);
-      color: #f4fcff;
-      text-shadow: 0 2px 8px rgba(0, 0, 0, .95);
-      pointer-events: none;
-    }
-    .video-record-brand { color: var(--cyan); font: 800 clamp(9px, 1.15vw, 15px)/1 "Manrope", sans-serif; letter-spacing: .08em; }
-    .video-record-title { margin-top: 4%; font: 800 clamp(13px, 2vw, 27px)/1.15 "Manrope", sans-serif; }
-    .video-record-bottom { margin-top: auto; }
-    .video-record-date { margin-bottom: 2%; color: #e1f1f5; font-size: clamp(8px, .9vw, 12px); }
-    .video-record-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
-    .video-record-grid div { min-width: 0; padding: 5px 7px; border: 1px solid rgba(88, 217, 232, .8); background: rgba(3, 16, 24, .58); }
-    .video-record-grid span { display: block; color: #b8d3da; font: 700 clamp(6px, .65vw, 9px)/1.1 "Manrope", sans-serif; }
-    .video-record-grid b { display: block; margin-top: 3px; overflow: hidden; color: #fff; font: 800 clamp(8px, 1vw, 14px)/1.1 "Manrope", sans-serif; white-space: nowrap; }
-    .video-record-footer { display: flex; align-items: baseline; gap: 8px; margin-top: 3%; padding-top: 2%; border-top: 3px solid var(--cyan); }
-    .video-record-footer b { font: 800 clamp(8px, 1vw, 14px)/1 "Manrope", sans-serif; }
-    .video-record-footer span { color: #c7d9de; font-size: clamp(6px, .62vw, 9px); }
-    .video-play-button {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      z-index: 4;
-      display: grid;
-      width: 78px;
-      height: 78px;
-      place-items: center;
-      padding: 0 0 0 5px;
-      border: 1px solid rgba(88, 217, 232, .85);
-      border-radius: 50%;
-      color: #06141c;
-      background: rgba(88, 217, 232, .92);
-      box-shadow: 0 0 30px rgba(88, 217, 232, .42);
-      font-size: 30px;
-      transform: translate(-50%, -50%);
-      cursor: pointer;
-      transition: opacity .2s ease, transform .2s ease;
-    }
-    .video-play-button:hover { transform: translate(-50%, -50%) scale(1.06); }
-    .share-story figure.is-playing .video-play-button { opacity: 0; pointer-events: none; }
-    .share-story .video-badge {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      z-index: 3;
-      padding: 8px 11px;
-      border: 1px solid rgba(88, 217, 232, .62);
-      background: rgba(4, 17, 24, .82);
-      color: var(--cyan);
-      font: 800 10px/1 "Manrope", sans-serif;
-      letter-spacing: .14em;
-      pointer-events: none;
-    }
-    .share-story figcaption { margin-top: 10px; color: #7fa1aa; font-size: 12px; line-height: 1.55; }
-    .share-story .case-label { color: var(--cyan); }
-    .share-story h3 { margin: 12px 0 15px; color: #fff; font-size: clamp(25px, 3vw, 36px); }
-    .share-story p { color: #b9ced4; font-size: 15px; }
-    .share-story dl { display: grid; gap: 14px; margin: 24px 0 0; }
-    .share-story dl div { display: grid; grid-template-columns: 86px 1fr; gap: 13px; padding-top: 13px; border-top: 1px solid rgba(88, 217, 232, .18); }
-    .share-story dt { color: var(--cyan); font: 800 11px/1.6 "Manrope", sans-serif; letter-spacing: .12em; }
-    .share-story dd { margin: 0; color: #d7e7eb; font-size: 14px; line-height: 1.65; }
-
-    .troubles { margin-top: 32px; border-top: 2px solid var(--green); }
-    .trouble { display: grid; grid-template-columns: .8fr 1fr 1.4fr; gap: 20px; padding: 18px 8px; border-bottom: 1px solid var(--line); }
-    .trouble b { font-size: 15px; }
-    .trouble span { color: var(--muted); font-size: 14px; line-height: 1.55; }
-    .dark .troubles { border-top-color: var(--cyan); }
-    .dark .trouble { border-bottom-color: rgba(88, 217, 232, .2); }
-    .dark .trouble span { color: #9fb9c0; }
-
-    .proposal-card {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 28px;
-      align-items: center;
-      margin-top: 48px;
-      padding: 28px;
-      background: linear-gradient(120deg, rgba(88, 217, 232, .12), rgba(98, 120, 255, .08));
-      border: 1px solid rgba(88, 217, 232, .48);
-      box-shadow: inset 4px 0 0 var(--cyan);
-    }
-    .proposal-card .case-label { margin-bottom: 12px; }
-    .proposal-card h3 { margin-bottom: 9px; font-size: clamp(22px, 2.7vw, 30px); }
-    .proposal-card p { max-width: 760px; margin-bottom: 0; font-size: 15px; }
-    .proposal-card .button { white-space: nowrap; }
-
-    .case-block { margin-top: 54px; }
-    .case-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
-    .case-heading h3 { margin-bottom: 0; font-size: clamp(25px, 3vw, 34px); }
-    .case-heading p { max-width: 570px; margin: 0; font-size: 15px; }
-    .case-label { display: block; margin-bottom: 10px; color: var(--cyan); font: 800 11px/1 "Manrope", sans-serif; letter-spacing: .17em; }
-
-    .strion-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 13px; }
-    .flow-node { position: relative; min-height: 190px; padding: 23px; background: rgba(8, 28, 37, .78); border: 1px solid rgba(88, 217, 232, .35); }
-    .flow-node:not(:last-child)::after { content: "→"; position: absolute; z-index: 2; top: 50%; right: -21px; width: 28px; color: var(--cyan); font: 500 21px/1 "DM Mono", monospace; text-align: center; transform: translateY(-50%); }
-    .flow-node .index { color: var(--cyan); font: 500 12px/1 "DM Mono", monospace; letter-spacing: .12em; }
-    .flow-node h4 { margin: 22px 0 10px; color: #fff; font: 800 18px/1.35 "Manrope", "Gowun Dodum", sans-serif; }
-    .flow-node p { margin: 0; font-size: 14px; line-height: 1.65; }
-    .flow-node strong { color: #fff; }
-
-    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .journey-card { padding: 27px; border: 1px solid rgba(88, 217, 232, .3); background: rgba(8, 28, 37, .72); }
-    .journey-card.after { border-color: rgba(88, 217, 232, .7); box-shadow: inset 0 3px 0 var(--cyan); }
-    .journey-card .state { display: inline-block; margin-bottom: 20px; color: #91aab1; font: 800 11px/1 "Manrope", sans-serif; letter-spacing: .16em; }
-    .journey-card.after .state { color: var(--cyan); }
-    .journey-card ol { display: grid; gap: 11px; margin: 0; padding: 0; list-style: none; counter-reset: journey; }
-    .journey-card li { counter-increment: journey; display: grid; grid-template-columns: 30px 1fr; gap: 10px; align-items: start; color: #c3d3d7; font-size: 15px; line-height: 1.5; }
-    .journey-card li::before { content: counter(journey, decimal-leading-zero); color: var(--cyan); font: 500 12px/1.8 "DM Mono", monospace; }
-
-    .proof-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .proof { min-height: 165px; padding: 23px; border: 1px solid rgba(88, 217, 232, .3); background: rgba(8, 28, 37, .72); }
-    .proof .proof-label { display: block; margin-bottom: 16px; color: #78969d; font: 800 10px/1 "Manrope", sans-serif; letter-spacing: .16em; }
-    .proof b { display: block; min-height: 2.5em; margin-bottom: 13px; color: var(--cyan); font: 500 clamp(20px, 2.4vw, 29px)/1.25 "Manrope", "Gowun Dodum", sans-serif; }
-    .proof span { color: #c3d3d7; font-size: 14px; line-height: 1.55; }
-
-    .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .scope-card { padding: 27px; border: 1px solid rgba(88, 217, 232, .3); background: rgba(8, 28, 37, .72); }
-    .scope-card h4 { margin: 0 0 17px; color: #fff; font: 800 19px/1.35 "Manrope", "Gowun Dodum", sans-serif; }
-    .scope-card ul { display: grid; gap: 11px; margin: 0; padding: 0; list-style: none; }
-    .scope-card li { position: relative; padding-left: 19px; color: #b5c9cf; font-size: 14px; line-height: 1.6; }
-    .scope-card li::before { content: ""; position: absolute; left: 0; top: .65em; width: 7px; height: 7px; border: 1px solid var(--cyan); }
-
-    .ownership { border-top: 1px solid rgba(88, 217, 232, .45); }
-    .ownership-row { display: grid; grid-template-columns: .65fr 1.5fr 1.5fr; gap: 20px; padding: 19px 8px; border-bottom: 1px solid rgba(88, 217, 232, .2); }
-    .ownership-row b { color: var(--cyan); font: 800 12px/1.5 "Manrope", sans-serif; letter-spacing: .08em; }
-    .ownership-row strong { color: #fff; font-size: 15px; }
-    .ownership-row span { color: #9fb9c0; font-size: 14px; line-height: 1.55; }
-
-    .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; margin-top: 38px; }
-    .step { padding-top: 17px; border-top: 3px solid var(--green); }
-    .step b { color: var(--green); font: 500 17px/1 "DM Mono", monospace; }
-    .step h3 { margin: 15px 0 8px; font-size: 18px; }
-    .step p { font-size: 14px; }
-
-    .verification-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 34px; }
-    .verification-card { padding: 28px; background: var(--cream); border: 1px solid var(--line); border-top: 4px solid var(--green); }
-    .verification-card .project-name { display: block; margin-bottom: 13px; color: var(--green-2); font: 800 11px/1 "Manrope", sans-serif; letter-spacing: .16em; }
-    .verification-card h3 { margin-bottom: 22px; }
-    .check-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
-    .check-list li { display: grid; grid-template-columns: 24px 1fr auto; gap: 10px; align-items: center; padding: 13px 0; border-top: 1px solid var(--line); color: #354a41; font-size: 14px; line-height: 1.5; }
-    .check-list li::before { content: "✓"; color: var(--green-2); font: 800 14px/1 "Manrope", sans-serif; }
-    .check-list b { color: var(--green); font: 500 11px/1 "DM Mono", monospace; letter-spacing: .08em; }
-
-    .role { display: grid; grid-template-columns: 310px 1fr auto; gap: 25px; align-items: center; padding: 23px 0; border-top: 1px solid var(--line); }
-    .role b { font-size: 19px; }
-    .role p { margin: 0; font-size: 16px; }
-    .role-evidence { color: var(--green-2); font: 700 12px/1.4 "Manrope", "Gowun Dodum", sans-serif; text-decoration: none; white-space: nowrap; }
-    .role-evidence:hover { text-decoration: underline; }
-
-    .contact { color: #fff; background: var(--green); }
-    .contact .section { min-height: 520px; display: flex; flex-direction: column; justify-content: center; }
-    .contact .eyebrow { color: var(--lime); }
-    .contact h2 { max-width: 900px; }
-    .contact p { color: #e5efe9; }
-    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
-    footer { display: flex; justify-content: center; align-items: center; gap: 12px; padding: 24px 18px; color: #71827a; background: #07140f; text-align: center; font: 500 12px/1.5 "Manrope", sans-serif; letter-spacing: .08em; }
-    .visit-counter { display: inline-flex; align-items: center; gap: 7px; min-height: 28px; padding: 5px 10px; color: #9bb8ad; border: 1px solid rgba(180, 255, 42, .18); }
-    .visit-counter::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 8px rgba(180, 255, 42, .65); }
-    .visit-counter[data-state="loading"] { opacity: .55; }
-    .visit-counter[data-owner="true"]::after { content: "내 방문 제외 중"; margin-left: 2px; color: #71827a; font-size: 10px; }
-    .visit-counter img { display: block; height: 20px; width: auto; }
-
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    @media (max-width: 840px) {
-      .section { padding: 70px 0; }
-      .nav-link { display: none; }
-      .topbar { padding-inline: 15px; }
-      .top-actions .button { padding-inline: 13px; min-height: 39px; font-size: 12px; }
-      .hero { min-height: 680px; }
-      .hero-meta { grid-template-columns: 1fr; gap: 18px; margin-top: 50px; }
-      .hero-meta p:last-child { text-align: left !important; }
-      .stats, .grid-3, .architecture, .steps, .strion-flow, .proof-grid, .brief-grid { grid-template-columns: repeat(2, 1fr); }
-      .grid-2, .project-layout, .project-value { grid-template-columns: 1fr; }
-      .project-head { align-items: start; flex-direction: column; }
-      .share-story { grid-template-columns: 1fr; }
-      .verification-grid { grid-template-columns: 1fr; }
-      .role { grid-template-columns: 1fr; gap: 8px; }
-      .role-evidence { margin-top: 4px; white-space: normal; }
-      .flow-node:nth-child(2)::after { display: none; }
-      .case-heading { align-items: start; flex-direction: column; gap: 10px; }
-      .proposal-card { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 560px) {
-      .section, .dark .project { width: min(100% - 28px, 1180px); }
-      .section { padding: 58px 0; }
-      h1 { font-size: 44px; }
-      h2 { font-size: 33px; }
-      .hero { min-height: 650px; padding-top: 48px; }
-      .hero-actions { flex-direction: column; align-items: stretch; }
-      .hero-actions .button { width: 100%; }
-      .stats { grid-template-columns: 1fr 1fr; gap: 30px 15px; }
-      .stat b { font-size: 34px; }
-      .job { grid-template-columns: 1fr; gap: 8px; }
-      .architecture, .steps, .grid-3, .strion-flow, .proof-grid, .before-after, .scope-grid, .brief-grid { grid-template-columns: 1fr; }
-      .brief-card { min-height: 0; }
-      .project-evidence { padding: 10px; }
-      .project-evidence figcaption { grid-template-columns: 1fr; gap: 5px; }
-      .share-story { padding: 18px; }
-      .share-story video { max-height: 72vh; }
-      .video-record-overlay { inset: 4%; padding: 4%; }
-      .video-record-grid { gap: 3px; }
-      .video-record-grid div { padding: 4px 5px; }
-      .video-record-footer { gap: 5px; }
-      .share-story dl div { grid-template-columns: 1fr; gap: 4px; }
-      .metrics { grid-template-columns: 1fr 1fr; }
-      .device, .run-card, .panel, .feature, .value-card { padding: 22px; }
-      .garmin-sync { padding: 18px; }
-      .sync-route { grid-template-columns: 1fr; }
-      .sync-route i { transform: rotate(90deg); text-align: center; }
-      .value-card { min-height: 0; }
-      .trouble { grid-template-columns: 1fr; gap: 5px; }
-      .trouble + .trouble { padding-top: 24px; }
-      .flow-node { min-height: 0; }
-      .flow-node:not(:last-child)::after { content: "↓"; top: auto; right: 50%; bottom: -23px; transform: translateX(50%); }
-      .flow-node:nth-child(2)::after { display: block; }
-      .ownership-row { grid-template-columns: 1fr; gap: 7px; padding-block: 22px; }
-      .verification-card { padding: 22px; }
-      .check-list li { grid-template-columns: 22px 1fr; }
-      .check-list b { grid-column: 2; }
-      .contact-links { flex-direction: column; }
-      .contact-links .button { width: 100%; }
-      .proposal-card .button { width: 100%; }
-      footer { flex-direction: column; gap: 8px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { opacity: 1; transform: none; transition: none; }
-    }
-  </style>
+  <meta name="description" content="문제를 정의하고 사용 흐름을 설계하며 실제 환경에서 검증하는 서비스 기획자 구정민의 포트폴리오">
+  <meta property="og:title" content="구정민 | Service Planner Portfolio">
+  <meta property="og:description" content="운영 경험과 사용자 관점을 바탕으로 작동하는 서비스까지 연결합니다.">
+  <meta property="og:image" content="assets/portfolio-preview.png">
+  <title>구정민 | Service Planner Portfolio</title>
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="#top">KOO JEONGMIN</a>
-    <nav class="top-actions" aria-label="주요 메뉴">
-      <a class="nav-link" href="#career">경력</a>
-      <a class="nav-link" href="#projects">프로젝트</a>
-      <a class="button light" href="assets/Jeongmin-Koo-Portfolio.pdf" download>PDF 다운로드</a>
-    </nav>
+  <a class="skip-link" href="#main">본문 바로가기</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">KOO JEONGMIN <span>/ PLAN</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="siteNav">메뉴</button>
+      <nav class="site-nav" id="siteNav" aria-label="주요 메뉴">
+        <a href="#strengths">역량</a><a href="#projects">프로젝트</a><a href="#career">경력</a><a href="#contact">연락처</a>
+        <a href="assets/Jeongmin-Koo-Portfolio.pdf" target="_blank" rel="noopener">PDF ↗</a>
+      </nav>
+    </div>
   </header>
 
-  <main id="top">
-    <div class="hero-wrap">
-      <section class="section hero">
-        <p class="eyebrow">Operations & Digital Service Portfolio</p>
-        <h1>업무와 사용자를 이해하고,<br>작동하는 서비스로 연결합니다</h1>
-        <p class="lead">온라인 MD·상품기획·영업·구매·유통·물류·운영에서 쌓은 경험에 IoT와 웹서비스 구축 경험을 더한 구정민의 포트폴리오입니다.</p>
+  <main id="main">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <p class="eyebrow">Service Planner · Operations to Product</p>
+        <h1>문제를 정의하고,<br>사용 흐름을 설계합니다.</h1>
+        <p class="lead">온라인 MD·상품기획·사업운영·유통·물류에서 쌓은 업무 이해를 바탕으로, 사용자의 불편을 요구사항으로 구조화하고 실제 작동하는 서비스까지 연결합니다.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#projects">프로젝트 보기</a>
-          <a class="button light" href="assets/Jeongmin-Koo-Portfolio.pdf" target="_blank" rel="noopener">PDF 열기</a>
+          <a class="button primary" href="#projects">대표 프로젝트 보기</a>
+          <a class="button" href="assets/Jeongmin-Koo-Portfolio.pdf" target="_blank" rel="noopener">PDF 포트폴리오</a>
         </div>
-        <div class="hero-meta">
-          <p><b>구정민</b><br>IT 서비스 운영 · 서비스 기획/QA · 솔루션 구축/운영</p>
-          <p style="text-align:right">2026.10<br><a href="mailto:zionkoo@kakao.com">zionkoo@kakao.com</a></p>
-        </div>
-      </section>
-    </div>
-
-    <section class="section reveal" aria-labelledby="profile-title">
-      <p class="eyebrow">30 Second Brief</p>
-      <h2 id="profile-title">한눈에 보는 구정민</h2>
-      <p class="lead">다양한 운영 실무에서 얻은 사용자·업무 이해를 바탕으로, 문제를 기능으로 구조화하고 AI와 함께 구현한 뒤 실제 환경에서 검증합니다.</p>
-      <div class="brief-grid">
-        <article class="brief-card"><span class="index">01 · EXPERIENCE</span><h3>운영의 앞뒤 흐름을 압니다</h3><p>온라인 MD·상품기획·영업·구매·유통·물류·운영을 경험하며 정보, 일정, 관계자의 흐름을 조율해 왔습니다.</p></article>
-        <article class="brief-card"><span class="index">02 · EXECUTION</span><h3>관심을 작동하는 결과로 만듭니다</h3><p>6개월 스마트팜 교육과 조별 ICT 역할을 시작으로 Smart Farm과 STRION을 직접 기획·구현·공개했습니다.</p></article>
-        <article class="brief-card"><span class="index">03 · VERIFICATION</span><h3>구현보다 검증으로 설명합니다</h3><p>실제 장치, 원본 FIT 데이터, 모바일 화면과 비교하며 연결·단위·경계값·사용 흐름을 반복 확인했습니다.</p></article>
-      </div>
-      <div class="stats">
-        <div class="stat"><b>8년</b><span>온라인 MD·기획·영업·구매·<br>유통·물류·운영을 아우른 경력</span></div>
-        <div class="stat"><b>6개월</b><span>대신IT평생교육원<br>스마트팜 전문가 양성과정 수료</span></div>
-        <div class="stat"><b>2개</b><span>외부 공개 웹서비스<br>스마트팜 · STRION</span></div>
-        <div class="stat"><b>7종</b><span>MQTT 센서·제어 토픽을<br>대시보드에 연결</span></div>
-      </div>
-      <div class="grid-2" style="margin-top:55px">
-        <div>
-          <h3>강점</h3>
-          <span class="tag">운영 흐름 이해</span><span class="tag">이해관계자 조율</span><span class="tag">문제 원인 추적</span><span class="tag">사용자 관점 개선</span>
-        </div>
-        <div>
-          <h3>지원 방향</h3>
-          <p>IT 서비스·플랫폼 운영, 서비스 기획·운영 QA, 솔루션 구축·기술지원, 디지털 전환·업무 개선</p>
+        <div class="hero-proof" aria-label="핵심 경험">
+          <div><b>PROBLEM → SERVICE</b><span>현업과 개인 경험에서 문제를 찾고 기능과 흐름으로 전환</span></div>
+          <div><b>2 LIVE SERVICES</b><span>STRION과 Smart Farm을 직접 기획·구현·공개</span></div>
+          <div><b>REAL VALIDATION</b><span>원본 데이터·실물 장치·모바일 환경에서 결과를 대조</span></div>
         </div>
       </div>
     </section>
 
-    <section class="section reveal" id="career" aria-labelledby="career-title">
-      <p class="eyebrow">Career</p>
-      <h2 id="career-title">온라인 MD에서 사업운영·영업까지 확장한 경력</h2>
-      <div class="timeline">
-        <div class="job"><time>2025.02–2026.02</time><div><b>농업회사법인 이에프시 · 과장</b><span>구매, 입출고, 재고관리, 행사 물량 대응, 3PL 협력사 견적 제안 및 기타 운영 업무</span></div></div>
-        <div class="job"><time>2024.02–2024.04</time><div><b>호야홈텍 · 주임/계장</b><span>생산 원재료 구매와 발주</span></div></div>
-        <div class="job"><time>2021.04–2023.12</time><div><b>주식회사 든솔 · 공동 운영 / 사업운영</b><span>2인 운영 체제로 물류·유통센터 대상 법인 아웃소싱 사업 운영. 신규 거래처 영업·제안과 도급계약 협의, 현장 운영, 인력 채용·배치·업무교육, 근태·월 마감, 급여명세서 작성, 세금계산서 발행</span></div></div>
-        <div class="job"><time>2018.05–2021.02</time><div><b>컴퓨존 · 사원</b><span>입출고와 재고관리</span></div></div>
-        <div class="job"><time>2017.10–2018.03</time><div><b>롯데웰푸드</b><span>국내영업</span></div></div>
-        <div class="job"><time>2017.03–2017.09</time><div><b>디엠에이씨인터내셔널</b><span>온라인 MD, 상품기획, 상세페이지 초안 구성</span></div></div>
+    <section class="section" id="strengths">
+      <div class="wrap">
+        <div class="section-head">
+          <div><p class="eyebrow">Core Competency</p><h2>운영 경험을 서비스 기획 역량으로 확장했습니다</h2></div>
+          <p>보기 좋은 화면보다 사용자가 목표를 달성하는 과정과 운영자가 지속해서 관리할 수 있는 구조를 먼저 생각합니다.</p>
+        </div>
+        <div class="grid-4">
+          <article class="card"><span class="number">01</span><h3>문제 정의</h3><p>반복되는 불편과 업무 병목을 관찰하고 해결해야 할 핵심 문제를 문장으로 정리합니다.</p></article>
+          <article class="card"><span class="number">02</span><h3>사용 흐름 설계</h3><p>사용 목적과 정보 우선순위를 기준으로 화면·기능·예외 상황을 연결합니다.</p></article>
+          <article class="card"><span class="number">03</span><h3>요구사항 구조화</h3><p>기능 요구사항과 성공·실패 상태, 데이터 흐름과 운영 조건을 구체화합니다.</p></article>
+          <article class="card"><span class="number">04</span><h3>검증과 개선</h3><p>실제 데이터와 장치를 기준으로 결과를 확인하고 오류와 사용 불편을 반복 개선합니다.</p></article>
+        </div>
       </div>
-      <div class="panel" style="margin-top:28px"><p style="margin:0"><b>경력을 관통하는 공통점</b><br>상품과 고객 요구를 파악하고, 제안·계약·구매·인력·일정·정산의 흐름을 조정하며 운영 결과까지 책임져 온 경험입니다.</p></div>
     </section>
 
-    <div id="projects">
-      <section class="section project reveal" aria-labelledby="farm-title">
-        <div class="project-head">
-          <div><p class="eyebrow">Project 01 · Smart Farm</p><h2 id="farm-title">실시간 생육환경 모니터링 웹서비스</h2></div>
-          <a class="button" href="https://zionkoo.github.io/smartfarm-dashboard/" target="_blank" rel="noopener">Live Demo ↗</a>
+    <section class="section compact" id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <div><p class="eyebrow">Selected Projects</p><h2>문제 발견에서 검증까지</h2></div>
+          <p>채용 담당자가 빠르게 판단할 수 있도록 요약하고, 상세 페이지에는 의사결정과 검증 근거를 담았습니다.</p>
         </div>
-        <div class="project-layout">
-          <div class="stack">
-            <div><h3>문제</h3><p>센서값이 장치와 PC 안에만 머물면 현장 밖에서 상태를 확인하기 어렵습니다. 모바일 접근과 원격 명령 경로가 필요했습니다.</p></div>
-            <div><h3>내가 한 일</h3><p>조별 프로젝트 ICT 담당으로 Arduino 센서, Raspberry Pi 5와 Node-RED, HiveMQ, GitHub Pages를 연결해 수집·가공·전달·시각화 흐름을 구성했습니다.</p></div>
-            <div><h3>검증 결과</h3><p>DHT11 실측값과 펌프 명령 수신을 확인했습니다. Telegram으로 시간 단위 상태 요약과 기준 이탈 경고 알림도 수신했습니다.</p></div>
-          </div>
-          <div class="device">
-            <div class="top">SMART FARM LIVE</div>
-            <h3 style="font-size:30px;margin-top:18px">생육환경 현황</h3>
-            <div class="metrics">
-              <div class="metric"><span>온도</span><b>26.0°C</b></div>
-              <div class="metric"><span>습도</span><b>54%RH</b></div>
-              <div class="metric"><span>EC</span><b>1.8</b></div>
-              <div class="metric"><span>pH</span><b>5.8</b></div>
-            </div>
-            <p class="small" style="margin:25px 0 0">기준값에 따라 상태색이 바뀌고, 마지막 수신 시각으로 데이터 신선도를 확인합니다.</p>
-          </div>
-        </div>
-        <figure class="project-evidence">
-          <img src="assets/smartfarm-live.png" alt="실제로 배포된 Zionkoo's SmartFarm Dashboard 화면" loading="lazy">
-          <figcaption><b>LIVE EVIDENCE</b><span>GitHub Pages에 공개한 실제 화면입니다. MQTT 연결 상태, 오늘 정보, 센서 카드와 모바일 접근 흐름을 같은 서비스 안에서 확인할 수 있습니다.</span></figcaption>
-        </figure>
-        <div class="architecture">
-          <div class="node"><span class="n">01 DEVICE</span><h3>Arduino UNO R4 WiFi</h3><p class="small">DHT11 온·습도 수집<br>센서값 전달<br>펌프 명령 수신</p></div>
-          <div class="node"><span class="n">02 EDGE</span><h3>Raspberry Pi 5</h3><p class="small">Node-RED 실행<br>상시 데이터 중계<br>Tailscale 원격 접속</p></div>
-          <div class="node"><span class="n">03 FLOW</span><h3>Node-RED</h3><p class="small">데이터 가공·분기<br>정시 요약 자동화<br>기준 이탈 판단</p></div>
-          <div class="node"><span class="n">04 BROKER</span><h3>HiveMQ Cloud</h3><p class="small">MQTT/TLS·WSS<br>웹 실시간 전달<br>인증 기반 연결</p></div>
-          <div class="node"><span class="n">05 SERVICE</span><h3>Web + Telegram</h3><p class="small">카드·그래프 시각화<br>원격 ON/OFF<br>정시·경고 알림</p></div>
-        </div>
-        <div class="panel" style="margin-top:14px"><p style="margin:0"><b>확장 검증</b><br>조별 프로젝트에서는 Raspberry Pi 5와 Node-RED를 중계·자동화 계층으로 사용하고 Tailscale로 원격 관리 경로를 구성했습니다. 이후 Arduino UNO R4 WiFi가 HiveMQ Cloud에 직접 MQTT/TLS로 연결되는 단순 경로도 별도로 구현해 비교했습니다.</p></div>
-        <div class="project-value" aria-label="스마트팜 대시보드의 유용성과 실무 적용">
-          <article class="value-card">
-            <span class="label">USEFULNESS</span>
-            <h3>상태 확인 시간을 줄입니다</h3>
-            <p>여러 센서값과 장치 상태를 한 화면에 모아 순찰이나 개별 확인 부담을 줄이고, 마지막 수신 시각과 기준값으로 데이터 이상을 빠르게 발견합니다.</p>
-          </article>
-          <article class="value-card">
-            <span class="label">SERVICE ROLE</span>
-            <h3>현장과 운영자를 연결합니다</h3>
-            <p>장치 데이터 수집, 메시지 전달, 웹 시각화, 원격 명령과 알림을 하나의 운영 흐름으로 연결하는 모니터링·제어 인터페이스 역할을 합니다.</p>
-          </article>
-          <article class="value-card">
-            <span class="label">WORK APPLICATION</span>
-            <h3>설비·재고·환경 관리로 확장합니다</h3>
-            <p>온실뿐 아니라 창고 온습도, 냉장 설비, 생산 장비, 재고 상태처럼 기준 이탈을 빠르게 알아야 하는 업무에 적용해 점검과 대응 이력을 체계화할 수 있습니다.</p>
-          </article>
-        </div>
-      </section>
 
-      <section class="section reveal" aria-labelledby="trouble-title">
-        <p class="eyebrow">Project 01 · Troubleshooting</p>
-        <h2 id="trouble-title">오류 메시지를 단서로 연결 문제를 좁혔습니다</h2>
-        <div class="troubles">
-          <div class="trouble"><b>WiFi 연결 대기</b><span>UNO R4 WiFi와 5GHz 환경</span><span>2.4GHz SSID로 변경 후 네트워크 연결 확인</span></div>
-          <div class="trouble"><b>MQTT rc=-2 반복</b><span>일반 WiFiClient와 TLS 포트 불일치</span><span>WiFiSSLClient와 8883 적용 후 브로커 연결</span></div>
-          <div class="trouble"><b>업로드 장치 미발견</b><span>펌웨어 갱신 뒤 USB 포트 변경</span><span>0.6.0 업데이트 후 새 포트를 다시 선택해 업로드</span></div>
-          <div class="trouble"><b>Raspberry Pi 원격 접속 불안정</b><span>무선망 재연결과 사설 IP 변경으로 접속 경로가 달라짐</span><span>Tailscale 사설 네트워크로 고정된 원격 관리 경로 구성</span></div>
-          <div class="trouble"><b>공개 페이지 연결</b><span>HTTPS 페이지에서 ws 연결 불가</span><span>HiveMQ WSS 8884와 /mqtt 경로 사용</span></div>
-          <div class="trouble"><b>상태 확인 부담</b><span>화면을 열어야만 상태와 이상 확인</span><span>Telegram 정시 요약과 기준 이탈 경고 추가</span></div>
-        </div>
-      </section>
-
-      <section class="section reveal" aria-labelledby="ai-title">
-        <p class="eyebrow">Project 01 · Working With AI</p>
-        <h2 id="ai-title">스마트팜의 문제를 정의하고 AI와 함께 구현했습니다</h2>
-        <p class="lead">스마트팜 전문가 양성과정 조별 프로젝트에서 ICT 담당을 맡아 Arduino, Raspberry Pi 5, Node-RED와 MQTT 기반 생육데이터 대시보드를 구성하고, 장치 연결부터 실제 데이터 검증까지 직접 수행했습니다.</p>
-        <div class="steps">
-          <div class="step"><b>01</b><h3>문제 정의</h3><p>사용 상황과 필요한 결과를 문장으로 정리</p></div>
-          <div class="step"><b>02</b><h3>구조 결정</h3><p>브로커·장치·웹 역할과 데이터 흐름 선택</p></div>
-          <div class="step"><b>03</b><h3>AI 지원</h3><p>코드 초안, 오류 원인 후보와 개선안 확보</p></div>
-          <div class="step"><b>04</b><h3>직접 검증</h3><p>배선·인증·포트·로그·UI를 단계별 확인</p></div>
-          <div class="step"><b>05</b><h3>반복 개선</h3><p>모바일 사용성과 예외 상황을 반영</p></div>
-        </div>
-        <div class="grid-2" style="margin-top:45px">
-          <div class="panel"><h3>내가 주도한 일</h3><p class="small">조별 ICT 역할 수행, 문제·기능 정의, Raspberry Pi 5·Node-RED 흐름과 Tailscale 원격 접속 구성, HiveMQ·GitHub Pages 설정, Arduino·센서·릴레이 연결, 로그·모바일 사용성 확인</p></div>
-          <div class="panel"><h3>AI를 활용한 부분</h3><p class="small">HTML·JavaScript·Arduino 코드 초안, 에러 메시지 해석, 원인 후보 비교, UI 수정안 탐색과 문서 구조화</p></div>
-        </div>
-      </section>
-
-      <div class="dark">
-        <section class="project reveal" aria-labelledby="strion-title">
-          <div class="project-head">
-            <div><p class="eyebrow">Project 02 · Strion</p><h2 id="strion-title">러너가 이해하기 쉬운 FIT 분석 대시보드</h2></div>
-            <a class="button light" href="https://zionkoo.github.io/strion-running-dashboard/" target="_blank" rel="noopener">Live Demo ↗</a>
+        <article class="project-card strion">
+          <div class="project-copy">
+            <span class="index">PROJECT 01 · STRION</span>
+            <h3>러너의 원본 데이터를<br>다음 행동으로 연결하다</h3>
+            <p class="summary">매번 FIT 파일을 내려받아 다시 업로드해야 하는 불편에서 시작했습니다. Garmin 자동 동기화, 기록 재열람, 러닝 분석, 훈련과 레이스 계획을 하나의 흐름으로 설계했습니다.</p>
+            <div class="tag-list"><span class="tag">FIT 분석</span><span class="tag">Garmin 동기화</span><span class="tag">사용 흐름</span><span class="tag">요구사항</span></div>
+            <div class="card-actions"><a class="button" href="strion.html">케이스 스터디 보기</a><a class="button" href="https://zionkoo.github.io/strion-running-dashboard/" target="_blank" rel="noopener">Live Demo ↗</a></div>
           </div>
-          <div class="project-layout">
-            <div>
-              <p class="lead">Garmin 원본 FIT 파일을 업로드하거나 Garmin Connect 기록을 동기화하면 브라우저 안에서 기록을 분석하고 다음 훈련과 레이스 계획까지 연결합니다.</p>
-              <div class="stack">
-                <div><h3>문제</h3><p>원본 러닝 데이터는 항목이 많고 서로 흩어져 있으며, 활동을 볼 때마다 Garmin에서 FIT 파일을 내려받아 직접 업로드해야 하는 과정도 불편했습니다.</p></div>
-                <div><h3>내가 한 일</h3><p>러너 관점에서 정보 우선순위를 정하고 FIT 분석, Garmin 동기화, 훈련 해석, PB·대회 일정, 목표 페이스와 레이스 전략을 하나의 사용 흐름으로 설계했습니다. 개인 API 키는 공개 화면에 넣지 않고 Cloudflare Worker를 연결 계층으로 사용했습니다.</p></div>
-                <div><h3>검증 결과</h3><p>Garmin 실사용 FIT 파일과 원본 화면을 대조해 파싱 결과·단위·심박 존 경계를 확인하고, 모바일에서 동기화·저장·재열람·카드 탐색이 자연스럽도록 반복 수정했습니다.</p></div>
-              </div>
-              <p style="margin-top:25px"><b style="color:#fff">브랜드 의미</b><br>STRION은 STRIDE + ON의 합성어입니다. 한 걸음의 데이터를 이해하고 다음 걸음을 이어간다는 의미를 담았습니다.</p>
-            </div>
-            <div class="run-card">
-              <div class="top">STRION // RUN ANALYSIS</div>
-              <h3 style="font-size:29px;margin-top:18px">NEXT STRIDE</h3>
-              <div class="metrics">
-                <div class="metric"><span>DISTANCE</span><b>5.39 km</b></div>
-                <div class="metric"><span>AVG PACE</span><b>6:41/km</b></div>
-                <div class="metric"><span>HEART RATE</span><b>128 bpm</b></div>
-                <div class="metric"><span>CADENCE</span><b>172 spm</b></div>
-              </div>
-              <div class="electric-line" aria-hidden="true"></div>
-              <div class="garmin-sync" aria-label="Garmin 동기화 화면">
-                <div class="sync-head">
-                  <span>GARMIN SYNC</span>
-                  <span class="sync-status">CONNECTED</span>
-                </div>
-                <div class="sync-route" aria-label="Garmin 데이터 연결 흐름">
-                  <b>GARMIN<br>CONNECT</b><i>→</i><b>CLOUDFLARE<br>WORKER</b><i>→</i><b>STRION<br>ANALYSIS</b>
-                </div>
-                <div class="sync-activity">
-                  <div><small>LATEST ACTIVITY</small><strong>Morning Run · 5.39 km</strong></div>
-                  <em>SYNCED<br>09:42</em>
-                </div>
-              </div>
-            </div>
-          </div>
-          <figure class="project-evidence">
-            <img src="assets/strion-live.png" alt="실제로 배포된 STRION 러닝 대시보드 화면" loading="lazy">
-            <figcaption><b>LIVE EVIDENCE</b><span>공개된 STRION 첫 화면입니다. 날씨, 다음 대회, 개인 PB와 러닝 기록 분석이 하나의 모바일·PC 흐름으로 연결됩니다.</span></figcaption>
-          </figure>
-          <div class="grid-2" style="margin-top:30px">
-            <div class="feature"><h3>FIT 분석과 Garmin 동기화</h3><p>매번 FIT 파일을 내려받아 업로드하는 불편을 줄이기 위해 Garmin Connect 기록을 직접 가져오도록 확장했습니다. 거리·페이스·심박·고도와 러닝 다이나믹스를 분석하고, 이전 기록은 날짜만 선택해 다시 열 수 있습니다.</p></div>
-            <div class="feature"><h3>러닝 코치 관점의 해석</h3><p>FIT에 저장된 Garmin 개인 심박 Zone 1–5를 우선 적용하고, 데이터가 없을 때만 입력한 최대 심박을 사용합니다. Jack Daniels 관점의 VDOT·훈련 참고 페이스와 운동 요약도 제공합니다.</p></div>
-            <div class="feature"><h3>레이스 운영 도구</h3><p>목표 기록으로 이븐·네거티브·포지티브 전략별 구간 페이스와 누적 시간을 계산하고 CSV로 내려받을 수 있습니다.</p></div>
-            <div class="feature"><h3>개인 일정과 기록 관리</h3><p>PB, 대회 D-day와 대회명을 관리하며 일정은 iPhone·Android에서 사용할 수 있는 캘린더 파일로 내보냅니다.</p></div>
-          </div>
-          <section class="share-story" aria-labelledby="run-share-title">
-            <figure>
-              <video id="strionDemoVideo" muted loop playsinline webkit-playsinline preload="metadata" disablepictureinpicture controlslist="nodownload nofullscreen noremoteplayback" poster="assets/strion-video-record-poster.png?v=20261027" aria-label="STRION에서 러닝 영상을 선택하고 기록 카드를 미리 보는 실제 구동 영상. 중앙 재생 버튼을 누르면 재생됩니다.">
-                <source src="assets/strion-video-source-h264.mp4?v=20261028-h264" type="video/mp4">
-                이 브라우저에서는 영상 재생을 지원하지 않습니다.
-              </video>
-              <div class="video-record-overlay" aria-hidden="true">
-                <div class="video-record-brand">STRION // RUN LOG</div>
-                <div class="video-record-title">오늘도 한 걸음, STRIDE ON.</div>
-                <div class="video-record-bottom">
-                  <div class="video-record-date">2026. 10. 25. 오전 06:48</div>
-                  <div class="video-record-grid">
-                    <div><span>DISTANCE</span><b>30.01 km</b></div>
-                    <div><span>TIME</span><b>2:58:28</b></div>
-                    <div><span>AVG PACE</span><b>5:57 /km</b></div>
-                    <div><span>HEART RATE</span><b>142 bpm</b></div>
-                    <div><span>CADENCE</span><b>182 spm</b></div>
-                    <div><span>CALORIES</span><b>2417 kcal</b></div>
-                  </div>
-                  <div class="video-record-footer"><b>STRIDE ON</b><span>Made by ZIONKOO · Data from your FIT activity</span></div>
-                </div>
-              </div>
-              <button class="video-play-button" type="button" aria-label="STRION 시연 영상 재생">▶</button>
-              <span class="video-badge">LIVE VIDEO DEMO</span>
-              <figcaption>실제 모바일 사용 화면 · 영상을 선택하면 기록 오버레이와 재생 미리보기가 즉시 연결됩니다.</figcaption>
-            </figure>
-            <div>
-              <span class="case-label">RUN &amp; SHARE · FEATURE CASE</span>
-              <h3 id="run-share-title">사진과 영상 위에 오늘의 러닝을 기록합니다</h3>
-              <p>러너들이 운동 후 사진과 영상을 SNS에 공유하는 행동에 주목했습니다. 분석 화면에서 끝나던 FIT 데이터를 사용자가 고른 미디어 위에 자동으로 정리하고, 영상은 선택 즉시 재생하며 결과물을 저장·공유할 수 있도록 확장했습니다.</p>
-              <dl>
-                <div><dt>INPUT</dt><dd>사용자 사진 또는 영상, FIT 활동 데이터, 직접 수정할 수 있는 카드 문구</dd></div>
-                <div><dt>PROCESS</dt><dd>거리·시간·페이스·심박·케이던스·칼로리를 미디어 위에 배치하고 영상 재생 위치와 오버레이를 함께 미리보기</dd></div>
-                <div><dt>OUTPUT</dt><dd>사진은 1080×1350 PNG로, 영상은 기록이 합성된 짧은 클립으로 저장하거나 iPhone·Android 공유 메뉴로 전달</dd></div>
-                <div><dt>PRIVACY</dt><dd>사진·영상과 FIT 기록을 서버로 보내지 않고 사용자의 브라우저 안에서만 처리</dd></div>
-              </dl>
-            </div>
-          </section>
-          <div class="troubles" aria-label="STRION 반복 개선 내용">
-            <div class="trouble"><b>Garmin 연동과 API 키 보호</b><span>자동 동기화에는 개인 API 키가 필요하지만 정적 웹페이지에 넣으면 방문자에게 노출될 수 있음</span><span>Cloudflare Worker의 비밀 환경 변수에 키를 보관하고, 대시보드는 Worker를 통해 필요한 활동 데이터만 요청하도록 분리</span></div>
-            <div class="trouble"><b>Garmin 심박 존 정확도</b><span>최대 심박 비율 계산값과 Garmin 개인 존의 범위가 다르고 경계가 1bpm씩 어긋남</span><span>FIT 개인 존을 우선 적용하고 Garmin 화면과 대조해 다음 존 시작값 기준으로 경계 보정</span></div>
-            <div class="trouble"><b>기록 재열람</b><span>지난 운동을 볼 때마다 FIT 파일을 다시 선택해야 함</span><span>원본 FIT와 분석 요약을 기기 내에 저장하고 날짜 선택만으로 이전 분석을 복원</span></div>
-            <div class="trouble"><b>레이스 목표 실행</b><span>평균 목표 페이스만으로 구간 운영이 어려움</span><span>세 가지 페이스 전략과 km별 스플릿·누적 시간·CSV 제공</span></div>
-            <div class="trouble"><b>모바일 저장 흐름</b><span>저장 후 닫기와 가로 밀림으로 조작 불편</span><span>저장 즉시 모달 종료, 카드 접기·펼치기와 반응형 레이아웃 적용</span></div>
-            <div class="trouble"><b>iPhone 영상 미리보기</b><span>영상 선택 후 데이터 로딩 이벤트를 기다리는 동안 화면에 아무 변화가 없어 실패처럼 보임</span><span>선택 즉시 플레이어를 표시하고 재생 컨트롤·상태 안내·파일 형식 판별을 보강해 실제 동작 여부를 바로 확인</span></div>
-            <div class="trouble"><b>일정 활용성</b><span>대시보드 안의 대회 일정이 휴대폰과 분리</span><span>상단 D-day·대회명 고정 표시와 표준 캘린더 파일 내보내기 추가</span></div>
-          </div>
-
-          <aside class="proposal-card" aria-labelledby="strion-proposal-title">
-            <div>
-              <span class="case-label">SERVICE PLANNING DOCUMENT · 3 PAGES</span>
-              <h3 id="strion-proposal-title">Garmin 자동 동기화 서비스 기획서</h3>
-              <p>문제 정의와 사용자 흐름, API 키를 보호한 연결 구조, 실제 검증 결과와 서비스 확장 조건을 별도 문서로 정리했습니다.</p>
-            </div>
-            <a class="button light" href="strion-service-plan.html">기획서 보기 →</a>
-          </aside>
-
-          <div class="project-value" aria-label="STRION 대시보드의 유용성과 실무 적용">
-            <article class="value-card">
-              <span class="label">USEFULNESS</span>
-              <h3>원본 데이터를 행동으로 바꿉니다</h3>
-              <p>복잡한 FIT 기록을 시각화하고 목표 페이스와 훈련 참고값으로 연결해, 사용자가 기록을 읽는 데서 끝나지 않고 다음 행동을 결정하도록 돕습니다.</p>
-            </article>
-            <article class="value-card">
-              <span class="label">SERVICE ROLE</span>
-              <h3>개인화된 의사결정을 지원합니다</h3>
-              <p>파일 업로드부터 분석, 일정·PB 관리, 레이스 전략까지 흩어진 기능을 한 흐름으로 묶는 셀프서비스 분석 도구이자 개인 러닝 운영 화면입니다.</p>
-            </article>
-            <article class="value-card">
-              <span class="label">WORK APPLICATION</span>
-              <h3>데이터 기반 고객 서비스로 확장합니다</h3>
-              <p>헬스케어·피트니스·교육 서비스에서 사용자 데이터를 요약하고 맞춤 목표, 리포트, 리텐션 기능을 제공하는 구조로 활용할 수 있습니다.</p>
-            </article>
-          </div>
-        </section>
-      </div>
-    </div>
-
-    <section class="section reveal" aria-labelledby="verification-title">
-      <p class="eyebrow">Project Verification</p>
-      <h2 id="verification-title">작동 여부를 직접 확인한 항목</h2>
-      <p class="lead">화면을 만드는 데서 끝내지 않고 실제 장치, 원본 데이터, 모바일 환경과 비교하며 핵심 사용 흐름을 검증했습니다.</p>
-      <div class="verification-grid">
-        <article class="verification-card">
-          <span class="project-name">PROJECT 01 · SMART FARM</span>
-          <h3>장치부터 알림까지 연결 검증</h3>
-          <ul class="check-list">
-            <li><span>DHT11 실측 온도·습도 수신과 화면 갱신</span><b>PASS</b></li>
-            <li><span>Arduino에서 HiveMQ로 MQTT/TLS 발행</span><b>PASS</b></li>
-            <li><span>웹 펌프 명령 수신과 릴레이 제어 흐름</span><b>PASS</b></li>
-            <li><span>Telegram 정시 요약·기준 이탈 경고</span><b>PASS</b></li>
-            <li><span>GitHub Pages 모바일 접속과 WSS 연결</span><b>PASS</b></li>
-          </ul>
+          <div class="project-visual"><img src="assets/strion-live.png" alt="STRION 러닝 대시보드 실제 화면"><span class="visual-label">RUNNER-CENTERED DATA SERVICE<br>GARMIN FIT → ANALYSIS → NEXT STRIDE</span></div>
         </article>
-        <article class="verification-card">
-          <span class="project-name">PROJECT 02 · STRION</span>
-          <h3>실사용 데이터와 반복 흐름 검증</h3>
-          <ul class="check-list">
-            <li><span>Garmin FIT 거리·페이스·심박·러닝 지표 파싱</span><b>PASS</b></li>
-            <li><span>Cloudflare Worker를 통한 Garmin 동기화</span><b>PASS</b></li>
-            <li><span>Garmin 개인 심박 Zone 1–5 경계 대조</span><b>PASS</b></li>
-            <li><span>날짜 선택으로 저장 기록 재열람</span><b>PASS</b></li>
-            <li><span>레이스 스플릿 CSV·캘린더·모바일 사용성</span><b>PASS</b></li>
-          </ul>
+
+        <article class="project-card">
+          <div class="project-copy">
+            <span class="index">PROJECT 02 · SMART FARM</span>
+            <h3>장치의 센서값을<br>원격 확인 흐름으로 연결하다</h3>
+            <p class="summary">스마트팜 교육 조별 프로젝트에서 ICT 역할을 맡았습니다. Arduino·Raspberry Pi 5·Node-RED·MQTT·웹을 연결하고, DHT11 실측과 LED 원격 제어를 실제 장치로 검증했습니다.</p>
+            <div class="tag-list"><span class="tag">IoT 서비스</span><span class="tag">MQTT</span><span class="tag">모니터링</span><span class="tag">실물 검증</span></div>
+            <div class="card-actions"><a class="button dark" href="smart-farm.html">케이스 스터디 보기</a><a class="button" href="https://zionkoo.github.io/smartfarm-dashboard/" target="_blank" rel="noopener">Live Demo ↗</a></div>
+          </div>
+          <div class="project-visual"><img src="assets/smartfarm-live.png" alt="Smart Farm 대시보드 실제 화면"><span class="visual-label">DEVICE → MQTT → DASHBOARD<br>DHT11 + LED CONTROL VERIFIED</span></div>
         </article>
       </div>
     </section>
 
-    <section class="section reveal" aria-labelledby="role-title">
-      <p class="eyebrow">Transferable Capabilities</p>
-      <h2 id="role-title">산업과 직무가 달라도 이어지는 역량</h2>
-      <div class="role"><b>운영 흐름을 구조화합니다</b><p>업무의 앞뒤 단계와 관계자를 파악하고, 정보·일정·상태를 한눈에 확인할 수 있는 흐름으로 정리합니다.</p><a class="role-evidence" href="#career">경력 근거 보기 →</a></div>
-      <div class="role"><b>요구를 기능으로 바꿉니다</b><p>사용자의 불편과 원하는 결과를 구체적인 화면, 입력 방식, 알림, 예외처리와 우선순위로 전환합니다.</p><a class="role-evidence" href="#strion-title">STRION 근거 보기 →</a></div>
-      <div class="role"><b>문제를 단계적으로 좁힙니다</b><p>연결·인증·포트·데이터 형식을 구분하고 로그와 실제 결과를 대조해 원인을 한 단계씩 확인합니다.</p><a class="role-evidence" href="#trouble-title">해결 과정 보기 →</a></div>
-      <div class="role"><b>검증하고 반복 개선합니다</b><p>완성 여부를 추측하지 않고 실제 장치·원본 데이터·모바일 환경에서 확인해 사용 흐름을 계속 다듬습니다.</p><a class="role-evidence" href="#verification-title">검증 항목 보기 →</a></div>
+    <section class="section" id="career">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">Career</p><h2>상품과 사람, 운영의 흐름을 이해합니다</h2></div><p>서로 다른 직무처럼 보이지만 고객 요구를 파악하고 일정·인력·정보·정산을 조율해 결과까지 책임졌다는 공통점이 있습니다.</p></div>
+        <div class="timeline">
+          <div class="job"><time>2025.02–2026.02</time><div><b>농업회사법인 이에프시 · 과장</b><span>구매, 입출고, 재고관리, 행사 물량 대응, 3PL 협력사 견적 제안과 운영 업무</span></div></div>
+          <div class="job"><time>2024.02–2024.04</time><div><b>호야홈텍 · 주임/계장</b><span>생산 원재료 구매와 발주</span></div></div>
+          <div class="job"><time>2021.04–2023.12</time><div><b>주식회사 든솔 · 공동 운영 / 사업운영</b><span>물류·유통센터 대상 법인 아웃소싱 사업의 영업·계약·현장·인력·근태·급여·세금계산서 업무 전반</span></div></div>
+          <div class="job"><time>2018.05–2021.02</time><div><b>컴퓨존 · 사원</b><span>입출고와 재고관리</span></div></div>
+          <div class="job"><time>2017.10–2018.03</time><div><b>롯데웰푸드</b><span>국내영업</span></div></div>
+          <div class="job"><time>2017.03–2017.09</time><div><b>디엠에이씨인터내셔널</b><span>온라인 MD, 상품기획, 상세페이지 초안 구성</span></div></div>
+        </div>
+      </div>
     </section>
 
-    <section class="contact">
-      <div class="section reveal">
-        <p class="eyebrow">Contact</p>
-        <h2>업무와 사용자를 이해하는 사람이<br>서비스 운영의 빈틈을 줄입니다</h2>
-        <p class="lead">관심을 교육과 학습으로 실천하고 AI와 함께 구현하며, 업무와 사용자의 문제를 작동하는 결과로 연결하겠습니다.</p>
-        <div class="contact-links">
-          <a class="button primary" href="mailto:zionkoo@kakao.com">zionkoo@kakao.com</a>
-          <a class="button light" href="assets/Jeongmin-Koo-Portfolio.pdf" download>포트폴리오 PDF 다운로드</a>
-          <a class="button light" href="https://zionkoo.github.io/smartfarm-dashboard/" target="_blank" rel="noopener">Smart Farm ↗</a>
-          <a class="button light" href="https://zionkoo.github.io/strion-running-dashboard/" target="_blank" rel="noopener">STRION ↗</a>
+    <section class="section ai-band" id="ai">
+      <div class="wrap">
+        <div class="section-head"><div><p class="eyebrow">Working With AI</p><h2>AI는 실행을 돕고,<br>판단과 검증은 제가 맡습니다</h2></div><p>개발 경험을 과장하지 않습니다. 관심 분야의 문제를 스스로 정의하고 AI를 활용해 빠르게 구현한 뒤 실제 환경에서 확인하는 방식으로 역량을 확장했습니다.</p></div>
+        <div class="grid-3">
+          <article class="card"><span class="label">MY OWNERSHIP</span><h3>문제와 우선순위</h3><p>사용 상황, 핵심 문제, 필요한 기능, 정보의 순서와 개선 방향을 결정했습니다.</p></article>
+          <article class="card"><span class="label">AI SUPPORT</span><h3>구현과 탐색 가속</h3><p>코드 초안, 오류 원인 후보, UI 대안과 문서 구조를 빠르게 확보했습니다.</p></article>
+          <article class="card"><span class="label">VALIDATION</span><h3>실제 결과 확인</h3><p>원본 데이터, 실물 장치, 로그와 모바일 화면을 직접 대조해 작동 범위를 구분했습니다.</p></article>
         </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-box">
+        <div><p class="eyebrow">Contact</p><h2>운영을 이해하고<br>서비스의 빈틈을 줄이겠습니다.</h2><p class="lead">문제를 발견하고 구조화하며, 관계자와 조율해 실제 결과까지 이어가는 서비스 기획자가 되겠습니다.</p></div>
+        <div class="card-actions"><a class="button primary" href="mailto:zionkoo@kakao.com">zionkoo@kakao.com</a><a class="button" href="assets/Jeongmin-Koo-Portfolio.pdf" download>PDF 다운로드</a></div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <span>MADE BY ZIONKOO · 2026</span>
-    <span id="portfolioVisitCounter" class="visit-counter" data-state="loading" aria-live="polite">외부 열람 집계 중</span>
-  </footer>
-
-  <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
-
-    const strionDemoVideo = document.querySelector('#strionDemoVideo');
-    const strionDemoFigure = strionDemoVideo?.closest('figure');
-    const strionPlayButton = strionDemoFigure?.querySelector('.video-play-button');
-    const playStrionDemo = () => {
-      if (!strionDemoVideo) return;
-      strionDemoVideo.muted = true;
-      const playRequest = strionDemoVideo.play();
-      if (playRequest) playRequest.catch(() => strionDemoFigure?.classList.remove('is-playing'));
-    };
-
-    if (strionDemoVideo) {
-      strionDemoVideo.controls = false;
-      strionDemoVideo.removeAttribute('controls');
-      strionPlayButton?.addEventListener('click', (event) => {
-        event.stopPropagation();
-        playStrionDemo();
-      });
-      strionDemoVideo.addEventListener('click', () => {
-        if (strionDemoVideo.paused) playStrionDemo();
-        else strionDemoVideo.pause();
-      });
-      strionDemoVideo.addEventListener('playing', () => strionDemoFigure?.classList.add('is-playing'));
-      strionDemoVideo.addEventListener('pause', () => strionDemoFigure?.classList.remove('is-playing'));
-      strionDemoVideo.addEventListener('ended', () => {
-        strionDemoVideo.currentTime = 0;
-        strionDemoFigure?.classList.remove('is-playing');
-      });
-    }
-
-    const visitCounter = document.querySelector('#portfolioVisitCounter');
-    const visitEndpoint = 'https://strion-garmin-sync.zionkoo.workers.dev/api/portfolio/views';
-    const ownerKey = 'zionkoo_portfolio_owner';
-    const countedKey = 'zionkoo_portfolio_view_counted_v1';
-    const pageUrl = new URL(window.location.href);
-
-    const shouldRegisterOwner = pageUrl.searchParams.get('owner') === '1';
-    if (shouldRegisterOwner) {
-      localStorage.setItem(ownerKey, 'true');
-      pageUrl.searchParams.delete('owner');
-      history.replaceState(null, '', `${pageUrl.pathname}${pageUrl.search}${pageUrl.hash}`);
-    }
-
-    const isOwner = localStorage.getItem(ownerKey) === 'true';
-    const alreadyCounted = localStorage.getItem(countedKey) === 'true';
-    visitCounter.dataset.owner = String(isOwner);
-
-    const registerOwner = shouldRegisterOwner
-      ? fetch(visitEndpoint.replace('/views', '/owner'), { method: 'POST' }).then((response) => {
-          if (!response.ok) throw new Error('owner registration unavailable');
-          return response.json();
-        }).catch(() => null)
-      : Promise.resolve();
-
-    registerOwner
-      .then(() => fetch(visitEndpoint, { method: isOwner || alreadyCounted ? 'GET' : 'POST' }))
-      .then((response) => {
-        if (!response.ok) throw new Error('visit counter unavailable');
-        return response.json();
-      })
-      .then(({ count, isOwner: ownerByIp }) => {
-        visitCounter.textContent = `외부 열람 ${Number(count).toLocaleString('ko-KR')}회`;
-        visitCounter.dataset.state = 'ready';
-        visitCounter.hidden = false;
-        if (ownerByIp) visitCounter.dataset.owner = 'true';
-        if (!isOwner && !alreadyCounted) localStorage.setItem(countedKey, 'true');
-      })
-      .catch(() => {
-        // A temporary counter outage should not look like a portfolio error.
-        visitCounter.textContent = '';
-        visitCounter.dataset.state = 'error';
-        visitCounter.hidden = true;
-      });
-  </script>
+  <footer class="site-footer"><div class="wrap footer-inner"><span>MADE BY ZIONKOO · 2026</span><span id="portfolioVisitCounter" class="visit-counter" hidden aria-live="polite"></span></div></footer>
+  <a class="back-top" href="#main" aria-label="맨 위로">↑</a>
+  <script src="assets/site.js"></script>
 </body>
 </html>
