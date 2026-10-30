@@ -970,12 +970,15 @@
       .then(({ count, isOwner: ownerByIp }) => {
         visitCounter.textContent = `외부 열람 ${Number(count).toLocaleString('ko-KR')}회`;
         visitCounter.dataset.state = 'ready';
+        visitCounter.hidden = false;
         if (ownerByIp) visitCounter.dataset.owner = 'true';
         if (!isOwner && !alreadyCounted) localStorage.setItem(countedKey, 'true');
       })
       .catch(() => {
-        visitCounter.textContent = '외부 열람 집계 일시 중지';
+        // A temporary counter outage should not look like a portfolio error.
+        visitCounter.textContent = '';
         visitCounter.dataset.state = 'error';
+        visitCounter.hidden = true;
       });
   </script>
 </body>
