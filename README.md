@@ -8,6 +8,12 @@
 - `strion.html`: Garmin FIT 러닝 데이터 서비스 기획 케이스 스터디
 - `smart-farm.html`: IoT 모니터링·알림·제어 서비스 기획 케이스 스터디
 - `strion-service-plan.html`: Garmin 자동 동기화 서비스 기획서
+- `smartfarm-node-red-public.json`: 인증정보와 운영 환경값을 제거한 공개용 Node-RED 참고 흐름
+- `smartfarm-node-red-overview.md`: Node-RED 탭 구성, 기능 흐름, 검증 범위 설명
+
+## Smart Farm Security
+
+원본 Node-RED 백업은 공개 저장소에 포함하지 않습니다. 공개용 참고 흐름에는 MQTT·Telegram 인증정보, IP, 세션, 사용자 설정이 없으며 실제 환경에서 사용하려면 각자의 연결 정보를 별도로 설정해야 합니다.
 
 ## Live Services
 

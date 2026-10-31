@@ -1,37 +1,217 @@
 <!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Smart Farm IoT 모니터링 서비스 기획 케이스 스터디">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="DHT11 모니터링, Telegram 알림, LED 원격 제어를 실제 장치로 검증한 Smart Farm 서비스 기획 사례">
   <title>Smart Farm Case Study | 구정민</title>
-  <link rel="icon" href="assets/favicon.svg"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/styles.css">
+  <link rel="icon" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
   <a class="skip-link" href="#caseContent">본문 바로가기</a>
-  <header class="site-header"><div class="header-inner"><a class="brand" href="index.html">KOO JEONGMIN <span>/ PLAN</span></a><button class="menu-button" type="button" aria-expanded="false" aria-controls="siteNav">메뉴</button><nav class="site-nav" id="siteNav" aria-label="주요 메뉴"><a href="index.html">홈</a><a href="strion.html">STRION</a><a href="smart-farm.html" aria-current="page">Smart Farm</a><a href="assets/Jeongmin-Koo-Portfolio.pdf" target="_blank" rel="noopener">PDF ↗</a></nav></div></header>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="index.html">KOO JEONGMIN <span>/ PLAN</span></a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="siteNav">메뉴</button>
+      <nav class="site-nav" id="siteNav" aria-label="주요 메뉴">
+        <a href="index.html">홈</a><a href="strion.html">STRION</a><a href="smart-farm.html" aria-current="page">Smart Farm</a><a href="assets/Jeongmin-Koo-Portfolio.pdf" target="_blank" rel="noopener">PDF ↗</a>
+      </nav>
+    </div>
+  </header>
+
   <main id="main">
-    <section class="case-hero"><div class="wrap"><p class="eyebrow">Project 02 · Smart Farm Case Study</p><h1>센서 데이터를<br>확인과 대응의 흐름으로.</h1><p class="lead">스마트팜 전문가 양성과정 조별 프로젝트에서 ICT 담당으로 참여해 장치·통신·웹을 연결하고, 실제 측정값과 원격 제어 결과를 단계별로 검증했습니다.</p><div class="hero-actions"><a class="button primary" href="https://zionkoo.github.io/smartfarm-dashboard/" target="_blank" rel="noopener">Live Demo ↗</a><a class="button" href="index.html#projects">프로젝트 목록</a></div><div class="case-meta"><div><b>ROLE</b><span>조별 ICT 담당 · 흐름 설계 · 검증</span></div><div><b>PROGRAM</b><span>스마트팜 전문가 6개월 과정</span></div><div><b>PLATFORM</b><span>IoT · MQTT · Responsive Web</span></div><div><b>STATUS</b><span>실물 검증 + 웹 공개</span></div></div></div></section>
+    <section class="case-hero">
+      <div class="wrap">
+        <p class="eyebrow">Project 02 · Smart Farm Case Study</p>
+        <h1>센서 데이터를<br>확인과 대응의 흐름으로.</h1>
+        <p class="lead">스마트팜 전문가 양성과정 조별 프로젝트에서 ICT 담당으로 참여했습니다.<br>DHT11 실측값의 대시보드 표시, 1시간 주기 Telegram 알림, LED 원격 ON/OFF 동작을 검증했습니다.</p>
+        <div class="hero-actions"><a class="button primary" href="https://zionkoo.github.io/smartfarm-dashboard/" target="_blank" rel="noopener">Live Demo ↗</a><a class="button" href="index.html#projects">프로젝트 목록</a></div>
+        <p class="demo-note">웹 데모는 서비스 화면을 확인하기 위한 환경이며, DHT11·LED 실물 검증은 별도의 하드웨어 구성에서 진행했습니다.</p>
+        <div class="case-meta">
+          <div><b>ROLE</b><span>조별 ICT 담당 · 흐름 설계 · 검증</span></div>
+          <div><b>PROGRAM</b><span>스마트팜 전문가 6개월 과정</span></div>
+          <div><b>PLATFORM</b><span>Arduino · Node-RED · MQTT · Web</span></div>
+          <div><b>VERIFIED</b><span>DHT11 표시 · Telegram 1시간 알림 · LED 원격 제어</span></div>
+        </div>
+      </div>
+    </section>
+
     <div class="wrap case-layout">
-      <aside class="case-toc" aria-label="페이지 목차"><b>CONTENTS</b><a href="#overview" class="is-current">개요</a><a href="#problem">문제·사용자</a><a href="#journey">사용 흐름</a><a href="#requirements">요구사항</a><a href="#decisions">의사결정</a><a href="#implementation">구현</a><a href="#validation">검증</a><a href="#reflection">회고</a></aside>
+      <aside class="case-toc" aria-label="페이지 목차"><b>CONTENTS</b><a href="#overview" class="is-current">개요</a><a href="#problem">문제·사용자</a><a href="#cases">검증 사례</a><a href="#data-flow">데이터 흐름</a><a href="#requirements">요구사항</a><a href="#implementation">구현</a><a href="#validation">검증 범위</a><a href="#reflection">회고</a></aside>
+
       <div class="case-content" id="caseContent">
-        <section class="case-section" id="overview"><p class="eyebrow">01 · Overview</p><h2>장치 앞에 있지 않아도 상태를 이해할 수 있게</h2><p class="lead">센서값이 Arduino와 PC 안에 머물면 다른 장소에서 상태를 확인하거나 명령을 전달하기 어렵습니다. 수집·전달·시각화·알림·제어를 하나의 운영 흐름으로 연결했습니다.</p><div class="grid-3"><article class="card"><span class="label">MONITOR</span><h3>실시간 상태</h3><p>온도·습도와 수신 시각을 카드와 그래프로 확인합니다.</p></article><article class="card"><span class="label">NOTICE</span><h3>정시·경고 알림</h3><p>Telegram으로 시간 단위 요약과 기준 이탈 경고를 받았습니다.</p></article><article class="card"><span class="label">CONTROL</span><h3>원격 명령</h3><p>웹의 ON/OFF 명령을 MQTT로 전달해 실제 LED 반응을 확인했습니다.</p></article></div><figure class="evidence"><img src="assets/smartfarm-live.png" alt="Smart Farm 실제 공개 화면"><figcaption><b>LIVE EVIDENCE</b><span>MQTT 연결 상태, 센서 카드, 그래프와 제어 버튼을 반응형 웹으로 공개했습니다.</span></figcaption></figure></section>
+        <section class="case-section" id="overview">
+          <p class="eyebrow">01 · Overview</p>
+          <h2>하나의 화면보다, 이어지는 운영 흐름을 만들었습니다</h2>
+          <p class="lead">센서값을 읽는 데서 끝내지 않고 수집·전달·시각화·알림·제어까지 연결했습니다. 기능마다 실제 확인한 범위를 나누어 결과를 설명했습니다.</p>
+          <div class="grid-3">
+            <article class="card"><span class="label">MONITOR</span><h3>원격 상태 확인</h3><p>DHT11 온도·습도와 마지막 수신 시각을 모바일 대시보드에서 확인합니다.</p></article>
+            <article class="card"><span class="label">NOTICE</span><h3>1시간 주기 알림</h3><p>Node-RED가 저장한 최신값을 3,600초 간격으로 Telegram 메시지에 담아 전달합니다.</p></article>
+            <article class="card"><span class="label">CONTROL</span><h3>원격 명령</h3><p>웹의 ON/OFF 명령을 MQTT와 시리얼을 거쳐 LED의 물리 반응으로 확인합니다.</p></article>
+          </div>
+          <figure class="evidence"><img src="assets/smartfarm-live.png" alt="온도와 습도 카드, MQTT 연결 상태가 표시된 Smart Farm 공개 화면"><figcaption><b>LIVE EVIDENCE</b><span>센서값, 수신 시각, 연결 상태와 제어 버튼을 하나의 반응형 웹으로 구성했습니다.</span></figcaption></figure>
+        </section>
 
-        <section class="case-section" id="problem"><p class="eyebrow">02 · Problem &amp; User</p><h2>수치가 아니라 운영자가 판단할 정보를 보여줘야 했습니다</h2><div class="grid-2"><article class="card"><span class="label">TARGET USER</span><h3>현장을 확인하는 운영자</h3><p>장치와 떨어진 곳에서도 현재 상태, 데이터가 마지막으로 들어온 시점, 기준 이탈 여부를 빠르게 알고 싶은 사용자입니다.</p></article><article class="card"><span class="label">CORE PROBLEM</span><h3>분리된 장치와 화면</h3><p>센서값, 제어 명령, 알림이 따로 존재하면 상태 판단과 대응에 시간이 걸리고 연결 장애도 알아차리기 어렵습니다.</p></article></div><div class="callout" style="margin-top:16px"><b>핵심 질문</b><p style="margin:8px 0 0">“지금 데이터가 정상적으로 들어오고 있으며, 기준을 벗어났을 때 어디서 확인하고 어떻게 대응할 것인가?”</p></div></section>
+        <section class="case-section" id="problem">
+          <p class="eyebrow">02 · Problem &amp; User</p>
+          <h2 class="wide-title">장치가 앞에 없어도 상태를 알고 대응할 수 있어야 했습니다</h2>
+          <div class="grid-2">
+            <article class="card"><span class="label">USER SCENARIO</span><h3>원격으로 생육 환경 확인</h3><p>운영자는 현장을 계속 지키지 않고도 휴대폰에서 온도·습도와 데이터가 마지막으로 들어온 시점을 확인합니다.</p></article>
+            <article class="card"><span class="label">USER SCENARIO</span><h3>필요한 순간에 명령 전달</h3><p>운영자는 웹에서 ON/OFF를 선택하고, 명령이 장치까지 전달되어 실제 반응하는지 확인합니다.</p></article>
+          </div>
+          <div class="callout" style="margin-top:16px"><b>핵심 질문</b><p style="margin:8px 0 0">“지금 들어오는 값은 최신인가, 화면 밖에서도 상태를 알 수 있는가, 보낸 명령은 실제 장치까지 도달했는가?”</p></div>
+        </section>
 
-        <section class="case-section" id="journey"><p class="eyebrow">03 · Service Flow</p><h2>측정에서 확인·알림·제어까지</h2><div class="flow"><article class="flow-step"><b>01 · SENSE</b><h3>값 측정</h3><p>DHT11에서 온도·습도 수집</p></article><article class="flow-step"><b>02 · TRANSFER</b><h3>데이터 전달</h3><p>Arduino·Node-RED·MQTT 흐름</p></article><article class="flow-step"><b>03 · UNDERSTAND</b><h3>상태 확인</h3><p>카드·그래프·수신 시각 표시</p></article><article class="flow-step"><b>04 · RESPOND</b><h3>알림과 명령</h3><p>Telegram 경고·웹 ON/OFF</p></article></div><div class="compare" style="margin-top:28px"><article class="card"><span class="label">BEFORE</span><h3>장치와 개별 도구 확인</h3><p>현장 장치, 로그와 센서값을 각각 확인해야 했습니다.</p></article><article class="card after"><span class="label">AFTER</span><h3>하나의 운영 화면</h3><p>연결 상태와 센서값을 보고 필요한 경우 알림을 확인하거나 명령을 보냅니다.</p></article></div></section>
+        <section class="case-section" id="cases">
+          <p class="eyebrow">03 · Verified Cases</p>
+          <h2>서로 다른 두 사용 시나리오를 독립적으로 검증했습니다</h2>
+          <div class="scenario-list">
+            <article class="scenario-card">
+              <header><span>CASE 01</span><h3>웹에서 LED 원격 ON/OFF</h3><p>웹 명령이 통신 계층을 거쳐 물리 장치까지 도달하는지 확인했습니다.</p></header>
+              <div class="scenario-grid">
+                <div><b>검증 목적</b><p>웹 대시보드의 조작이 물리 장치의 동작까지 이어지는지 확인</p></div>
+                <div><b>사용자 시나리오</b><p>운영자가 장치와 떨어진 곳에서 ON/OFF 명령을 보내고 현장 반응을 확인</p></div>
+                <div><b>실제 수행</b><p>Arduino와 브레드보드에 LED를 연결하고 대시보드 버튼으로 명령 실행</p></div>
+                <div><b>제어 흐름</b><p><code>farm/pump</code>의 ON/OFF를 <code>PUMP_ON</code>/<code>PUMP_OFF</code> 시리얼 명령으로 변환</p></div>
+                <div><b>검증 결과</b><p>웹 버튼 조작에 따라 실제 LED가 점등·소등되는 것을 직접 확인</p></div>
+                <div><b>구성</b><p>웹 대시보드 · MQTT · Node-RED · Arduino · 브레드보드 · LED</p></div>
+              </div>
+              <p class="scope-note"><b>범위:</b> LED 제어는 실물 검증했습니다. 같은 명령을 사용하는 실제 펌프 구동은 검증하지 않았습니다.</p>
+            </article>
 
-        <section class="case-section" id="requirements"><p class="eyebrow">04 · Functional Requirements</p><h2>기능과 상태 기준을 구체화했습니다</h2><div class="requirement-list" role="table" aria-label="Smart Farm 핵심 기능 요구사항"><div class="requirement" role="row"><b role="cell">FR-01</b><strong role="cell">연결 상태</strong><span role="cell">브로커 연결·실패·재연결 상태를 구분하고 사용자가 현재 상태를 알 수 있게 표시</span></div><div class="requirement" role="row"><b role="cell">FR-02</b><strong role="cell">실시간 센서 카드</strong><span role="cell">온도·습도 값, 단위, 적정 상태와 마지막 수신 시각 표시</span></div><div class="requirement" role="row"><b role="cell">FR-03</b><strong role="cell">추세 그래프</strong><span role="cell">최근 데이터 흐름을 유지해 순간값이 아닌 변화 방향 확인</span></div><div class="requirement" role="row"><b role="cell">FR-04</b><strong role="cell">원격 제어</strong><span role="cell">ON/OFF 명령 발행과 수신 결과를 구분해 표시</span></div><div class="requirement" role="row"><b role="cell">FR-05</b><strong role="cell">자동 알림</strong><span role="cell">정시 상태 요약과 기준 이탈 경고를 Telegram으로 전달</span></div><div class="requirement" role="row"><b role="cell">FR-06</b><strong role="cell">모바일 접근</strong><span role="cell">GitHub Pages HTTPS 환경에서 WSS로 연결하고 작은 화면에서도 카드와 제어 사용</span></div></div></section>
+            <article class="scenario-card">
+              <header><span>CASE 02</span><h3>DHT11 모니터링과 1시간 주기 알림</h3><p>실측값을 웹에서 확인하고, 화면을 열지 않아도 최근 상태를 받아볼 수 있게 했습니다.</p></header>
+              <div class="scenario-grid">
+                <div><b>검증 목적</b><p>재배 환경의 온도·습도를 원격 확인하고 화면 밖에서도 주기적으로 상태를 수신</p></div>
+                <div><b>사용자 시나리오</b><p>운영자가 대시보드에서 온습도를 확인하고, 접속하지 않은 상황에서도 Telegram으로 상태 정보를 확인</p></div>
+                <div><b>실제 수행</b><p>Raspberry Pi 5, Arduino, 브레드보드와 DHT11을 구성해 실측값을 Node-RED와 MQTT로 전달</p></div>
+                <div><b>데이터 흐름</b><p>시리얼 JSON을 온도·습도 토픽으로 분리하고 최신값을 저장해 3,600초마다 메시지 생성</p></div>
+                <div><b>검증 결과</b><p>실측 온도·습도의 대시보드 갱신과 Telegram 1시간 간격 메시지 수신 확인</p></div>
+                <div><b>구성</b><p>DHT11 · Arduino · Raspberry Pi 5 · Node-RED · MQTT · Web · Telegram</p></div>
+              </div>
+              <p class="scope-note"><b>범위:</b> 기능 동작을 확인한 프로젝트 검증입니다. 장기간 무중단 운영이나 센서 교정 정확도는 검증 범위에 포함하지 않았습니다.</p>
+            </article>
+          </div>
+        </section>
 
-        <section class="case-section" id="decisions"><p class="eyebrow">05 · Key Decisions</p><h2>연결 여부와 검증 범위를 숨기지 않았습니다</h2><div class="decision"><strong>마지막 수신 시각 표시</strong><span>값이 정상 범위여도 오래된 데이터일 수 있으므로 수치와 함께 데이터 신선도를 판단하게 했습니다.</span></div><div class="decision"><strong>HTTPS에서는 WSS 사용</strong><span>GitHub Pages의 보안 정책에 맞춰 HiveMQ WebSocket TLS 포트와 경로를 사용했습니다.</span></div><div class="decision"><strong>중계 경로와 직접 경로 비교</strong><span>Raspberry Pi 5·Node-RED 중계 구조를 구성한 뒤 Arduino가 HiveMQ Cloud에 직접 연결되는 경로도 별도로 시험했습니다.</span></div><div class="decision"><strong>검증 결과와 UI 확장 구분</strong><span>대시보드에 펌프·EC·pH 기능을 설계했지만 실제 하드웨어로 검증하지 않은 항목은 성과로 주장하지 않습니다.</span></div></section>
+        <section class="case-section" id="data-flow">
+          <p class="eyebrow">04 · Data Flow</p>
+          <h2>사용 경험과 실제 구현 구조를 단계별로 구분했습니다</h2>
+          <div class="flow-diagrams">
+            <article class="flow-diagram flow-summary">
+              <span class="flow-level-label">USER FLOW</span>
+              <h3>운영자가 경험하는 온습도 확인 흐름</h3>
+              <div class="flow-track"><span>DHT11 온습도 측정</span><span>데이터 수집</span><span>대시보드 표시</span><span>1시간 주기 Telegram 메시지</span><span>운영자 확인</span></div>
+              <p>대시보드 확인과 Telegram 수신은 같은 센서값을 활용하지만 서로 다른 전달 경로로 동작합니다.</p>
+            </article>
 
-        <section class="case-section" id="implementation"><p class="eyebrow">06 · Implementation</p><h2>장치와 서비스 사이의 흐름을 직접 연결했습니다</h2><div class="flow"><article class="flow-step"><b>01 · DEVICE</b><h3>Arduino UNO R4</h3><p>DHT11 측정·LED 명령 수신</p></article><article class="flow-step"><b>02 · EDGE</b><h3>Raspberry Pi 5</h3><p>Node-RED·Tailscale 원격 관리</p></article><article class="flow-step"><b>03 · MESSAGE</b><h3>HiveMQ Cloud</h3><p>MQTT/TLS와 WebSocket 전달</p></article><article class="flow-step"><b>04 · SERVICE</b><h3>Web + Telegram</h3><p>모니터링·명령·정시·경고 알림</p></article></div><details class="tech-details"><summary>기술 세부와 장애 해결 기록 보기</summary><div><ul><li>UNO R4 WiFi가 5GHz에 연결되지 않아 2.4GHz SSID로 변경했습니다.</li><li>MQTT `rc=-2` 반복 시 일반 WiFiClient 대신 WiFiSSLClient와 TLS 8883을 적용했습니다.</li><li>펌웨어 갱신 후 USB 포트가 변경된 문제를 새 포트 선택으로 해결했습니다.</li><li>Raspberry Pi 무선 재연결과 사설 IP 변경 문제에 Tailscale 원격 경로를 사용했습니다.</li><li>HTTPS 페이지의 `ws` 차단 문제를 HiveMQ `wss:8884/mqtt`로 해결했습니다.</li></ul></div></details></section>
+            <article class="flow-diagram implementation-flow">
+              <span class="flow-level-label">NODE-RED FLOW</span>
+              <h3>수신한 데이터는 화면 표시와 주기 알림 경로로 분기됩니다</h3>
+              <div class="flow-track flow-core"><span>Serial In<br><small>Arduino JSON 수신</small></span><span>JSON<br><small>문자열을 객체로 변환</small></span><span>Function<br><small>온도·습도 분리</small></span></div>
+              <div class="flow-branch-grid" aria-label="Node-RED 분기 구조">
+                <div class="flow-branch"><b>대시보드 전달</b><p><code>MQTT Out</code>이 <code>farm/temp</code>와 <code>farm/humidity</code> 토픽을 발행하고 웹 카드와 그래프가 이를 구독합니다.</p></div>
+                <div class="flow-branch"><b>Telegram 전달</b><p><code>Save Temp Humidity</code>가 최신값을 저장합니다. 별도의 <code>Inject</code>가 3,600초마다 저장값을 읽어 <code>Telegram Sender</code>로 보냅니다.</p></div>
+              </div>
+              <dl class="node-role-list">
+                <div><dt>Serial In</dt><dd>Arduino의 줄 단위 데이터를 수신</dd></div>
+                <div><dt>JSON</dt><dd>수신 문자열을 처리 가능한 객체로 변환</dd></div>
+                <div><dt>Function</dt><dd>온도와 습도 값을 각 출력으로 분리</dd></div>
+                <div><dt>MQTT Out</dt><dd>온습도 토픽을 브로커에 발행</dd></div>
+                <div><dt>Save Temp Humidity</dt><dd>최근 값과 측정 시각을 전역 컨텍스트에 저장</dd></div>
+                <div><dt>Inject</dt><dd>3,600초마다 메시지 생성을 실행</dd></div>
+                <div><dt>Telegram Sender</dt><dd>저장된 최근 상태를 운영자에게 전송</dd></div>
+              </dl>
+            </article>
 
-        <section class="case-section" id="validation"><p class="eyebrow">07 · Validation</p><h2>실제 확인한 것과 확인하지 않은 것을 분리합니다</h2><div class="callout warning"><b>검증 기준</b><p style="margin:8px 0 0">화면에 값이 보이거나 명령 로그가 찍힌 것만으로 실물 동작 성공을 주장하지 않았습니다. 센서 실측값과 물리 장치 반응을 기준으로 구분했습니다.</p></div><ul class="proof-list" style="margin-top:24px"><li><span><b>DHT11 실제 온도·습도 측정</b><br><small>Arduino 시리얼 로그와 대시보드 값 갱신 확인</small></span><b class="status">VERIFIED</b></li><li><span><b>웹 ON/OFF → 실제 LED 점등·소등</b><br><small>Arduino·브레드보드·LED를 연결해 물리 반응 확인</small></span><b class="status">VERIFIED</b></li><li><span><b>Telegram 정시 요약·기준 이탈 경고</b><br><small>조별 프로젝트의 자동화 흐름에서 메시지 수신 확인</small></span><b class="status">VERIFIED</b></li><li><span><b>Raspberry Pi 5·Node-RED·Tailscale 운영</b><br><small>교육 프로젝트에서 실제 연결·원격 관리 경로 구성</small></span><b class="status">VERIFIED</b></li><li><span><b>펌프 물리 작동</b><br><small>명령 토픽과 UI는 설계했지만 실제 펌프 하드웨어 미연결</small></span><b class="status unverified">NOT VERIFIED</b></li><li><span><b>EC·pH 실제 센서값</b><br><small>카드와 토픽은 확장했지만 센서 하드웨어 미보유·미검증</small></span><b class="status unverified">NOT VERIFIED</b></li></ul></section>
+            <article class="flow-diagram">
+              <span class="flow-level-label">CONTROL FLOW</span>
+              <h3>웹 원격 제어</h3>
+              <div class="flow-track"><span>ON/OFF 선택</span><span>MQTT 발행</span><span>Node-RED 변환</span><span>Serial 전달</span><span>Arduino</span><span>LED 반응</span></div>
+              <p><code>farm/pump</code> → <code>PUMP_ON</code> / <code>PUMP_OFF</code></p>
+            </article>
 
-        <section class="case-section" id="reflection"><p class="eyebrow">08 · Reflection</p><h2>기술 연결보다 운영자가 믿을 수 있는 상태가 중요했습니다</h2><div class="grid-2"><article class="card"><span class="label">LEARNED</span><h3>오류는 계층별로 좁혀야 했습니다</h3><p>Wi-Fi, TLS, MQTT 인증, WebSocket, 브라우저 보안과 물리 배선을 한 번에 보지 않고 각 단계의 로그와 결과를 대조했습니다.</p></article><article class="card"><span class="label">NEXT</span><h3>운영 서비스로 확장하려면</h3><p>장치 상태·센서 교정·데이터 저장·사용자 권한·명령 이력·실패 알림과 실제 펌프·EC·pH 하드웨어 검증이 추가로 필요합니다.</p></article></div><div class="card-actions"><a class="button primary" href="https://zionkoo.github.io/smartfarm-dashboard/" target="_blank" rel="noopener">Smart Farm 보기 ↗</a><a class="button" href="index.html#projects">프로젝트 목록</a></div></section>
+            <article class="flow-diagram support-flow">
+              <span class="flow-level-label">SUPPORTING FLOW</span>
+              <h3>시간별 온습도 스냅샷</h3>
+              <div class="flow-track"><span><code>farm/#</code> 구독</span><span>최근값 저장</span><span>3,600초 실행</span><span>시간별 스냅샷 생성</span><span>Retained MQTT 발행</span></div>
+              <p>Telegram 알림과 별개의 보조 흐름입니다. 시간별 MQTT 메시지 생성 코드는 확인했지만, 데이터베이스 장기 저장이나 기록 조회 화면은 구현 범위로 보지 않았습니다.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="case-section" id="requirements">
+          <p class="eyebrow">05 · Functional Requirements</p>
+          <h2>사용자가 확인해야 할 상태를 기능으로 구체화했습니다</h2>
+          <div class="requirement-list" role="table" aria-label="Smart Farm 핵심 기능 요구사항">
+            <div class="requirement" role="row"><b role="cell">FR-01</b><strong role="cell">연결 상태</strong><span role="cell">브로커 연결·실패·재연결 상태를 구분해 표시</span></div>
+            <div class="requirement" role="row"><b role="cell">FR-02</b><strong role="cell">실시간 센서</strong><span role="cell">온도·습도, 단위, 상태와 마지막 수신 시각 표시</span></div>
+            <div class="requirement" role="row"><b role="cell">FR-03</b><strong role="cell">변화 흐름</strong><span role="cell">최근 데이터를 그래프로 유지해 변화 방향 확인</span></div>
+            <div class="requirement" role="row"><b role="cell">FR-04</b><strong role="cell">원격 제어</strong><span role="cell">웹에서 ON/OFF 명령을 발행하고 장치 반응 확인</span></div>
+            <div class="requirement" role="row"><b role="cell">FR-05</b><strong role="cell">1시간 주기 알림</strong><span role="cell">최신 센서값과 갱신 시각을 3,600초 간격으로 Telegram에 전달</span></div>
+            <div class="requirement" role="row"><b role="cell">FR-06</b><strong role="cell">모바일 접근</strong><span role="cell">HTTPS 환경에서 WSS로 연결하고 작은 화면에서도 주요 기능 사용</span></div>
+          </div>
+        </section>
+
+        <section class="case-section" id="implementation">
+          <p class="eyebrow">06 · Implementation</p>
+          <h2>기능별 구현과 검증 범위를 구분했습니다</h2>
+          <div class="decision"><strong>데이터 신선도</strong><span>정상 범위의 오래된 값을 현재값으로 오해하지 않도록 마지막 수신 시각을 함께 표시했습니다.</span></div>
+          <div class="decision"><strong>Node-RED 흐름 분리</strong><span>센서 수집, 최신값 저장, 1시간 주기 알림, 제어 명령 변환을 독립 노드로 나누어 오류 지점을 좁혔습니다.</span></div>
+          <div class="decision"><strong>보안 연결</strong><span>GitHub Pages에서는 WSS를 사용하고, MQTT·Telegram 인증정보는 공개용 흐름에서 모두 제거했습니다.</span></div>
+          <div class="decision"><strong>중계와 직접 연결</strong><span>Raspberry Pi 5·Node-RED 중계 경로와 Arduino의 HiveMQ Cloud 직접 연결을 각각 시험했습니다.</span></div>
+
+          <div class="resource-links">
+            <a class="button" href="smartfarm-node-red-public.json" download>공개용 Node-RED 흐름 ↓</a>
+            <a class="button" href="smartfarm-node-red-overview.md">Node-RED 구성 설명</a>
+          </div>
+          <p class="resource-note">실제 프로젝트의 Node-RED 플로우를 기반으로 민감정보를 제거한 공개용 참고 자료입니다. 별도의 환경 설정 없이 즉시 실행되는 구성은 아닙니다.</p>
+
+          <details class="tech-details"><summary>장애 해결 기록 보기</summary><div><ul><li>UNO R4 WiFi가 5GHz에 연결되지 않아 2.4GHz SSID로 변경했습니다.</li><li>MQTT 연결 실패 시 WiFiSSLClient와 TLS 8883을 적용해 연결 경로를 수정했습니다.</li><li>펌웨어 갱신 후 바뀐 USB 포트를 다시 선택해 업로드 오류를 해결했습니다.</li><li>Raspberry Pi의 무선 재연결과 사설 IP 변경 문제에 Tailscale 원격 경로를 사용했습니다.</li><li>HTTPS 페이지의 일반 WebSocket 차단 문제를 WSS 연결로 해결했습니다.</li></ul></div></details>
+        </section>
+
+        <section class="case-section" id="validation">
+          <p class="eyebrow">07 · Validation Matrix</p>
+          <h2>실물 확인, 코드 확인, 미검증을 나누어 기록했습니다</h2>
+          <div class="callout warning"><b>판단 기준</b><p style="margin:8px 0 0"><strong>A · 실물 검증</strong>은 물리 반응이나 실제 수신을 확인한 항목, <strong>B · 코드 확인</strong>은 백업 흐름에서 구현만 확인한 항목, <strong>C · 미검증</strong>은 실물 장치로 확인하지 못한 항목입니다.</p></div>
+          <div class="verification-table" role="table" aria-label="Smart Farm 기능별 검증 범위">
+            <div class="verification-row verification-head" role="row"><b role="columnheader">기능</b><b role="columnheader">확인 근거</b><b role="columnheader">상태</b></div>
+            <div class="verification-row" role="row"><strong role="cell">Arduino·브레드보드</strong><span role="cell">실제 장치와 회로를 구성해 센서·LED 연결</span><b class="status" role="cell">실물 검증</b></div>
+            <div class="verification-row" role="row"><strong role="cell">DHT11 온도·습도</strong><span role="cell">시리얼 실측값과 대시보드 갱신 직접 확인</span><b class="status" role="cell">실물 검증</b></div>
+            <div class="verification-row" role="row"><strong role="cell">대시보드 온·습도 표시</strong><span role="cell">실제 센서값과 마지막 수신 시각의 화면 갱신 확인</span><b class="status" role="cell">실물 검증</b></div>
+            <div class="verification-row" role="row"><strong role="cell">웹 ON/OFF → LED</strong><span role="cell">브레드보드 LED의 점등·소등 직접 확인</span><b class="status" role="cell">실물 검증</b></div>
+            <div class="verification-row" role="row"><strong role="cell">Telegram 1시간 주기 메시지</strong><span role="cell">Node-RED 자동화 후 실제 메시지 수신 확인</span><b class="status" role="cell">실물 검증</b></div>
+            <div class="verification-row" role="row"><strong role="cell">Node-RED JSON 처리</strong><span role="cell">Serial In → JSON → Function 연결과 데이터 분리 코드</span><b class="status code-confirmed" role="cell">코드 확인</b></div>
+            <div class="verification-row" role="row"><strong role="cell">MQTT 온·습도 발행</strong><span role="cell"><code>farm/temp</code>와 <code>farm/humidity</code> 토픽 분리</span><b class="status code-confirmed" role="cell">코드 확인</b></div>
+            <div class="verification-row" role="row"><strong role="cell">시간별 기록</strong><span role="cell">3600초 주기 스냅샷과 retained MQTT 발행, 장기 DB 저장은 미확인</span><b class="status code-confirmed" role="cell">코드 확인</b></div>
+            <div class="verification-row" role="row"><strong role="cell">Raspberry Pi·Node-RED</strong><span role="cell">교육 프로젝트에서 실제 연결 및 흐름 실행</span><b class="status" role="cell">실물 검증</b></div>
+            <div class="verification-row" role="row"><strong role="cell">펌프 물리 작동</strong><span role="cell">제어 명령 처리 로직은 있으나 실제 펌프 하드웨어 미연결</span><b class="status unverified" role="cell">미검증</b></div>
+            <div class="verification-row" role="row"><strong role="cell">EC 센서 실측</strong><span role="cell">UI 확장만 진행, 실제 센서 미보유</span><b class="status unverified" role="cell">미검증</b></div>
+            <div class="verification-row" role="row"><strong role="cell">pH 센서 실측</strong><span role="cell">UI 확장만 진행, 실제 센서 미보유</span><b class="status unverified" role="cell">미검증</b></div>
+          </div>
+        </section>
+
+        <section class="case-section" id="reflection">
+          <p class="eyebrow">08 · Reflection</p>
+          <h2>기술을 연결하는 것보다 믿을 수 있는 상태를 만드는 일이 중요했습니다</h2>
+          <div class="grid-2">
+            <article class="card"><span class="label">LEARNED</span><h3>오류를 계층별로 좁혔습니다</h3><p>Wi-Fi, TLS, MQTT 인증, WebSocket, 시리얼과 물리 배선을 각 단계의 로그와 결과로 대조했습니다.</p></article>
+            <article class="card"><span class="label">NEXT</span><h3>운영 서비스의 다음 조건</h3><p>센서 교정, 장치 상태, 장기 데이터 저장, 사용자 권한, 명령 이력과 실제 펌프·EC·pH 검증이 추가로 필요합니다.</p></article>
+          </div>
+          <div class="card-actions"><a class="button primary" href="https://zionkoo.github.io/smartfarm-dashboard/" target="_blank" rel="noopener">Smart Farm 보기 ↗</a><a class="button" href="index.html#projects">프로젝트 목록</a></div>
+        </section>
       </div>
     </div>
   </main>
-  <footer class="site-footer"><div class="wrap footer-inner"><span>SMART FARM CASE STUDY · 2026</span><a href="mailto:zionkoo@kakao.com">zionkoo@kakao.com</a></div></footer><a class="back-top" href="#main" aria-label="맨 위로">↑</a><script src="assets/site.js"></script>
+
+  <footer class="site-footer"><div class="wrap footer-inner"><span>SMART FARM CASE STUDY · 2026</span><a href="mailto:zionkoo@kakao.com">zionkoo@kakao.com</a></div></footer>
+  <a class="back-top" href="#main" aria-label="맨 위로">↑</a>
+  <script src="assets/site.js"></script>
 </body>
 </html>

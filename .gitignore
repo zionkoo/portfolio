@@ -1,0 +1,13 @@
+# Original Node-RED backups and runtime data may contain credentials or sessions.
+node-red-backup*.zip
+**/.node-red/
+flows_cred*.json
+.flows_cred*.backup
+.sessions.json
+.config.users.json
+settings.js
+environment
+
+# Local render checks and operating-system metadata are not portfolio assets.
+tmp/
+.DS_Store
