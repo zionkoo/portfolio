@@ -265,7 +265,7 @@ def page_intro(c):
     page_header(c, "Profile & Contents", 2)
     y = title(c, "Positioning", "사용자와 운영의 흐름을 이해하고, 서비스 요구사항으로 구체화합니다")
     rounded(c, M, y - 118, W - 2 * M, 106, WHITE, LINE, 16)
-    para(c, "상품기획과 사업운영에서 고객 요구, 일정, 인력, 정보, 정산을 조율했습니다. 개발자나 전문 PM 경력을 주장하기보다, 관심 있는 문제를 직접 정의하고 AI 도구로 구현을 가속한 뒤 실제 데이터와 장치로 결과를 검증한 경험을 보여드립니다.", M + 20, y - 34, W - 2 * M - 40, 11, 18, INK, False, 80)
+    para(c, "온라인 MD·상품기획에서는 상품과 고객 요구를, 구매·재고·물류에서는 실제 업무 흐름과 운영 제약을, 사업운영에서는 업무 간 연결과 조율의 중요성을 경험했습니다. 이 기반으로 개인 프로젝트의 사용 상황과 필요한 기능을 정의하고, 실제 데이터와 장치로 결과를 검증했습니다.", M + 20, y - 34, W - 2 * M - 40, 10.4, 17, INK, False, 80)
     c.setFont("KoreanBold", 12)
     c.setFillColor(INK)
     c.drawString(M, y - 156, "CONTENTS")
@@ -299,7 +299,7 @@ def page_intro(c):
 def page_strion_overview(c):
     bg(c, True)
     page_header(c, "Project 01 · STRION", 3, True)
-    y = title(c, "01 · Problem & Service", "원본 러닝 데이터를 다음 행동으로 연결합니다", "FIT 파일을 매번 내려받아 재업로드하는 불편과 흩어진 기록·계획 흐름을 하나의 서비스로 묶었습니다.", True)
+    y = title(c, "01 · Problem & Service", "원본 러닝 데이터를 다음 행동으로 연결합니다", "Garmin 기록을 분석해 다음 훈련과 레이스 계획에 활용하려는 개인 러너를 사용자로 설정했습니다.", True)
     image_cover(c, ROOT / "assets" / "strion-live.png", M, 340, W - 2 * M, 205, 14)
     c.setFillColor(colors.Color(0, 0, 0, alpha=.45))
     c.roundRect(M, 340, W - 2 * M, 205, 14, fill=1, stroke=0)
@@ -308,6 +308,7 @@ def page_strion_overview(c):
     metric(c, M + 334, 360, 145, "Output", "다음 계획", True)
     para(c, "사용자 문제", M, 314, 120, 12, 17, CYAN, True)
     bullet_list(c, ["운동 기록을 볼 때마다 FIT 파일을 다시 내려받고 업로드해야 함", "거리·페이스·심박·러닝 다이내믹스가 흩어져 있어 한 번에 해석하기 어려움", "분석 결과가 다음 훈련과 레이스 운영으로 자연스럽게 이어지지 않음"], M, 288, W - 2 * M, 9.5, WHITE, CYAN, 7)
+    para(c, "개인 러닝 경험에서 정의한 시나리오이며, 사용자 인터뷰로 검증한 페르소나는 아닙니다.", M, 128, W - 2 * M, 8.2, 12, colors.HexColor("#91A5B3"), False, 30)
     footer(c, 3, True)
     c.showPage()
 
@@ -316,6 +317,7 @@ def page_strion_flow(c):
     bg(c)
     page_header(c, "Project 01 · STRION", 4)
     y = title(c, "02 · User Flow & Requirements", "업로드에서 분석, 저장, 다음 계획까지 한 흐름으로 설계했습니다")
+    para(c, "기록 입력·분석을 중심으로 재열람·개인 설정·계획·공유가 이어지는 논리적 관계이며, 실제 개발 순서를 뜻하지 않습니다.", M, y - 2, W - 2 * M, 8.4, 12, SOFT, False, 30)
     steps = ["FIT 업로드\n또는 동기화", "원본 파싱", "기록 분석", "브라우저 저장", "훈련·레이스\n계획"]
     x = M
     sw = 92
@@ -405,13 +407,13 @@ def page_strion_result(c):
     bg(c, True)
     page_header(c, "Project 01 · STRION", 7, True)
     y = title(c, "05 · Result & Next", "작동하는 개인 러닝 서비스와 명확한 다음 조건을 남겼습니다", None, True)
-    metrics = [("DATA INPUT", "FIT + SYNC"), ("ANALYSIS", "RUN FLOW"), ("PLANNING", "PACE CSV"), ("SHARE", "PHOTO + VIDEO")]
+    metrics = [("IMPLEMENTED", "6 CORE FR"), ("VERIFIED", "REAL FIT"), ("UNMEASURED", "USER KPI"), ("NEXT", "MULTI USER")]
     for i, (lab, val) in enumerate(metrics):
         metric(c, M + (i % 2) * 252, y - 84 - (i // 2) * 76, 236, lab, val, True)
-    para(c, "완료", M, y - 194, 90, 12, 17, CYAN, True)
-    bullet_list(c, ["실사용 FIT 업로드·분석·저장·재열람", "개인 Garmin 기록 동기화와 월별 마일리지", "목표 페이스·레이스 전략·CSV", "사진·영상 러닝 기록 카드"], M, y - 218, 230, 9.5, WHITE, CYAN, 6)
-    para(c, "다음 조건", M + 264, y - 194, 100, 12, 17, CYAN, True)
-    bullet_list(c, ["공식 다중 사용자 계정 연동", "서버 기반 계정·기록 백업", "개인정보 동의와 삭제 정책", "훈련 추천 로직의 장기 검증"], M + 264, y - 218, 230, 9.5, WHITE, CYAN, 6)
+    para(c, "구현·검증", M, y - 194, 110, 12, 17, CYAN, True)
+    bullet_list(c, ["FIT 분석·저장·재열람과 개인 동기화 구현", "실사용 FIT와 Garmin 화면으로 값·단위 대조", "목표 페이스·레이스 전략·공유 카드 동작 확인", "사용성 지표와 추천 효과는 아직 측정하지 않음"], M, y - 218, 230, 9.2, WHITE, CYAN, 6)
+    para(c, "확장 조건", M + 264, y - 194, 100, 12, 17, CYAN, True)
+    bullet_list(c, ["공식 다중 사용자 계정 연동", "서버 기반 계정·기록 백업", "개인정보 동의와 삭제 정책", "훈련 추천 로직의 장기 검증"], M + 264, y - 218, 230, 9.2, WHITE, CYAN, 6)
     rounded(c, M, 92, W - 2 * M, 88, colors.HexColor("#102433"), colors.HexColor("#315267"), 12)
     para(c, "STRION = STRIDE + ON. 한 번의 기록을 이해하고 다음 걸음을 이어간다는 의미를 서비스 흐름에 반영했습니다.", M + 18, 145, W - 2 * M - 36, 11, 18, WHITE, True, 62)
     c.setFillColor(CYAN)
@@ -425,22 +427,32 @@ def page_strion_result(c):
 def page_farm_overview(c):
     bg(c)
     page_header(c, "Project 02 · Smart Farm", 8)
-    y = title(c, "01 · Problem & System", "장치가 앞에 없어도 상태를 알고 대응할 수 있어야 했습니다", "스마트팜 교육 조별 프로젝트에서 ICT 담당으로 센서 수집, 통신, 웹 모니터링과 제어 흐름을 연결했습니다.")
-    image_cover(c, ROOT / "assets" / "smartfarm-live.png", M, 360, W - 2 * M, 220, 14)
+    y = title(c, "01 · Problem & System", "현장 상태 확인부터 원격 대응까지의 흐름", "교육 조별 프로젝트에서 정의한 운영 시나리오이며, 실제 농장 운영자 인터뷰나 현장 실험으로 검증한 페르소나는 아닙니다.")
+    requirements = [
+        ("MONITOR", "원격 상태", "휴대폰에서 온도·습도와 마지막 수신 시각 확인"),
+        ("NOTICE", "주기 알림", "대시보드를 열지 않아도 3,600초 간격으로 최근 상태 수신"),
+        ("CONTROL", "명령 확인", "웹 ON/OFF가 실제 장치 반응까지 이어지는지 확인"),
+    ]
+    for i, (label, name, desc) in enumerate(requirements):
+        xx = M + i * 171
+        rounded(c, xx, y - 106, 157, 82, WHITE, LINE, 12)
+        para(c, label, xx + 12, y - 46, 133, 7.4, 10, BLUE, True, 18)
+        para(c, name, xx + 12, y - 66, 133, 10, 13, INK, True, 22)
+        para(c, desc, xx + 12, y - 84, 133, 7.6, 10.4, SOFT, False, 34)
+    image_cover(c, ROOT / "assets" / "smartfarm-live.png", M, 224, W - 2 * M, 260, 14)
     c.setFillColor(colors.Color(0, 0, 0, alpha=.42))
-    c.roundRect(M, 360, W - 2 * M, 220, 14, fill=1, stroke=0)
+    c.roundRect(M, 224, W - 2 * M, 260, 14, fill=1, stroke=0)
     flow = ["DHT11", "Arduino", "Raspberry Pi 5\n+ Node-RED", "MQTT", "Dashboard\n+ Telegram"]
     x = M + 18
     for i, item in enumerate(flow):
-        rounded(c, x, 422, 84, 70, colors.Color(1, 1, 1, alpha=.1), colors.Color(1, 1, 1, alpha=.45), 10)
-        para(c, item.replace("\n", "<br/>"), x + 8, 466, 68, 8.2, 12, WHITE, True, 45)
+        rounded(c, x, 316, 84, 70, colors.Color(1, 1, 1, alpha=.1), colors.Color(1, 1, 1, alpha=.45), 10)
+        para(c, item.replace("\n", "<br/>"), x + 8, 360, 68, 8.2, 12, WHITE, True, 45)
         if i < len(flow) - 1:
             c.setFillColor(CYAN)
             c.setFont("KoreanBold", 12)
-            c.drawString(x + 89, 450, "→")
+            c.drawString(x + 89, 344, "→")
         x += 101
-    para(c, "핵심 사용자 시나리오", M, 324, 180, 12, 17, BLUE, True)
-    bullet_list(c, ["현장을 계속 지키지 않고 휴대폰에서 온도·습도와 마지막 수신 시각 확인", "웹에서 ON/OFF 명령을 보내고 실제 장치가 반응하는지 확인", "대시보드를 열지 않아도 1시간 간격으로 최근 온습도 상태 수신"], M, 298, W - 2 * M, 9.5, INK, BLUE, 7)
+    para(c, "실제 연결 구조", M + 18, 458, 180, 9, 13, WHITE, True, 24)
     footer(c, 8)
     c.showPage()
 
@@ -472,7 +484,7 @@ def page_farm_led(c):
 def page_farm_dht(c):
     bg(c, True)
     page_header(c, "Project 02 · Smart Farm", 10, True)
-    y = title(c, "03 · Verified Case 02", "DHT11 실측값을 웹과 Telegram으로 전달했습니다", "대시보드 표시와 Telegram 알림은 같은 센서값을 사용하지만 서로 다른 전달 경로입니다.", True)
+    y = title(c, "03 · Verified Case 02", "센서 측정값을 화면과 주기 알림으로 연결했습니다", "대시보드 표시와 Telegram 알림은 같은 센서값을 사용하지만 서로 다른 전달 경로입니다.", True)
     flow = ["Serial In", "JSON", "Function", "MQTT Out", "Dashboard"]
     x = M
     for i, step in enumerate(flow):
@@ -540,7 +552,7 @@ def page_farm_matrix(c):
 def page_profile(c):
     bg(c, True)
     page_header(c, "Profile", 12, True)
-    y = title(c, "Career & Collaboration", "운영 경험을 이해하고, AI로 구현을 가속하며, 결과는 직접 검증합니다", None, True)
+    y = title(c, "Career & Collaboration", "운영 경험을 요구사항과 검증 기준으로 연결합니다", "상품·고객·구매·재고·물류·사업운영에서 익힌 흐름과 제약을 서비스 문제 정의와 우선순위 판단에 활용했습니다.", True)
     career = [
         ("2025.02-2026.02", "농업회사법인 이에프시 · 구매·재고·3PL 운영"),
         ("2024.02-2024.04", "호야홈텍 · 생산 원재료 구매·발주"),

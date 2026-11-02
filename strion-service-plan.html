@@ -78,25 +78,25 @@
 
   <main class="deck">
     <section class="page" data-page="01 / 03">
-      <p class="kicker">STRION · GARMIN AUTO SYNC</p>
-      <h1>다운로드와 재업로드 없이<br>러닝 기록을 바로 분석합니다</h1>
-      <p class="lead">Garmin Connect의 원본 FIT 파일을 매번 내려받아 다시 올려야 했던 불편에서 출발한 개인 러닝 데이터 서비스 개선안입니다.</p>
-      <div class="meta"><span class="chip">ROLE · SERVICE PLANNING</span><span class="chip">USER · AMATEUR RUNNER</span><span class="chip">STATUS · WORKING PROTOTYPE</span></div>
+      <p class="kicker">STRION · CONNECTED RUNNING FLOW</p>
+      <h1>흩어진 러닝 기록을<br>분석부터 다음 계획까지</h1>
+      <p class="lead">FIT 반복 업로드, 분산된 지표, 분석과 다음 계획의 단절을 하나의 사용 흐름으로 연결한 개인 러닝 데이터 서비스입니다.</p>
+      <div class="meta"><span class="chip">ROLE · SERVICE PLANNING</span><span class="chip">USER · PERSONAL RUNNER</span><span class="chip">STATUS · WORKING PROTOTYPE</span></div>
       <h2 class="sr-only">사용자 문제와 설계 목표</h2>
       <div class="grid-3" style="margin-top:52px">
-        <article class="card"><span class="label">PROBLEM</span><h3>반복되는 파일 이동</h3><p>활동을 확인할 때마다 Garmin에서 FIT를 내려받고 STRION에서 다시 선택해야 했습니다.</p></article>
-        <article class="card"><span class="label">USER NEED</span><h3>최근 기록을 즉시 확인</h3><p>러닝 직후 핵심 기록과 훈련 해석을 확인하고, 지난 기록도 날짜로 다시 열기를 원했습니다.</p></article>
-        <article class="card"><span class="label">DESIGN GOAL</span><h3>짧고 안전한 흐름</h3><p>동기화 단계를 줄이되 개인 API 키는 공개 웹 코드와 브라우저에 노출하지 않도록 설계했습니다.</p></article>
+        <article class="card"><span class="label">TARGET USER</span><h3>기록을 다음 계획에 쓰는 러너</h3><p>Garmin 운동 기록을 분석해 다음 훈련이나 레이스 계획에 활용하려는 개인 러너를 프로젝트 사용자로 설정했습니다.</p></article>
+        <article class="card"><span class="label">THREE PROBLEMS</span><h3>반복 · 분산 · 단절</h3><p>FIT 반복 입력, 흩어진 지표, 기록 분석과 다음 훈련·레이스 계획 사이의 단절이 있었습니다.</p></article>
+        <article class="card"><span class="label">DESIGN GOAL</span><h3>기록에서 행동까지</h3><p>입력·분석·재열람·개인 설정·계획·공유를 연결하되 개인 API 키는 공개 화면과 분리했습니다.</p></article>
       </div>
       <div class="grid-2" style="margin-top:16px">
         <article class="card"><span class="label">BEFORE · MANUAL</span><ol class="journey"><li>Garmin Connect에서 활동 찾기</li><li>FIT 파일 내려받기</li><li>STRION에서 다시 업로드하기</li><li>지난 기록마다 같은 과정 반복하기</li></ol></article>
         <article class="card after"><span class="label">AFTER · CONNECTED</span><ol class="journey"><li>Garmin 연결 상태 확인하기</li><li>최근 러닝 기록 동기화하기</li><li>원하는 날짜 선택하기</li><li>재업로드 없이 분석 다시 열기</li></ol></article>
       </div>
-      <span class="footnote">MADE BY ZIONKOO · 2026</span>
+      <span class="footnote">개인 러닝 경험에서 출발한 프로젝트 시나리오 · 인터뷰 검증 페르소나 아님</span>
     </section>
 
     <section class="page" data-page="02 / 03">
-      <div class="section-head"><div><p class="kicker">SOLUTION &amp; REQUIREMENTS</p><h2>안전한 연결을<br>실제 기능으로</h2></div><p>데이터 흐름과 핵심 기능의 동작 기준을 한 화면에 정리했습니다. 인증이 필요한 요청만 Cloudflare Worker가 대신 처리합니다.</p></div>
+      <div class="section-head"><div><p class="kicker">FLOW &amp; REQUIREMENTS</p><h2>기능의 의존 관계를<br>사용 흐름으로</h2></div><p>입력·분석을 중심으로 재열람·개인 설정·계획·공유가 이어집니다. 아래 번호는 실제 개발 일정이나 확정된 MVP가 아니라 논리적 관계입니다.</p></div>
       <div class="flow" aria-label="Garmin 자동 동기화 구조">
         <article class="card"><span class="label">01 · SOURCE</span><h3>Garmin Connect</h3><p>Personal API로 최근 러닝 활동 목록과 FIT 원본을 제공합니다.</p></article>
         <article class="card"><span class="label">02 · SECURE LAYER</span><h3>Cloudflare Worker</h3><p>API 키를 비밀 환경 변수에 보관하고 허용된 요청만 전달합니다.</p></article>
@@ -105,24 +105,24 @@
       </div>
       <div class="security">
         <article class="card"><span class="label">SECURITY PRINCIPLE</span><h3>키는 화면에 두지 않습니다</h3><p><strong>개인 API 키를 HTML·GitHub 저장소·브라우저 저장소에서 분리</strong>했습니다. 공개 화면은 Worker 주소만 호출하며, Worker가 Garmin 요청을 중계합니다.</p></article>
-        <article class="card"><span class="label">CORE FUNCTIONAL REQUIREMENTS</span><div class="requirements" role="table" aria-label="STRION Garmin 자동 동기화 핵심 기능 요구사항"><div class="requirement-row" role="row"><b role="cell">FR-01</b><strong role="cell">연결 상태 확인</strong><span role="cell">Worker 응답과 인증 상태를 확인해 연결 성공·실패를 구분해 표시</span></div><div class="requirement-row" role="row"><b role="cell">FR-02</b><strong role="cell">최근 활동 동기화</strong><span role="cell">최근 러닝 목록을 불러오고 선택한 활동의 FIT 원본을 분석</span></div><div class="requirement-row" role="row"><b role="cell">FR-03</b><strong role="cell">중복 저장 방지</strong><span role="cell">같은 활동은 기존 기록을 유지하거나 갱신해 중복 카드 생성을 차단</span></div><div class="requirement-row" role="row"><b role="cell">FR-04</b><strong role="cell">날짜별 재열람</strong><span role="cell">저장 기록을 날짜로 선택해 파일 재업로드 없이 분석 화면 복원</span></div><div class="requirement-row" role="row"><b role="cell">FR-05</b><strong role="cell">오류·빈 상태 안내</strong><span role="cell">인증 실패, 기록 없음, 네트워크 실패의 원인과 다음 행동을 구분해 안내</span></div></div></article>
+        <article class="card"><span class="label">CORE FUNCTIONAL REQUIREMENTS</span><div class="requirements" role="table" aria-label="STRION 핵심 기능 요구사항"><div class="requirement-row" role="row"><b role="cell">FR-01</b><strong role="cell">FIT 입력</strong><span role="cell">파일 또는 개인 Garmin 동기화로 원본 기록 가져오기</span></div><div class="requirement-row" role="row"><b role="cell">FR-02</b><strong role="cell">기록 분석</strong><span role="cell">핵심 수치와 구간별 러닝 다이내믹스 표시</span></div><div class="requirement-row" role="row"><b role="cell">FR-03</b><strong role="cell">기록 재열람</strong><span role="cell">중복 저장을 막고 날짜로 분석 화면 복원</span></div><div class="requirement-row" role="row"><b role="cell">FR-04</b><strong role="cell">심박 Zone</strong><span role="cell">Garmin 개인 설정 경계와 구간별 시간 반영</span></div><div class="requirement-row" role="row"><b role="cell">FR-05</b><strong role="cell">계획 연결</strong><span role="cell">PB·일정·목표 기록을 km별 페이스 전략으로 변환</span></div><div class="requirement-row" role="row"><b role="cell">FR-06</b><strong role="cell">공유</strong><span role="cell">사진·영상에 기록을 합성해 저장·공유</span></div></div></article>
       </div>
       <span class="footnote">GARMIN CONNECT → CLOUDFLARE WORKER → STRION → LOCAL STORAGE</span>
     </section>
 
     <section class="page" data-page="03 / 03">
-      <div class="section-head"><div><p class="kicker">VALIDATION, SCOPE &amp; NEXT</p><h2>구현 범위와 검증 결과,<br>다음 확장을 구분합니다</h2></div><p>실사용 FIT 데이터와 Garmin 원본 화면을 대조했습니다. 측정하지 않은 성과를 만들지 않고 확인한 결과와 향후 지표를 분리했습니다.</p></div>
+      <div class="section-head"><div><p class="kicker">VALIDATION, SCOPE &amp; NEXT</p><h2>구현·검증·미측정·다음을<br>서로 구분합니다</h2></div><p>실사용 FIT와 Garmin 원본 화면을 대조했습니다. 기능 동작을 사용자 경험이나 훈련 성과 개선의 실증 결과로 바꾸어 표현하지 않았습니다.</p></div>
       <div class="grid-3">
         <article class="card metric"><span class="label">INPUT</span><b>2개 입력 경로</b><span>수동 FIT 업로드와 Garmin 자동 동기화를 모두 구현하고 확인했습니다.</span></article>
         <article class="card metric"><span class="label">HEART RATE</span><b>개인 Zone 1–5</b><span>Garmin 개인 심박 존 범위와 시간 분포를 원본 화면과 대조했습니다.</span></article>
         <article class="card metric"><span class="label">CORRECTION</span><b>1 bpm 경계 보정</b><span>다음 존 시작값을 기준으로 경계 오차를 찾아 수정했습니다.</span></article>
       </div>
       <div class="grid-2 scope">
-        <article class="card"><span class="label">CURRENT SCOPE</span><h3>현재 검증한 범위</h3><ul><li>Personal API를 이용한 개인용 동기화</li><li>브라우저 안의 기록 저장과 날짜별 재열람</li><li>FIT 분석, 심박 존, 러닝 다이나믹스와 레이스 전략</li><li>VDOT·훈련 해석은 참고용이며 의료 진단이 아님</li></ul></article>
-        <article class="card"><span class="label">NEXT STAGE</span><h3>공개 서비스 확장 조건</h3><ul><li>공식 사용자 인증과 사용자별 권한·토큰 관리</li><li>암호화된 서버 저장과 여러 기기 간 동기화</li><li>사용자 동의, 보관 기간과 데이터 삭제 정책</li><li>장기 훈련 추세와 데이터 누락·이상값 안내</li></ul></article>
+        <article class="card"><span class="label">IMPLEMENTED &amp; VERIFIED</span><h3>현재 확인한 범위</h3><ul><li>Personal API 기반 개인용 동기화와 월 단위 가져오기</li><li>브라우저 저장과 날짜별 재열람</li><li>FIT 분석, 개인 Zone, 레이스 전략과 공유 카드</li><li>실사용 FIT와 Garmin 화면·실제 동작 대조</li></ul></article>
+        <article class="card"><span class="label">UNMEASURED &amp; NEXT</span><h3>아직 입증하지 않은 효과와 조건</h3><ul><li>편의성·장기 이용·훈련 성과 개선은 미측정</li><li>공식 사용자 인증과 사용자별 권한·토큰 관리</li><li>암호화 서버 저장과 동의·보관·삭제 정책</li><li>추천 로직의 장기 검증과 데이터 이상 안내</li></ul></article>
       </div>
       <div class="card" style="margin-top:16px"><span class="label">METRICS TO MEASURE</span><div class="grid-3"><div><h3>동기화 성공률</h3><p>요청 대비 활동 목록과 FIT를 정상 수신한 비율</p></div><div><h3>분석까지 걸린 시간</h3><p>동기화를 시작한 뒤 결과를 보는 데 걸린 시간</p></div><div><h3>재업로드 감소</h3><p>저장 기록 재열람으로 반복 파일 선택이 줄어든 횟수</p></div></div></div>
-      <span class="footnote">WORKING PROTOTYPE · PERSONAL USE SCOPE · SERVICE EXPANSION READY</span>
+      <span class="footnote">WORKING PROTOTYPE · PERSONAL USE SCOPE · EXPANSION CONDITIONS DEFINED</span>
     </section>
   </main>
 </body>
