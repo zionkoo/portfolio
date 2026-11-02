@@ -219,29 +219,43 @@ def footer(c, page, dark=False):
 
 def page_cover(c):
     bg(c, True)
-    draw_symbol(c, 352, 594, 1.0, True)
     c.setFillColor(CYAN)
     c.setFont("KoreanBold", 10)
     c.drawString(M, H - 68, "SERVICE PLANNING PORTFOLIO")
-    para(c, "운영에서 발견한 문제를,<br/>사용 가능한 서비스로 설계합니다.", M, H - 134, 455, 30, 41, WHITE, True, 150)
-    para(c, "온라인 MD·상품기획·사업운영·유통·물류에서 사용자와 운영의 흐름을 익히고, 이를 요구사항과 사용자 흐름으로 구체화했습니다.", M, H - 260, 430, 12, 20, colors.HexColor("#B4C2CC"), False, 120)
+    para(c, "운영에서 발견한 문제를,<br/>사용 가능한 서비스로 설계합니다.", M, H - 134, W - 2 * M, 30, 41, WHITE, True, 150)
+    para(
+        c,
+        "온라인 MD·상품기획·사업운영·유통·물류에서 사용자와 운영의 흐름을 익히고,<br/>이를 요구사항과 사용자 흐름으로 구체화했습니다.",
+        M,
+        H - 260,
+        W - 2 * M,
+        12,
+        20,
+        colors.HexColor("#B4C2CC"),
+        False,
+        120,
+    )
     c.setStrokeColor(CYAN)
     c.setLineWidth(3)
-    c.line(M, 220, W - M, 220)
+    c.line(M, 246, W - M, 246)
     c.setFillColor(WHITE)
     c.setFont("KoreanBold", 17)
-    c.drawString(M, 176, "KOO JEONGMIN")
+    c.drawString(M, 202, "KOO JEONGMIN")
     c.setFillColor(CYAN)
     c.setFont("KoreanBold", 9)
-    c.drawString(M, 152, "PROBLEM / PRODUCT / PROOF")
+    c.drawString(M, 178, "PROBLEM / PRODUCT / PROOF")
     c.setFillColor(colors.HexColor("#B4C2CC"))
     c.setFont("Korean", 9)
-    c.drawString(M, 116, "zionkoo.github.io/portfolio/")
-    c.drawString(M, 96, "zionkoo@kakao.com")
-    link_region(c, PORTFOLIO_URL, M, 108, 180, 18)
-    link_region(c, EMAIL_URL, M, 88, 150, 18)
+    c.drawString(M, 138, "zionkoo.github.io/portfolio/")
+    c.drawString(M, 118, "zionkoo@kakao.com")
+    link_region(c, PORTFOLIO_URL, M, 130, 180, 18)
+    link_region(c, EMAIL_URL, M, 110, 150, 18)
+
+    # The PDF cover uses a compact, independent symbol area instead of the
+    # wide web Hero treatment. This keeps the title visually dominant.
+    draw_symbol(c, 385, 116, .72, True)
     c.setFillColor(colors.HexColor("#6D8290"))
-    c.drawRightString(W - M, 96, "2026.10")
+    c.drawRightString(W - M, 92, "2026.11")
     footer(c, 1, True)
     c.showPage()
 
