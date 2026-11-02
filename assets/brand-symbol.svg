@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-labelledby="title desc">
+  <title id="title">Problem to Product to Proof</title>
+  <desc id="desc">문제 발견에서 서비스 설계와 실제 검증으로 이어지는 연결 흐름</desc>
+  <defs>
+    <linearGradient id="flow" x1="70" y1="350" x2="350" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#101c2d"/>
+      <stop offset="0.52" stop-color="#315cff"/>
+      <stop offset="1" stop-color="#19c7d8"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+  </defs>
+  <path d="M82 310C105 310 116 282 139 282H170C193 282 196 244 219 244H248C271 244 275 202 298 202H330" fill="none" stroke="#315cff" stroke-opacity=".12" stroke-width="34" stroke-linecap="round" filter="url(#soft)"/>
+  <path d="M82 310C105 310 116 282 139 282H170C193 282 196 244 219 244H248C271 244 275 202 298 202H330" fill="none" stroke="url(#flow)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M126 310H158M202 282H234M280 244H312" fill="none" stroke="#101c2d" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+  <rect x="52" y="280" width="60" height="60" rx="18" fill="#f6f3ec" stroke="#101c2d" stroke-width="8"/>
+  <circle cx="82" cy="310" r="10" fill="#101c2d"/>
+  <rect x="126" y="252" width="60" height="60" rx="18" fill="#f6f3ec" stroke="#315cff" stroke-width="8"/>
+  <path d="M145 278h22M145 288h14" fill="none" stroke="#315cff" stroke-width="6" stroke-linecap="round"/>
+  <rect x="206" y="214" width="60" height="60" rx="18" fill="#f6f3ec" stroke="#315cff" stroke-width="8"/>
+  <path d="M224 250v-17h24v17M232 233v-9h8v9" fill="none" stroke="#315cff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="296" y="172" width="68" height="60" rx="18" fill="#f6f3ec" stroke="#19c7d8" stroke-width="8"/>
+  <path d="m315 203 10 10 21-23" fill="none" stroke="#19c7d8" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M82 310 236 104l94 98" fill="none" stroke="#101c2d" stroke-opacity=".16" stroke-width="2" stroke-dasharray="7 9"/>
+  <circle cx="236" cy="104" r="12" fill="#315cff"/>
+  <circle cx="236" cy="104" r="25" fill="none" stroke="#315cff" stroke-opacity=".25" stroke-width="2"/>
+</svg>
