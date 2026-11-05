@@ -460,7 +460,7 @@ def page_farm_overview(c):
 def page_farm_led(c):
     bg(c)
     page_header(c, "Project 02 · Smart Farm", 9)
-    y = title(c, "02 · Verified Case 01", "웹 명령이 실제 LED 반응까지 이어지는지 확인했습니다")
+    y = title(c, "02 · Verified Case 01 + Iteration", "LED 제어 검증을 사용자 예약 기능으로 확장했습니다")
     steps = ["Dashboard\nON/OFF", "MQTT\nfarm/pump", "Node-RED\n명령 변환", "Serial\nPUMP_ON/OFF", "Arduino\nLED 반응"]
     x = M
     for i, step in enumerate(steps):
@@ -471,12 +471,29 @@ def page_farm_led(c):
             c.setFont("KoreanBold", 12)
             c.drawString(x + 95, y - 62, "→")
         x += 104
-    rounded(c, M, y - 255, W - 2 * M, 130, WHITE, LINE, 14)
-    pill(c, "실물 검증 완료", M + 18, y - 158, GREEN)
-    para(c, "Arduino와 브레드보드에 LED를 연결하고 대시보드 버튼으로 ON/OFF 명령을 실행했습니다. 웹 조작에 따라 실제 LED가 점등·소등되는 것을 직접 확인해 화면, 통신, 시리얼, 물리 장치 사이의 연결을 검증했습니다.", M + 18, y - 188, W - 2 * M - 36, 10.2, 17, INK, False, 85)
-    rounded(c, M, y - 390, W - 2 * M, 104, colors.HexColor("#FFF4E5"), colors.HexColor("#E4C18E"), 14)
-    pill(c, "범위 구분", M + 18, y - 320, AMBER)
-    para(c, "같은 farm/pump 토픽과 명령 이름을 사용하지만 실제 펌프 하드웨어는 연결하지 않았습니다. 따라서 완료 표현은 LED 제어에만 사용하고, 펌프 구동은 실물 미검증으로 분리했습니다.", M + 18, y - 350, W - 2 * M - 36, 9.8, 16, INK, False, 68)
+    rounded(c, M, 500, W - 2 * M, 92, WHITE, LINE, 14)
+    pill(c, "실물 검증", M + 18, 552, GREEN)
+    para(c, "웹 ON/OFF 조작에 따라 Arduino·브레드보드의 실제 LED가 점등·소등되는 것을 직접 확인했습니다. 실제 펌프 하드웨어 구동은 검증하지 않았습니다.", M + 18, 535, W - 2 * M - 36, 9.3, 14, INK, False, 58)
+
+    rounded(c, M, 258, W - 2 * M, 218, PALE_BLUE, colors.HexColor("#AAB8E8"), 14)
+    pill(c, "USER FEEDBACK & ITERATION", M + 18, 436, BLUE)
+    para(c, "LED ON/OFF 예약 및 자동 제어", M + 18, 425, W - 2 * M - 36, 14, 18, INK, True, 28)
+    led_items = [
+        ("PROBLEM", "09:00~20:00 운영 시간에 맞춰 조명을 관리해야 했습니다."),
+        ("FEEDBACK", "재배 담당 조원들이 ON/OFF 시각 예약을 제안했습니다."),
+        ("SOLUTION", "대시보드에서 시간을 설정·변경하고 예약 시각에 LED가 작동하도록 구현했습니다."),
+        ("OUTCOME", "프로젝트 기간 중 실제 사용했고 예약 시각의 자동 점등·소등을 확인했습니다."),
+    ]
+    for i, (label, desc) in enumerate(led_items):
+        col, row = i % 2, i // 2
+        xx, yy = M + 18 + col * 247, 383 - row * 76
+        para(c, label, xx, yy, 78, 7.4, 10, BLUE, True, 18)
+        para(c, desc, xx + 78, yy, 151, 8.1, 11.5, INK, False, 54)
+
+    rounded(c, M, 88, W - 2 * M, 144, colors.HexColor("#FFF4E5"), colors.HexColor("#E4C18E"), 14)
+    pill(c, "VALIDATION & LIMITATIONS", M + 18, 194, AMBER)
+    para(c, "예약 기능, 시간 변경, 실제 LED 자동 ON/OFF와 프로젝트 기간 중 사용을 확인했습니다. 전력 절감 효과는 측정하지 않았고, 교육기관의 운영 시간 제한 이유는 확인 필요입니다.", M + 18, 184, W - 2 * M - 36, 8.7, 13, INK, False, 58)
+    para(c, "조원들은 공유받은 HiveMQ 계정으로 접속했습니다. 교육 프로젝트 당시 방식이며 운영 서비스에 권장되는 계정·권한 관리 방식은 아닙니다.", M + 18, 132, W - 2 * M - 36, 8.4, 12, SOFT, False, 42)
     footer(c, 9)
     c.showPage()
 
@@ -484,7 +501,7 @@ def page_farm_led(c):
 def page_farm_dht(c):
     bg(c, True)
     page_header(c, "Project 02 · Smart Farm", 10, True)
-    y = title(c, "03 · Verified Case 02", "센서 측정값을 화면과 주기 알림으로 연결했습니다", "대시보드 표시와 Telegram 알림은 같은 센서값을 사용하지만 서로 다른 전달 경로입니다.", True)
+    y = title(c, "03 · Verified Case 02 + Iteration", "센서 확인 흐름을 재배 기록 기능으로 확장했습니다", "대시보드 표시와 Telegram 알림은 같은 센서값을 사용하지만 서로 다른 전달 경로입니다.", True)
     flow = ["Serial In", "JSON", "Function", "MQTT Out", "Dashboard"]
     x = M
     for i, step in enumerate(flow):
@@ -500,25 +517,25 @@ def page_farm_dht(c):
     c.line(M + 196, y - 72, M + 196, y - 110)
     rounded(c, M + 108, y - 184, 300, 62, colors.HexColor("#102433"), colors.HexColor("#315267"), 10)
     para(c, "Save Temp Humidity → Inject (3,600초) → Telegram Sender", M + 122, y - 145, 272, 8.5, 12, WHITE, True, 40)
-    c.setFont("KoreanBold", 12)
-    c.setFillColor(WHITE)
-    c.drawString(M, y - 224, "Node-RED 노드 역할")
-    roles = [
-        ("Serial In", "Arduino 줄 단위 JSON 수신"), ("JSON", "문자열을 객체로 변환"),
-        ("Function", "온도·습도 출력 분리"), ("MQTT Out", "farm/temp·humidity 발행"),
-        ("Save Temp Humidity", "최근값과 시각 저장"), ("Inject", "3,600초마다 실행"),
-        ("Telegram Sender", "최근 상태 메시지 전송"),
+    rounded(c, M, 250, W - 2 * M, 224, colors.HexColor("#102433"), colors.HexColor("#315267"), 14)
+    pill(c, "USER FEEDBACK & ITERATION", M + 18, 434, CYAN, NAVY)
+    para(c, "재배일지형 스케줄러", M + 18, 423, W - 2 * M - 36, 14, 18, WHITE, True, 28)
+    journal_items = [
+        ("PROBLEM", "엑셀에 작업 내역을 적고 카카오톡으로 공유했으며 일부 조원은 엑셀 사용에 어려움을 겪었습니다."),
+        ("FEEDBACK", "재배 담당 조원 2명이 대시보드 안에서 기록하고 함께 확인하는 기능을 제안했습니다."),
+        ("SOLUTION", "날짜·시간과 작업 메모를 남기는 스케줄러를 추가했습니다. EC·pH와 양액·온습도 내용은 메모에 직접 작성했습니다."),
+        ("OUTCOME", "프로젝트 기간 중 조원들이 각자의 기기에서 접속해 재배 기록 작성과 정보 공유에 사용했습니다."),
     ]
-    yy = y - 248
-    for i, (name, desc) in enumerate(roles):
-        col = i % 2
-        row = i // 2
-        xx = M + col * 255
-        top = yy - row * 60
-        c.setStrokeColor(colors.HexColor("#294758"))
-        c.line(xx, top - 48, xx + 235, top - 48)
-        para(c, name, xx, top, 110, 8.2, 11, CYAN, True, 28)
-        para(c, desc, xx + 112, top, 123, 8.1, 11, colors.HexColor("#B7C4CD"), False, 35)
+    for i, (label, desc) in enumerate(journal_items):
+        col, row = i % 2, i // 2
+        xx, yy = M + 18 + col * 247, 380 - row * 82
+        para(c, label, xx, yy, 78, 7.4, 10, CYAN, True, 18)
+        para(c, desc, xx + 78, yy, 151, 8.0, 11.5, WHITE, False, 62)
+
+    rounded(c, M, 88, W - 2 * M, 138, colors.HexColor("#0B1B2A"), colors.HexColor("#315267"), 14)
+    pill(c, "VALIDATION & LIMITATIONS", M + 18, 188, AMBER)
+    para(c, "조원 2명의 제안 반영과 프로젝트 기간 중 실제 사용을 확인했습니다. 정량 이용 통계는 없습니다. EC·pH 센서는 예산 문제로 구매하지 못해 자동 연동하지 않았습니다.", M + 18, 178, W - 2 * M - 36, 8.7, 13, WHITE, False, 58)
+    para(c, "공유 HiveMQ 계정 접속은 교육 프로젝트의 사용 방식이며 운영 서비스의 보안 권장 방식이 아닙니다.", M + 18, 126, W - 2 * M - 36, 8.3, 12, colors.HexColor("#AEBCCA"), False, 34)
     footer(c, 10, True)
     c.showPage()
 
@@ -531,14 +548,16 @@ def page_farm_matrix(c):
         ("기능", "확인 근거", "상태"),
         ("DHT11 온습도", "실측값과 대시보드 갱신 확인", "실물 검증"),
         ("웹 ON/OFF → LED", "실제 점등·소등 확인", "실물 검증"),
+        ("LED 예약 자동 제어", "예약 시각의 실제 점등·소등 확인", "실물 검증"),
+        ("재배일지", "조원 2명, 프로젝트 기간 중 사용", "실제 사용"),
         ("Telegram 1시간 메시지", "실제 메시지 수신 확인", "실물 검증"),
         ("Raspberry Pi·Node-RED", "교육 프로젝트 실제 연결·실행", "실물 검증"),
         ("JSON·MQTT 분리", "공개용 흐름과 코드 확인", "코드 확인"),
         ("시간별 MQTT 스냅샷", "3,600초 retained 발행 코드", "코드 확인"),
         ("실제 펌프", "명령 로직만 존재, 하드웨어 미연결", "미검증"),
-        ("EC·pH 센서", "UI 확장, 실물 센서 미보유", "미검증"),
+        ("EC·pH 자동 연동", "메모 수동 입력, 실물 센서 미구매", "미구현"),
     ]
-    table(c, rows, M, y - 8, [125, 280, W - 2 * M - 405], 46)
+    table(c, rows, M, y - 8, [125, 280, W - 2 * M - 405], 36)
     rounded(c, M, 90, W - 2 * M, 95, colors.HexColor("#FFF4E5"), colors.HexColor("#E4C18E"), 14)
     para(c, "시간별 MQTT 스냅샷은 Telegram 알림과 별개의 보조 흐름입니다. 데이터베이스 장기 저장이나 기록 조회 화면은 확인되지 않아 완료 기능으로 표현하지 않았습니다.", M + 18, 156, W - 2 * M - 36, 9.6, 16, INK, False, 68)
     c.setFillColor(BLUE)
