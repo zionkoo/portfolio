@@ -20,7 +20,7 @@ OUTPUT = ROOT / "assets" / "Jeongmin-Koo-Portfolio.pdf"
 FONT = "/System/Library/Fonts/Supplemental/AppleGothic.ttf"
 FONT_BOLD = "/System/Library/Fonts/Supplemental/AppleGothic.ttf"
 W, H = A4
-M = 42
+M = 36
 
 PAPER = colors.HexColor("#F6F3EC")
 WHITE = colors.HexColor("#FFFEFA")
@@ -218,11 +218,11 @@ def footer(c, page, dark=False):
 
 
 def page_cover(c):
-    bg(c, True)
-    c.setFillColor(CYAN)
+    bg(c)
+    c.setFillColor(BLUE)
     c.setFont("KoreanBold", 10)
     c.drawString(M, H - 68, "SERVICE PLANNING PORTFOLIO")
-    para(c, "운영에서 발견한 문제를,<br/>사용 가능한 서비스로 설계합니다.", M, H - 134, W - 2 * M, 30, 41, WHITE, True, 150)
+    para(c, "운영에서 발견한 문제를,<br/>사용 가능한 서비스로 설계합니다.", M, H - 134, W - 2 * M, 30, 41, INK, True, 150)
     para(
         c,
         "온라인 MD·상품기획·사업운영·유통·물류에서 사용자와 운영의 흐름을 익히고,<br/>이를 요구사항과 사용자 흐름으로 구체화했습니다.",
@@ -231,20 +231,20 @@ def page_cover(c):
         W - 2 * M,
         12,
         20,
-        colors.HexColor("#B4C2CC"),
+        SOFT,
         False,
         120,
     )
     c.setStrokeColor(CYAN)
     c.setLineWidth(3)
     c.line(M, 246, W - M, 246)
-    c.setFillColor(WHITE)
+    c.setFillColor(INK)
     c.setFont("KoreanBold", 17)
     c.drawString(M, 202, "KOO JEONGMIN")
-    c.setFillColor(CYAN)
+    c.setFillColor(BLUE)
     c.setFont("KoreanBold", 9)
     c.drawString(M, 178, "PROBLEM / PRODUCT / PROOF")
-    c.setFillColor(colors.HexColor("#B4C2CC"))
+    c.setFillColor(SOFT)
     c.setFont("Korean", 9)
     c.drawString(M, 138, "zionkoo.github.io/portfolio/")
     c.drawString(M, 118, "zionkoo@kakao.com")
@@ -253,10 +253,10 @@ def page_cover(c):
 
     # The PDF cover uses a compact, independent symbol area instead of the
     # wide web Hero treatment. This keeps the title visually dominant.
-    draw_symbol(c, 385, 116, .72, True)
-    c.setFillColor(colors.HexColor("#6D8290"))
+    draw_symbol(c, 385, 116, .72)
+    c.setFillColor(SOFT)
     c.drawRightString(W - M, 92, "2026.11")
-    footer(c, 1, True)
+    footer(c, 1)
     c.showPage()
 
 
@@ -297,9 +297,9 @@ def page_intro(c):
 
 
 def page_strion_overview(c):
-    bg(c, True)
-    page_header(c, "Project 01 · STRION", 3, True)
-    y = title(c, "01 · Problem & Service", "원본 러닝 데이터를 다음 행동으로 연결합니다", "Garmin 기록을 분석해 다음 훈련과 레이스 계획에 활용하려는 개인 러너를 사용자로 설정했습니다.", True)
+    bg(c)
+    page_header(c, "Project 01 · STRION", 3)
+    y = title(c, "01 · Problem & Service", "원본 러닝 데이터를 다음 행동으로 연결합니다", "Garmin 기록을 분석해 다음 훈련과 레이스 계획에 활용하려는 개인 러너를 사용자로 설정했습니다.")
     image_cover(c, ROOT / "assets" / "strion-live.png", M, 340, W - 2 * M, 205, 14)
     c.setFillColor(colors.Color(0, 0, 0, alpha=.45))
     c.roundRect(M, 340, W - 2 * M, 205, 14, fill=1, stroke=0)
@@ -307,9 +307,9 @@ def page_strion_overview(c):
     metric(c, M + 176, 360, 145, "Process", "분석·비교", True)
     metric(c, M + 334, 360, 145, "Output", "다음 계획", True)
     para(c, "사용자 문제", M, 314, 120, 12, 17, CYAN, True)
-    bullet_list(c, ["운동 기록을 볼 때마다 FIT 파일을 다시 내려받고 업로드해야 함", "거리·페이스·심박·러닝 다이내믹스가 흩어져 있어 한 번에 해석하기 어려움", "분석 결과가 다음 훈련과 레이스 운영으로 자연스럽게 이어지지 않음"], M, 288, W - 2 * M, 9.5, WHITE, CYAN, 7)
-    para(c, "개인 러닝 경험에서 정의한 시나리오이며, 사용자 인터뷰로 검증한 페르소나는 아닙니다.", M, 128, W - 2 * M, 8.2, 12, colors.HexColor("#91A5B3"), False, 30)
-    footer(c, 3, True)
+    bullet_list(c, ["운동 기록을 볼 때마다 FIT 파일을 다시 내려받고 업로드해야 함", "거리·페이스·심박·러닝 다이내믹스가 흩어져 있어 한 번에 해석하기 어려움", "분석 결과가 다음 훈련과 레이스 운영으로 자연스럽게 이어지지 않음"], M, 288, W - 2 * M, 9.5, INK, BLUE, 7)
+    para(c, "개인 러닝 경험에서 정의한 시나리오이며, 사용자 인터뷰로 검증한 페르소나는 아닙니다.", M, 128, W - 2 * M, 8.2, 12, SOFT, False, 30)
+    footer(c, 3)
     c.showPage()
 
 
@@ -323,7 +323,7 @@ def page_strion_flow(c):
     sw = 92
     gap = 12
     for i, step in enumerate(steps):
-        rounded(c, x, y - 80, sw, 62, PALE_BLUE if i in (0, 4) else WHITE, BLUE if i in (0, 4) else LINE, 12)
+        rounded(c, x, y - 80, sw, 62, WHITE, BLUE if i in (0, 4) else LINE, 12)
         para(c, step.replace("\n", "<br/>"), x + 9, y - 36, sw - 18, 8.4, 12, INK, True, 48)
         if i < len(steps) - 1:
             c.setFillColor(BLUE)
@@ -347,30 +347,30 @@ def page_strion_flow(c):
 
 
 def page_strion_sync(c):
-    bg(c, True)
-    page_header(c, "Project 01 · STRION", 5, True)
-    y = title(c, "03 · Garmin Sync", "불편을 줄이되, 개인 연동의 범위를 과장하지 않았습니다", "개인 API 키가 브라우저에 노출되지 않도록 Cloudflare Worker를 중계 계층으로 사용했습니다.", True)
+    bg(c)
+    page_header(c, "Project 01 · STRION", 5)
+    y = title(c, "03 · Garmin Sync", "불편을 줄이되, 개인 연동의 범위를 과장하지 않았습니다", "개인 API 키가 브라우저에 노출되지 않도록 Cloudflare Worker를 중계 계층으로 사용했습니다.")
     nodes = [("Garmin Connect", "개인 기록"), ("Cloudflare Worker", "키 보호·중계"), ("STRION", "분석·저장")]
     x = M
     for i, (name, sub) in enumerate(nodes):
-        rounded(c, x, y - 94, 145, 76, colors.HexColor("#0B1B2A"), colors.HexColor("#315267"), 12)
-        para(c, name, x + 12, y - 44, 121, 10, 14, WHITE, True, 28)
-        para(c, sub, x + 12, y - 65, 121, 8, 11, colors.HexColor("#9EB0BD"), False, 20)
+        rounded(c, x, y - 94, 145, 76, WHITE, LINE, 12)
+        para(c, name, x + 12, y - 44, 121, 10, 14, INK, True, 28)
+        para(c, sub, x + 12, y - 65, 121, 8, 11, SOFT, False, 20)
         if i < 2:
             c.setFillColor(CYAN)
             c.setFont("KoreanBold", 14)
             c.drawString(x + 153, y - 63, "→")
         x += 172
     c.setFont("KoreanBold", 12)
-    c.setFillColor(WHITE)
+    c.setFillColor(INK)
     c.drawString(M, y - 138, "실제 구현 범위")
-    bullet_list(c, ["개인 API 키를 사용한 본인 계정 기록 동기화", "월 단위 기록 가져오기와 브라우저 내 저장·재열람", "FIT 원본과 Garmin 화면을 대조한 단위·경계값 검증"], M, y - 162, W - 2 * M, 9.5, WHITE, CYAN, 8)
+    bullet_list(c, ["개인 API 키를 사용한 본인 계정 기록 동기화", "월 단위 기록 가져오기와 브라우저 내 저장·재열람", "FIT 원본과 Garmin 화면을 대조한 단위·경계값 검증"], M, y - 162, W - 2 * M, 9.5, INK, BLUE, 8)
     c.setFont("KoreanBold", 12)
-    c.setFillColor(WHITE)
+    c.setFillColor(INK)
     c.drawString(M, y - 288, "제한과 향후 확장")
-    rounded(c, M, y - 410, W - 2 * M, 102, colors.HexColor("#102433"), colors.HexColor("#315267"), 12)
-    para(c, "현재는 공식 Garmin 다중 사용자 OAuth 연동이 아닙니다. 개인 계정용 동기화 경로이며, 여러 사용자가 자신의 계정을 안전하게 연결하는 상용 구조에는 정식 파트너 API, 사용자 인증, 서버 저장 정책과 동의 절차가 추가로 필요합니다.", M + 18, y - 332, W - 2 * M - 36, 10, 16, colors.HexColor("#C0CCD5"), False, 78)
-    footer(c, 5, True)
+    rounded(c, M, y - 410, W - 2 * M, 102, WHITE, LINE, 12)
+    para(c, "현재는 공식 Garmin 다중 사용자 OAuth 연동이 아닙니다. 개인 계정용 동기화 경로이며, 여러 사용자가 자신의 계정을 안전하게 연결하는 상용 구조에는 정식 파트너 API, 사용자 인증, 서버 저장 정책과 동의 절차가 추가로 필요합니다.", M + 18, y - 332, W - 2 * M - 36, 10, 16, INK, False, 78)
+    footer(c, 5)
     c.showPage()
 
 
@@ -404,23 +404,23 @@ def page_strion_validation(c):
 
 
 def page_strion_result(c):
-    bg(c, True)
-    page_header(c, "Project 01 · STRION", 7, True)
-    y = title(c, "05 · Result & Next", "작동하는 개인 러닝 서비스와 명확한 다음 조건을 남겼습니다", None, True)
+    bg(c)
+    page_header(c, "Project 01 · STRION", 7)
+    y = title(c, "05 · Result & Next", "작동하는 개인 러닝 서비스와 명확한 다음 조건을 남겼습니다")
     metrics = [("IMPLEMENTED", "6 CORE FR"), ("VERIFIED", "REAL FIT"), ("UNMEASURED", "USER KPI"), ("NEXT", "MULTI USER")]
     for i, (lab, val) in enumerate(metrics):
-        metric(c, M + (i % 2) * 252, y - 84 - (i // 2) * 76, 236, lab, val, True)
+        metric(c, M + (i % 2) * 252, y - 84 - (i // 2) * 76, 236, lab, val, False)
     para(c, "구현·검증", M, y - 194, 110, 12, 17, CYAN, True)
-    bullet_list(c, ["FIT 분석·저장·재열람과 개인 동기화 구현", "실사용 FIT와 Garmin 화면으로 값·단위 대조", "목표 페이스·레이스 전략·공유 카드 동작 확인", "사용성 지표와 추천 효과는 아직 측정하지 않음"], M, y - 218, 230, 9.2, WHITE, CYAN, 6)
+    bullet_list(c, ["FIT 분석·저장·재열람과 개인 동기화 구현", "실사용 FIT와 Garmin 화면으로 값·단위 대조", "목표 페이스·레이스 전략·공유 카드 동작 확인", "사용성 지표와 추천 효과는 아직 측정하지 않음"], M, y - 218, 230, 9.2, INK, BLUE, 6)
     para(c, "확장 조건", M + 264, y - 194, 100, 12, 17, CYAN, True)
-    bullet_list(c, ["공식 다중 사용자 계정 연동", "서버 기반 계정·기록 백업", "개인정보 동의와 삭제 정책", "훈련 추천 로직의 장기 검증"], M + 264, y - 218, 230, 9.2, WHITE, CYAN, 6)
-    rounded(c, M, 92, W - 2 * M, 88, colors.HexColor("#102433"), colors.HexColor("#315267"), 12)
-    para(c, "STRION = STRIDE + ON. 한 번의 기록을 이해하고 다음 걸음을 이어간다는 의미를 서비스 흐름에 반영했습니다.", M + 18, 145, W - 2 * M - 36, 11, 18, WHITE, True, 62)
-    c.setFillColor(CYAN)
+    bullet_list(c, ["공식 다중 사용자 계정 연동", "서버 기반 계정·기록 백업", "개인정보 동의와 삭제 정책", "훈련 추천 로직의 장기 검증"], M + 264, y - 218, 230, 9.2, INK, BLUE, 6)
+    rounded(c, M, 92, W - 2 * M, 88, WHITE, LINE, 12)
+    para(c, "STRION = STRIDE + ON. 한 번의 기록을 이해하고 다음 걸음을 이어간다는 의미를 서비스 흐름에 반영했습니다.", M + 18, 145, W - 2 * M - 36, 11, 18, INK, True, 62)
+    c.setFillColor(BLUE)
     c.setFont("KoreanBold", 8)
     c.drawRightString(W - M - 16, 106, "LIVE SERVICE ↗")
     link_region(c, STRION_URL, M, 92, W - 2 * M, 88)
-    footer(c, 7, True)
+    footer(c, 7)
     c.showPage()
 
 
@@ -464,20 +464,20 @@ def page_farm_led(c):
     steps = ["Dashboard\nON/OFF", "MQTT\nfarm/pump", "Node-RED\n명령 변환", "Serial\nPUMP_ON/OFF", "Arduino\nLED 반응"]
     x = M
     for i, step in enumerate(steps):
-        rounded(c, x, y - 90, 92, 68, PALE_BLUE if i in (0, 4) else WHITE, BLUE if i in (0, 4) else LINE, 12)
+        rounded(c, x, y - 90, 92, 68, WHITE, BLUE if i in (0, 4) else LINE, 12)
         para(c, step.replace("\n", "<br/>"), x + 8, y - 45, 76, 8.3, 12, INK, True, 50)
         if i < 4:
             c.setFillColor(BLUE)
             c.setFont("KoreanBold", 12)
             c.drawString(x + 95, y - 62, "→")
         x += 104
-    rounded(c, M, 500, W - 2 * M, 92, WHITE, LINE, 14)
-    pill(c, "실물 검증", M + 18, 552, GREEN)
-    para(c, "웹 ON/OFF 조작에 따라 Arduino·브레드보드의 실제 LED가 점등·소등되는 것을 직접 확인했습니다. 실제 펌프 하드웨어 구동은 검증하지 않았습니다.", M + 18, 535, W - 2 * M - 36, 9.3, 14, INK, False, 58)
+    rounded(c, M, 468, W - 2 * M, 92, WHITE, LINE, 14)
+    pill(c, "실물 검증", M + 18, 520, GREEN)
+    para(c, "웹 ON/OFF 조작에 따라 Arduino·브레드보드의 실제 LED가 점등·소등되는 것을 직접 확인했습니다. 실제 펌프 하드웨어 구동은 검증하지 않았습니다.", M + 18, 503, W - 2 * M - 36, 9.3, 14, INK, False, 58)
 
-    rounded(c, M, 258, W - 2 * M, 218, PALE_BLUE, colors.HexColor("#AAB8E8"), 14)
-    pill(c, "USER FEEDBACK & ITERATION", M + 18, 436, BLUE)
-    para(c, "LED ON/OFF 예약 및 자동 제어", M + 18, 425, W - 2 * M - 36, 14, 18, INK, True, 28)
+    rounded(c, M, 236, W - 2 * M, 214, WHITE, LINE, 14)
+    pill(c, "USER FEEDBACK & ITERATION", M + 18, 410, BLUE)
+    para(c, "LED ON/OFF 예약 및 자동 제어", M + 18, 399, W - 2 * M - 36, 14, 18, INK, True, 28)
     led_items = [
         ("PROBLEM", "09:00~20:00 운영 시간에 맞춰 조명을 관리해야 했습니다."),
         ("FEEDBACK", "재배 담당 조원들이 ON/OFF 시각 예약을 제안했습니다."),
@@ -486,27 +486,27 @@ def page_farm_led(c):
     ]
     for i, (label, desc) in enumerate(led_items):
         col, row = i % 2, i // 2
-        xx, yy = M + 18 + col * 247, 383 - row * 76
+        xx, yy = M + 18 + col * 247, 357 - row * 76
         para(c, label, xx, yy, 78, 7.4, 10, BLUE, True, 18)
         para(c, desc, xx + 78, yy, 151, 8.1, 11.5, INK, False, 54)
 
-    rounded(c, M, 88, W - 2 * M, 144, colors.HexColor("#FFF4E5"), colors.HexColor("#E4C18E"), 14)
-    pill(c, "VALIDATION & LIMITATIONS", M + 18, 194, AMBER)
-    para(c, "예약 기능, 시간 변경, 실제 LED 자동 ON/OFF와 프로젝트 기간 중 사용을 확인했습니다. 전력 절감 효과는 측정하지 않았고, 교육기관의 운영 시간 제한 이유는 확인 필요입니다.", M + 18, 184, W - 2 * M - 36, 8.7, 13, INK, False, 58)
-    para(c, "조원들은 공유받은 HiveMQ 계정으로 접속했습니다. 교육 프로젝트 당시 방식이며 운영 서비스에 권장되는 계정·권한 관리 방식은 아닙니다.", M + 18, 132, W - 2 * M - 36, 8.4, 12, SOFT, False, 42)
+    rounded(c, M, 72, W - 2 * M, 148, WHITE, LINE, 14)
+    pill(c, "VALIDATION & LIMITATIONS", M + 18, 180, AMBER)
+    para(c, "예약 기능, 시간 변경, 실제 LED 자동 ON/OFF와 프로젝트 기간 중 사용을 확인했습니다. 전력 절감 효과는 측정하지 않았고, 교육기관의 운영 시간 제한 이유는 확인 필요입니다.", M + 18, 170, W - 2 * M - 36, 8.7, 13, INK, False, 58)
+    para(c, "조원들은 공유받은 HiveMQ 계정으로 접속했습니다. 교육 프로젝트 당시 방식이며 운영 서비스에 권장되는 계정·권한 관리 방식은 아닙니다.", M + 18, 118, W - 2 * M - 36, 8.4, 12, SOFT, False, 42)
     footer(c, 9)
     c.showPage()
 
 
 def page_farm_dht(c):
-    bg(c, True)
-    page_header(c, "Project 02 · Smart Farm", 10, True)
-    y = title(c, "03 · Verified Case 02 + Iteration", "센서 확인 흐름을 재배 기록 기능으로 확장했습니다", "대시보드 표시와 Telegram 알림은 같은 센서값을 사용하지만 서로 다른 전달 경로입니다.", True)
+    bg(c)
+    page_header(c, "Project 02 · Smart Farm", 10)
+    y = title(c, "03 · Verified Case 02 + Iteration", "센서 확인 흐름을 재배 기록 기능으로 확장했습니다", "대시보드 표시와 Telegram 알림은 같은 센서값을 사용하지만 서로 다른 전달 경로입니다.")
     flow = ["Serial In", "JSON", "Function", "MQTT Out", "Dashboard"]
     x = M
     for i, step in enumerate(flow):
-        rounded(c, x, y - 72, 88, 54, colors.HexColor("#0B1B2A"), colors.HexColor("#315267"), 10)
-        para(c, step, x + 8, y - 39, 72, 8.1, 11, WHITE, True, 30)
+        rounded(c, x, y - 72, 88, 54, WHITE, LINE, 10)
+        para(c, step, x + 8, y - 39, 72, 8.1, 11, INK, True, 30)
         if i < 4:
             c.setFillColor(CYAN)
             c.setFont("KoreanBold", 11)
@@ -515,11 +515,11 @@ def page_farm_dht(c):
     c.setStrokeColor(CYAN)
     c.setLineWidth(2)
     c.line(M + 196, y - 72, M + 196, y - 110)
-    rounded(c, M + 108, y - 184, 300, 62, colors.HexColor("#102433"), colors.HexColor("#315267"), 10)
-    para(c, "Save Temp Humidity → Inject (3,600초) → Telegram Sender", M + 122, y - 145, 272, 8.5, 12, WHITE, True, 40)
-    rounded(c, M, 250, W - 2 * M, 224, colors.HexColor("#102433"), colors.HexColor("#315267"), 14)
-    pill(c, "USER FEEDBACK & ITERATION", M + 18, 434, CYAN, NAVY)
-    para(c, "재배일지형 스케줄러", M + 18, 423, W - 2 * M - 36, 14, 18, WHITE, True, 28)
+    rounded(c, M + 108, y - 184, 300, 62, WHITE, LINE, 10)
+    para(c, "Save Temp Humidity → Inject (3,600초) → Telegram Sender", M + 122, y - 145, 272, 8.5, 12, INK, True, 40)
+    rounded(c, M, 250, W - 2 * M, 224, WHITE, LINE, 14)
+    pill(c, "USER FEEDBACK & ITERATION", M + 18, 434, BLUE)
+    para(c, "재배일지형 스케줄러", M + 18, 423, W - 2 * M - 36, 14, 18, INK, True, 28)
     journal_items = [
         ("PROBLEM", "엑셀에 작업 내역을 적고 카카오톡으로 공유했으며 일부 조원은 엑셀 사용에 어려움을 겪었습니다."),
         ("FEEDBACK", "재배 담당 조원 2명이 대시보드 안에서 기록하고 함께 확인하는 기능을 제안했습니다."),
@@ -529,14 +529,14 @@ def page_farm_dht(c):
     for i, (label, desc) in enumerate(journal_items):
         col, row = i % 2, i // 2
         xx, yy = M + 18 + col * 247, 380 - row * 82
-        para(c, label, xx, yy, 78, 7.4, 10, CYAN, True, 18)
-        para(c, desc, xx + 78, yy, 151, 8.0, 11.5, WHITE, False, 62)
+        para(c, label, xx, yy, 78, 7.4, 10, BLUE, True, 18)
+        para(c, desc, xx + 78, yy, 151, 8.0, 11.5, INK, False, 62)
 
-    rounded(c, M, 88, W - 2 * M, 138, colors.HexColor("#0B1B2A"), colors.HexColor("#315267"), 14)
+    rounded(c, M, 88, W - 2 * M, 138, WHITE, LINE, 14)
     pill(c, "VALIDATION & LIMITATIONS", M + 18, 188, AMBER)
-    para(c, "조원 2명의 제안 반영과 프로젝트 기간 중 실제 사용을 확인했습니다. 정량 이용 통계는 없습니다. EC·pH 센서는 예산 문제로 구매하지 못해 자동 연동하지 않았습니다.", M + 18, 178, W - 2 * M - 36, 8.7, 13, WHITE, False, 58)
-    para(c, "공유 HiveMQ 계정 접속은 교육 프로젝트의 사용 방식이며 운영 서비스의 보안 권장 방식이 아닙니다.", M + 18, 126, W - 2 * M - 36, 8.3, 12, colors.HexColor("#AEBCCA"), False, 34)
-    footer(c, 10, True)
+    para(c, "조원 2명의 제안 반영과 프로젝트 기간 중 실제 사용을 확인했습니다. 정량 이용 통계는 없습니다. EC·pH 센서는 예산 문제로 구매하지 못해 자동 연동하지 않았습니다.", M + 18, 178, W - 2 * M - 36, 8.7, 13, INK, False, 58)
+    para(c, "공유 HiveMQ 계정 접속은 교육 프로젝트의 사용 방식이며 운영 서비스의 보안 권장 방식이 아닙니다.", M + 18, 126, W - 2 * M - 36, 8.3, 12, SOFT, False, 34)
+    footer(c, 10)
     c.showPage()
 
 
@@ -558,7 +558,7 @@ def page_farm_matrix(c):
         ("EC·pH 자동 연동", "메모 수동 입력, 실물 센서 미구매", "미구현"),
     ]
     table(c, rows, M, y - 8, [125, 280, W - 2 * M - 405], 36)
-    rounded(c, M, 90, W - 2 * M, 95, colors.HexColor("#FFF4E5"), colors.HexColor("#E4C18E"), 14)
+    rounded(c, M, 90, W - 2 * M, 95, WHITE, LINE, 14)
     para(c, "시간별 MQTT 스냅샷은 Telegram 알림과 별개의 보조 흐름입니다. 데이터베이스 장기 저장이나 기록 조회 화면은 확인되지 않아 완료 기능으로 표현하지 않았습니다.", M + 18, 156, W - 2 * M - 36, 9.6, 16, INK, False, 68)
     c.setFillColor(BLUE)
     c.setFont("KoreanBold", 8)
@@ -569,49 +569,59 @@ def page_farm_matrix(c):
 
 
 def page_profile(c):
-    bg(c, True)
-    page_header(c, "Profile", 12, True)
-    y = title(c, "Career & Collaboration", "운영 경험을 요구사항과 검증 기준으로 연결합니다", "상품·고객·구매·재고·물류·사업운영에서 익힌 흐름과 제약을 서비스 문제 정의와 우선순위 판단에 활용했습니다.", True)
-    career = [
-        ("2025.02-2026.02", "농업회사법인 이에프시 · 구매·재고·3PL 운영"),
-        ("2024.02-2024.04", "호야홈텍 · 생산 원재료 구매·발주"),
-        ("2021.04-2023.12", "주식회사 든솔 · 공동 운영 / 사업운영"),
-        ("2018.05-2021.02", "컴퓨존 · 입출고·재고관리"),
-        ("2017.10-2018.03", "롯데웰푸드 · 국내영업"),
-        ("2017.03-2017.09", "디엠에이씨인터내셔널 · 온라인 MD·상품기획"),
+    bg(c)
+    page_header(c, "Profile", 12)
+    y = title(c, "Career & Collaboration", "운영 경험을 요구사항과 검증 기준으로 연결합니다", "상품·고객·구매·재고·물류·사업운영에서 익힌 흐름과 제약을 서비스 문제 정의와 우선순위 판단에 활용했습니다.")
+    # 핵심 경력은 담당 범위와 실제 문제 해결 행동이 함께 보이도록 상세하게,
+    # 나머지 경력은 중복 없이 직무 연결성이 드러나도록 압축합니다.
+    full_w = W - 2 * M
+    top = y - 6
+
+    rounded(c, M, top - 152, full_w, 142, WHITE, LINE, 12)
+    para(c, "2025.02-2026.02", M + 16, top - 24, 120, 7.5, 10, CYAN, True, 16)
+    para(c, "농업회사법인 이에프시 · 과장", M + 138, top - 22, full_w - 154, 10.2, 14, INK, True, 24)
+    para(c, "담당 업무", M + 16, top - 50, 72, 7.4, 10, BLUE, True, 14)
+    para(c, "구매·발주·입출고·재고관리와 네이버 스마트스토어·쿠팡·SSG·롯데ON 운영 업무를 병행했습니다. 상품 등록·판매 중지·가격 조정, 주문 수집, 송장 출력, 포장·출고, 몰 담당 MD와 행사·가격 협의, 행사 물량 대응과 3PL 견적 제안을 담당했습니다.", M + 90, top - 48, full_w - 106, 8.25, 12.4, SOFT, False, 58)
+    para(c, "문제 해결", M + 16, top - 106, 72, 7.4, 10, BLUE, True, 14)
+    para(c, "CCTV를 직접 확인해 오출고 원인을 찾고 출고 전 발주서·수량 확인과 출고 후 일일 재고조사 절차를 정비했습니다. 특정일 일괄 출고가 어려운 행사 물량은 거래처에 선출고를 먼저 제안해 일정을 분산하고 납기를 준수했습니다.", M + 90, top - 104, full_w - 106, 8.25, 12.4, INK, False, 46)
+
+    dunsol_top = top - 164
+    rounded(c, M, dunsol_top - 106, full_w, 96, WHITE, LINE, 12)
+    para(c, "2021.04-2023.12", M + 16, dunsol_top - 24, 120, 7.5, 10, CYAN, True, 16)
+    para(c, "주식회사 든솔 · 공동 운영", M + 138, dunsol_top - 22, full_w - 154, 10.2, 14, INK, True, 24)
+    para(c, "물류·유통센터 대상 법인 아웃소싱 회사를 2인 체제로 공동 운영했습니다. 신규 거래처 영업·제안, 도급계약 협의, 현장 운영과 인력 채용·배치·교육·근태 관리를 맡았습니다. 월 마감, 급여명세서 작성, 세금계산서 발행까지 계약 이후의 운영 흐름도 함께 관리했습니다.", M + 16, dunsol_top - 50, full_w - 32, 8.35, 12.6, SOFT, False, 58)
+
+    compact = [
+        ("2024.02-2024.04", "호야홈텍 · 주임·계장", "생산 원재료 구매 및 발주"),
+        ("2018.05-2021.02", "컴퓨존 · 사원", "입출고·재고관리와 수량·출고 흐름 확인"),
+        ("2017.10-2018.03", "롯데웰푸드 · 국내영업", "국내 거래처 영업 및 응대"),
+        ("2017.03-2017.09", "디엠에이씨인터내셔널 · 온라인 MD", "사방넷 상품·상세페이지 등록, 상세페이지 초안·디자인 협업, 종합몰 행사·가격 협의"),
     ]
-    yy = y - 20
-    for date, role in career:
-        c.setStrokeColor(colors.HexColor("#294758"))
-        c.line(M, yy - 34, W - M, yy - 34)
-        c.setFillColor(CYAN)
-        c.setFont("KoreanBold", 8)
-        c.drawString(M, yy - 19, date)
-        para(c, role, M + 130, yy - 8, W - 2 * M - 130, 9, 13, WHITE, True, 30)
-        yy -= 48
-    c.setFont("KoreanBold", 12)
-    c.setFillColor(WHITE)
-    c.drawString(M, yy - 10, "WORKING WITH AI")
-    blocks = [
-        ("MY OWNERSHIP", "문제·사용 상황·우선순위·요구사항·검증 기준 결정"),
-        ("AI SUPPORT", "코드 초안·오류 원인 후보·UI 대안·문서 구조 탐색"),
-        ("VALIDATION", "원본 데이터·실물 장치·로그·모바일 화면 직접 대조"),
-    ]
-    bx = M
-    for label, desc in blocks:
-        rounded(c, bx, 130, 158, 92, colors.HexColor("#0B1B2A"), colors.HexColor("#315267"), 12)
-        para(c, label, bx + 12, 202, 134, 8, 11, CYAN, True, 22)
-        para(c, desc, bx + 12, 180, 134, 8.2, 12, colors.HexColor("#B7C4CD"), False, 50)
-        bx += 171
-    c.setFillColor(WHITE)
-    c.setFont("KoreanBold", 13)
-    c.drawString(M, 88, "zionkoo.github.io/portfolio/")
-    c.setFillColor(CYAN)
-    c.setFont("Korean", 9)
-    c.drawString(M, 66, "zionkoo@kakao.com")
-    link_region(c, PORTFOLIO_URL, M, 80, 230, 20)
-    link_region(c, EMAIL_URL, M, 58, 160, 20)
-    footer(c, 12, True)
+    gap = 12
+    card_w = (full_w - gap) / 2
+    compact_top = dunsol_top - 120
+    for index, (date, role, detail) in enumerate(compact):
+        col, row = index % 2, index // 2
+        bx = M + col * (card_w + gap)
+        by = compact_top - (row + 1) * 82 - row * gap
+        rounded(c, bx, by, card_w, 82, WHITE, LINE, 10)
+        para(c, date, bx + 12, by + 68, card_w - 24, 7.2, 9.6, CYAN, True, 14)
+        para(c, role, bx + 12, by + 49, card_w - 24, 8.6, 11.3, INK, True, 22)
+        para(c, detail, bx + 12, by + 28, card_w - 24, 7.6, 10.5, SOFT, False, 34)
+
+    ai_y = compact_top - 2 * 82 - gap - 90
+    rounded(c, M, ai_y, full_w, 80, PALE_BLUE, LINE, 12)
+    para(c, "WORKING WITH AI", M + 14, ai_y + 65, 120, 7.8, 10, BLUE, True, 16)
+    para(c, "본인: 문제·사용 상황·우선순위·요구사항·검증 기준 결정  /  AI: 코드 초안·오류 후보·UI 대안 탐색  /  검증: 원본 데이터·실물 장치·로그·모바일 화면 직접 대조", M + 14, ai_y + 46, full_w - 28, 7.5, 10.8, INK, False, 34)
+    c.setFillColor(INK)
+    c.setFont("KoreanBold", 10.5)
+    c.drawString(M + 14, ai_y + 12, "zionkoo.github.io/portfolio/")
+    c.setFillColor(BLUE)
+    c.setFont("Korean", 8.3)
+    c.drawRightString(W - M - 14, ai_y + 13, "zionkoo@kakao.com")
+    link_region(c, PORTFOLIO_URL, M + 12, ai_y + 5, 210, 20)
+    link_region(c, EMAIL_URL, W - M - 160, ai_y + 5, 148, 20)
+    footer(c, 12)
     c.showPage()
 
 

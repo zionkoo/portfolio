@@ -152,7 +152,8 @@ p { text-wrap: pretty; }
 .job { display: grid; grid-template-columns: 170px 1fr; gap: 36px; padding: 24px 0; border-bottom: 1px solid var(--line); }
 .job time { color: var(--blue); font: 700 13px/1.5 "Space Mono", monospace; }
 .job b { display: block; margin-bottom: 7px; font-size: 18px; }
-.job span { color: var(--ink-soft); }
+.job span { display: block; max-width: 900px; color: var(--ink-soft); line-height: 1.75; }
+.job .job-proof { margin-top: 10px; padding-left: 14px; border-left: 3px solid var(--lime); color: var(--ink); font-size: 14px; }
 
 .ai-band { color: white; background: var(--navy); }
 .ai-band .eyebrow { color: var(--cyan); }

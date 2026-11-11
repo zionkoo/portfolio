@@ -13,7 +13,8 @@
   </defs>
   <path d="M82 310C105 310 116 282 139 282H170C193 282 196 244 219 244H248C271 244 275 202 298 202H330" fill="none" stroke="#315cff" stroke-opacity=".12" stroke-width="34" stroke-linecap="round" filter="url(#soft)"/>
   <path d="M82 310C105 310 116 282 139 282H170C193 282 196 244 219 244H248C271 244 275 202 298 202H330" fill="none" stroke="url(#flow)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M126 310H158M202 282H234M280 244H312" fill="none" stroke="#101c2d" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+  <!-- Each stage sits on its own step so the symbol reads as steady progress. -->
+  <path d="M46 344H118M120 316H192M200 278H272M290 236H370" fill="none" stroke="#101c2d" stroke-width="4" stroke-linecap="round" opacity=".72"/>
   <rect x="52" y="280" width="60" height="60" rx="18" fill="#f6f3ec" stroke="#101c2d" stroke-width="8"/>
   <circle cx="82" cy="310" r="10" fill="#101c2d"/>
   <rect x="126" y="252" width="60" height="60" rx="18" fill="#f6f3ec" stroke="#315cff" stroke-width="8"/>
